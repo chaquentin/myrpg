@@ -25,20 +25,16 @@ THIS IS A TEMPORARY FILE JUST TO GIVE AN IDEA OF HOW THE ENEMIES WILL WORK
 
     enum weapons {Knife, Baseball, Gun, Toothbrush};
     enum behaviours {Idle, Searching, Attacking};
-    //Idle = Random actions
-    //Searching = go to last seen player pos
-    //Attacking = player is in sight and range to be fired at
-    enum sprites {BlackDude, WhiteDude};
+    enum game_scene {Menu, Game, Option, Pause, Quit, Win};
 
     typedef struct enemy_jump_s {
         sfBool is_jumping;
         int since;                   //jump since n milliseconds
         sfVector2f pos1;             //from xy
-        sfVector2f pos2;             //to xy
+        sfVector2f pos2;             //to xyp
     } enemy_jump_t;
 
-    typedef struct enemy_s {
-        sfVector2f pos;              //enemy pos
+    typedef struct enemy_s {           //enemy pos
         sfVector2f player_pos;       //last seen player pos, {-1, -1} if never seen the player.
         sfVector2f idle_around;      //pos that the enemy need to be around when idle
         int angle;                   //0 is at the right, 180 at the left 
@@ -48,7 +44,6 @@ THIS IS A TEMPORARY FILE JUST TO GIVE AN IDEA OF HOW THE ENEMIES WILL WORK
         enemy_jump_t *jump;          //contains jumping data (see above)
         enum weapons weapon;         //which weapon to use
         enum behaviours behaviour;   //what's the enemy's behaviour
-        enum sprites sprite;         //what's the enemy's sprite
     } enemy_t;
 
 #endif
