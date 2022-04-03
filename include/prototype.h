@@ -16,5 +16,8 @@
     int start_game(game_t *game, player_t *player);
     void display_player(game_t *game, player_t *player);
     void fill_mouse(game_t *game, player_t *player);
+    int manage_key_pressed(game_t *game, sfKeyCode key_code, player_t *player);
+    int manage_key_released(sfKeyCode key_code, player_t *player);
+    void move_player(game_t *game, player_t *player);
 
-#endif /* !PROTOTYPE_H_ */
+#endif

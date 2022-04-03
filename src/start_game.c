@@ -9,13 +9,29 @@
 #include "prototype.h"
 #include "structure.h"
 
-void get_event(game_t *game, sfEvent *event)
+void get_event(game_t *game, sfEvent *event, player_t *player)
 {
     while (sfRenderWindow_pollEvent(game->window, event)) {
-        if (event->type == sfEvtKeyPressed && event->key.code == sfKeyEscape) {
-            sfRenderWindow_close(game->window);
-        }
+        if (event->type == sfEvtKeyPressed)
+            manage_key_pressed(game, event->key.code, player);
+        if (event->type == sfEvtKeyReleased)
+            manage_key_released(event->key.code, player);
     }
+}
+
+int update_clock(game_t *game)
+{
+    sfTime time = sfClock_getElapsedTime(game->clock);
+    float seconds = time.microseconds / 1000000.0;
+    static float old_seconds = 0.0;
+
+    game->delta_time = seconds - old_seconds;
+    old_seconds = seconds;
+    if (seconds > 10) {
+        sfClock_restart(game->clock);
+        old_seconds = 0.0;
+    }
+    return (0);
 }
 
 int start_game(game_t *game, player_t *player)
@@ -23,8 +39,10 @@ int start_game(game_t *game, player_t *player)
     sfEvent event;
 
     while (sfRenderWindow_isOpen(game->window)) {
+        update_clock(game);
         sfRenderWindow_clear(game->window, sfBlack);
-        get_event(game, &event);
+        get_event(game, &event, player);
+        move_player(game, player);
         fill_mouse(game, player);
         display_player(game, player);
         sfRenderWindow_display(game->window);

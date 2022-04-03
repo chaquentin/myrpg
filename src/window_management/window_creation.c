@@ -19,6 +19,8 @@ void destroy_game(game_t *game)
             sfSprite_destroy(game->all_sprite[i]);
         free(game->all_sprite);
     }
+    if (game->clock)
+        sfClock_destroy(game->clock);
     free(game);
 }
 
@@ -46,7 +48,7 @@ sfRenderWindow *create_window(void)
     sfVideoMode mode = {1920, 1080, 32};
     sfRenderWindow *window = NULL;
 
-    window = sfRenderWindow_create(mode, "Nigger land", sfFullscreen | sfClose, NULL);
+    window = sfRenderWindow_create(mode, "Nigger land", sfFullscreen, NULL);
     sfRenderWindow_setFramerateLimit(window, 144);
     if (window == NULL)
         return NULL;
@@ -64,6 +66,8 @@ game_t *create_game(void)
     game->framerate_limit = 144;
     game->window = create_window();
     game->texture = sfTexture_createFromFile("asset/sprite_sheet.png", NULL);
+    game->delta_time = 0.0;
+    game->clock = sfClock_create();
     if (!game->window || !game->texture) {
         destroy_game(game);
         return NULL;

@@ -17,11 +17,13 @@ int main(int ac, char **av)
 
     if (!game)
         return 84;
+    sfRenderWindow_setFramerateLimit(game->window, game->framerate_limit);
     player = create_player(game);
     if (!player)
         error = 84;
     else {
         start_game(game, player);
+        free(player->movement);
         free(player);
     }
     destroy_game(game);
