@@ -23,8 +23,7 @@ int main(int ac, char **av)
         error = 84;
     else {
         start_game(game, player);
-        free(player->movement);
-        free(player);
+        destroy_player(player);
     }
     destroy_game(game);
     return error;

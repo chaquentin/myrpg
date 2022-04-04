@@ -6,6 +6,7 @@
 */
 
 #include <stdlib.h>
+#include "prototype.h"
 #include "structure.h"
 
 int *malloc_int(void)
@@ -19,6 +20,32 @@ int *malloc_int(void)
     return (array);
 }
 
+int destroy_player(player_t *player)
+{
+    if (player == NULL)
+        return (84);
+    if (player->weapon != NULL)
+        free(player->weapon);
+    if (player->clothes != NULL)
+        free(player->clothes);
+    if (player->movement != NULL)
+        free(player->movement);
+    free(player);
+    return (0);
+}
+
+int add_default_param(player_t *player, game_t *game)
+{
+    player->speed = 200;
+    player->health = 100;
+    player->delta_time = 0;
+    player->swag = 0;
+    player->pos = (sfVector2f) {928, 508};
+    player->actual_sprites = NiggerGun;
+    player->sprite = game->all_sprite[player->actual_sprites];
+    return 0;
+}
+
 player_t *create_player(game_t *game)
 {
     player_t *player = NULL;
@@ -26,22 +53,15 @@ player_t *create_player(game_t *game)
     player = malloc(sizeof(player_t));
     if (!player)
         return NULL;
-    player->health = 5;
-    player->is_moving = sfFalse;
-    player->pos = (sfVector2f) {928, 508};
-    player->speed = 200;
-    player->swag = 0;
     player->weapon = NULL;
-    player->sprite = game->all_sprite[Nigger1];
-    player->clothes_sprite = FlowerShirt1;
-    player->clothes = game->all_sprite[FlowerShirt1];
-    player->delta_time = 0;
+    player->clothes = NULL;
     player->movement = malloc_int();
-    player->actual_sprite = Nigger1;
-    player->default_sprites = Nigger1;
-    if (!player->movement) {
-        free(player);
+    player->weapon = create_weapon(9, 53, Gun, game);
+    player->clothes = create_clothes(game);
+    if (!player->movement || !player->weapon || !player->clothes) {
+        destroy_player(player);
         return NULL;
     }
+    add_default_param(player, game);
     return player;
 }

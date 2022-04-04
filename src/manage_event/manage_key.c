@@ -7,14 +7,6 @@
 
 #include "structure.h"
 
-int change_closeth(player_t *player)
-{
-    if (player->clothes_sprite < BlackShirt1)
-        player->clothes_sprite += 4;
-    else
-        player->clothes_sprite = BloodShirt1;
-}
-
 int manage_key_pressed(game_t *game, sfKeyCode key_code, player_t *player)
 {
     switch (key_code) {
@@ -32,9 +24,6 @@ int manage_key_pressed(game_t *game, sfKeyCode key_code, player_t *player)
         break;
         case sfKeyS:
         player->movement[3] = 1;
-        break;
-        case sfKeyF:
-        change_closeth(player);
         break;
         default:
         break;
