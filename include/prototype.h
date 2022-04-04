@@ -19,5 +19,9 @@
     int manage_key_pressed(game_t *game, sfKeyCode key_code, player_t *player);
     int manage_key_released(sfKeyCode key_code, player_t *player);
     void move_player(game_t *game, player_t *player);
+    weapon_t *create_weapon(int nbr_amo, int damage,
+    enum all_sprites witch_weapon, game_t *game);
+    clothes_t *create_clothes(game_t *game);
+    int destroy_player(player_t *player);
 
 #endif

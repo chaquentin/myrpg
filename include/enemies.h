@@ -5,10 +5,6 @@
 ** enemies
 */
 
-
-
-
-
 /*
 THIS IS A TEMPORARY FILE JUST TO GIVE AN IDEA OF HOW THE ENEMIES WILL WORK
 */
@@ -23,7 +19,6 @@ THIS IS A TEMPORARY FILE JUST TO GIVE AN IDEA OF HOW THE ENEMIES WILL WORK
     Spotted_1, Spotted_2, Spotted_3, 
     Jump_1, Jump_2, Jump_3};
 
-    enum weapons {Knife, Baseball, Gun, Toothbrush};
     enum behaviours {Idle, Searching, Attacking};
     enum game_scene {Menu, Game, Option, Pause, Quit, Win};
 
@@ -41,8 +36,7 @@ THIS IS A TEMPORARY FILE JUST TO GIVE AN IDEA OF HOW THE ENEMIES WILL WORK
         int speed;                   //can jump every n/100 seconds
         sfBool alive;                //explicit enough dumbass
         int idled_for;               //time since last action
-        enemy_jump_t *jump;          //contains jumping data (see above)
-        enum weapons weapon;         //which weapon to use
+        enemy_jump_t *jump;      //which weapon to use
         enum behaviours behaviour;   //what's the enemy's behaviour
     } enemy_t;
 

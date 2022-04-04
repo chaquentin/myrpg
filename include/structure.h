@@ -31,20 +31,27 @@
     } game_object_t;
 
     typedef struct weapon_s {
+        sfSprite *sprite;
         enum all_sprites weapon;
         int ammo;
         int damage;
     } weapon_t;
 
+    typedef struct clothes_s {
+        sfSprite *top_sprite;
+        sfSprite *head_sprite;
+        sfBool is_gun;
+        enum clothes head;
+        enum clothes top;
+        int swag;
+    } clothes_t;
+
     typedef struct player_s {
-        game_object_t *weapon;
+        weapon_t *weapon;
+        clothes_t *clothes;
         sfSprite *sprite;
-        sfSprite *clothes;
         sfVector2f pos;
-        sfBool is_moving;
-        enum all_sprites default_sprites;
-        enum all_sprites actual_sprite;
-        enum all_sprites clothes_sprite;
+        enum all_sprites actual_sprites;
         int swag;
         int health;
         int speed;
