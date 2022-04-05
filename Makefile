@@ -26,12 +26,16 @@ $(eval EVENT_MANAGEMENT=$(addprefix src/manage_event/, $(EVENT_MANAGEMENT)))
 CLOTHES_MANAGEMENT = create_clothes.c
 $(eval CLOTHES_MANAGEMENT=$(addprefix src/clothes_management/, $(CLOTHES_MANAGEMENT)))
 
-OBJ = $(SRC:.c=.o) \
-	$(PLAYER_MANAGEMENT:.c=.o) \
-	$(WEAPON_MANAGEMENT:.c=.o) \
-	$(WINDOW_MANAGEMENT:.c=.o) \
-	$(EVENT_MANAGEMENT:.c=.o) \
-	$(CLOTHES_MANAGEMENT:.c=.o)
+MATHS_MANAGEMENT = is_intersection.c
+$(eval MATHS_MANAGEMENT=$(addprefix src/maths_management/, $(MATHS_MANAGEMENT)))
+
+OBJ = $(SRC:.c=.o) 					\
+	$(PLAYER_MANAGEMENT:.c=.o) 		\
+	$(WEAPON_MANAGEMENT:.c=.o) 		\
+	$(WINDOW_MANAGEMENT:.c=.o) 		\
+	$(EVENT_MANAGEMENT:.c=.o) 		\
+	$(CLOTHES_MANAGEMENT:.c=.o)		\
+	$(MATHS_MANAGEMENT:.c=.o)		\
 
 NAME = my_rpg
 
