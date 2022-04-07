@@ -17,16 +17,26 @@
 
     enum all_sprites {WoodenFloor, WallBL, WallBR, WallUL, WallUR, WallB,
     WallBM, WallUM, WallRM, WallLM, WallL,
-    NiggerGun, NiggerRifle,
+    NiggerRifle, NiggerGun,
     FireShirtGun, FireShirtRifle,
     FlowerShirtGun, FlowerShirtRifle,
     BlackShirtGun, BlackShirtRifle,
     TankTopShirtGun, TankTopShirtRifle,
     BlackCap, BlackDourag, FireCap,
     Gun, M4, Sniper};
+
+    enum decor {WoodenFloor, WallBL, WallBR, WallUL, WallUR, WallB,
+    WallBM, WallUM, WallRM, WallLM, WallL};
+
+    enum nigger {NiggerRifle, NiggerGun};
+    
     static const int swag[] = {15, 25, 5, 1, 3, 15, 20};
     enum clothes {FireShirt_c, FlowerShirt_c, BlackShirt_c, TankTopShirt_c,
     BlackCap_c, BlackDourag_c, FireCap_c};
+
+    static const int gun_damage[3][4] = {{9, 24, 2.3, 1.3}, {30, 33, 0.1, 3.1},
+    {10, 88, 1.25, 3.37}};
+    enum weapon {Gun_w, M4_w, Sniper_w};
 
     static const sfIntRect all_rect[27] = {{0, 0, 64, 64}, {64, 0, 64, 64},
     {128, 0, 64, 64}, {192, 0, 64, 64}, {256, 0, 64, 64}, {320, 0, 64, 64},

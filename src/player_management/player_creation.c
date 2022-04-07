@@ -53,10 +53,8 @@ player_t *create_player(game_t *game)
     player = malloc(sizeof(player_t));
     if (!player)
         return NULL;
-    player->weapon = NULL;
-    player->clothes = NULL;
     player->movement = malloc_int();
-    player->weapon = create_weapon(9, 53, Gun, game);
+    player->weapon = create_weapon(Gun_w, game);
     player->clothes = create_clothes(game);
     if (!player->movement || !player->weapon || !player->clothes) {
         destroy_player(player);

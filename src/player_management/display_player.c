@@ -26,9 +26,22 @@ static int display_clothes(game_t *game, player_t *player)
     player->clothes->top_sprite, NULL);
 }
 
+static int display_weapon(game_t *game, player_t *player)
+{
+    if (player->weapon->sprite) {
+        sfSprite_setOrigin(player->weapon->sprite, (sfVector2f){32, 32});
+        sfSprite_setRotation(player->weapon->sprite,
+        sfSprite_getRotation(player->sprite));
+        sfSprite_setPosition(player->weapon->sprite, player->pos);
+        sfRenderWindow_drawSprite(game->window,
+        player->weapon->sprite, NULL);
+    }
+}
+
 void display_player(game_t *game, player_t *player)
 {
     sfSprite_setPosition(player->sprite, player->pos);
     sfRenderWindow_drawSprite(game->window, player->sprite, NULL);
     display_clothes(game, player);
+    display_weapon(game, player);
 }

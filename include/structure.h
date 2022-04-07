@@ -32,9 +32,12 @@
 
     typedef struct weapon_s {
         sfSprite *sprite;
+        sfBool is_gun;
         enum all_sprites weapon;
         int ammo;
         int damage;
+        float reload_time;
+        float fire_rate;
     } weapon_t;
 
     typedef struct clothes_s {
