@@ -34,32 +34,39 @@ int destroy_player(player_t *player)
     return (0);
 }
 
-int add_default_param(player_t *player, game_t *game)
-{
-    player->speed = 200;
-    player->health = 100;
-    player->delta_time = 0;
-    player->swag = 0;
-    player->pos = (sfVector2f) {928, 508};
-    player->actual_sprites = NiggerGun;
-    player->sprite = game->all_sprite[player->actual_sprites];
-    return 0;
-}
-
-player_t *create_player(game_t *game)
+static player_t *init_player(void)
 {
     player_t *player = NULL;
 
     player = malloc(sizeof(player_t));
     if (!player)
         return NULL;
+    player->clothes = NULL;
+    player->weapon = NULL;
+    player->movement = NULL;
+    player->speed = 200;
+    player->health = 100;
+    player->delta_time = 0;
+    player->swag = 0;
+    player->pos = (sfVector2f) {928, 508};
+    player->player = NiggerGun1;
+    player->sprite = NULL;
+    return player;
+}
+
+player_t *create_player(game_t *game)
+{
+    player_t *player = init_player();
+
+    if (!player)
+        return NULL;
+    player->sprite = game->all_sprite[Nigger][player->player];
     player->movement = malloc_int();
-    player->weapon = create_weapon(Gun_w, game);
-    player->clothes = create_clothes(game);
+    player->weapon = create_start_weapon(game);
+    player->clothes = create_start_clothes(game);
     if (!player->movement || !player->weapon || !player->clothes) {
         destroy_player(player);
         return NULL;
     }
-    add_default_param(player, game);
     return player;
 }

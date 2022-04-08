@@ -8,22 +8,15 @@
 #include <stdlib.h>
 #include "structure.h"
 
-static int display_clothes(game_t *game, player_t *player)
+static int display_clothe(game_t *game, player_t *player, sfSprite *clothe)
 {
-    if (player->clothes->head_sprite) {
-        sfSprite_setOrigin(player->clothes->head_sprite, (sfVector2f){32, 32});
-        sfSprite_setRotation(player->clothes->head_sprite,
-        sfSprite_getRotation(player->sprite));
-        sfSprite_setPosition(player->clothes->head_sprite, player->pos);
-        sfRenderWindow_drawSprite(game->window,
-        player->clothes->head_sprite, NULL);
-    }
-    sfSprite_setOrigin(player->clothes->top_sprite, (sfVector2f){32, 32});
-    sfSprite_setRotation(player->clothes->top_sprite,
-    sfSprite_getRotation(player->sprite));
-    sfSprite_setPosition(player->clothes->top_sprite, player->pos);
-    sfRenderWindow_drawSprite(game->window,
-    player->clothes->top_sprite, NULL);
+    if (!clothe)
+        return (84);
+    sfSprite_setOrigin(clothe, (sfVector2f) {32, 32});
+    sfSprite_setRotation(clothe, sfSprite_getRotation(player->sprite));
+    sfSprite_setPosition(clothe, player->pos);
+    sfRenderWindow_drawSprite(game->window, clothe, NULL);
+    return 0;
 }
 
 static int display_weapon(game_t *game, player_t *player)
@@ -38,10 +31,15 @@ static int display_weapon(game_t *game, player_t *player)
     }
 }
 
-void display_player(game_t *game, player_t *player)
+int display_player(game_t *game, player_t *player)
 {
+    if (!player)
+        return 84;
     sfSprite_setPosition(player->sprite, player->pos);
     sfRenderWindow_drawSprite(game->window, player->sprite, NULL);
-    display_clothes(game, player);
+    display_clothe(game, player, player->clothes->pants_sprite);
+    display_clothe(game, player, player->clothes->shirt_sprite);
     display_weapon(game, player);
+    display_clothe(game, player, player->clothes->hat_sprite);
+    return 0;
 }

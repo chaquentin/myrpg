@@ -8,33 +8,32 @@
 #include <stdlib.h>
 #include "structure.h"
 
-int update_clothes(player_t *player, game_t *game, enum clothes new_clothes)
-{
-    if (new_clothes > 3) {
-        player->clothes->head = new_clothes;
-        player->clothes->head_sprite = game->all_sprite[21 +
-        (player->clothes->head)];
-    } else {
-        player->clothes->top = new_clothes;
-        game->all_sprite[13 +
-        ((2 * player->clothes->top) + player->clothes->is_gun)];
-    }
-    player->swag = (player->clothes->head_sprite) ?
-    swag[player->clothes->head] : 0;
-    player->swag += swag[player->clothes->top];
-    return 0;
-}
-
-clothes_t *create_clothes(game_t *game)
+clothes_t *init_clothes(void)
 {
     clothes_t *clothes = malloc(sizeof(clothes_t));
 
-    if (!clothes)
+    if (clothes == NULL)
         return NULL;
+    clothes->shirt_sprite = NULL;
+    clothes->hat_sprite = NULL;
+    clothes->pants_sprite = NULL;
+    clothes->hat = -1;
+    clothes->top = -1;
+    clothes->pants = -1;
     clothes->is_gun = sfTrue;
-    clothes->top = TankTopShirt_c;
-    clothes->head = 0;
-    clothes->head_sprite = NULL;
-    clothes->top_sprite = game->all_sprite[13 +
-    ((2 * clothes->top) + clothes->is_gun)];
+    clothes->swag = 0;
+    return clothes;
+}
+
+clothes_t *create_start_clothes(game_t *game)
+{
+    clothes_t *clothes = init_clothes();
+
+    if (clothes == NULL)
+        return NULL;
+    clothes->pants = BlueGun1;
+    clothes->top = TankGun;
+    clothes->pants_sprite = game->all_sprite[Pants][clothes->pants];
+    clothes->shirt_sprite = game->all_sprite[Shirt][clothes->top];
+    return clothes;
 }

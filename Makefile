@@ -17,7 +17,8 @@ $(eval PLAYER_MANAGEMENT=$(addprefix src/player_management/, $(PLAYER_MANAGEMENT
 WEAPON_MANAGEMENT = weapon_creation.c
 $(eval WEAPON_MANAGEMENT=$(addprefix src/weapon_management/, $(WEAPON_MANAGEMENT)))
 
-WINDOW_MANAGEMENT = window_creation.c
+WINDOW_MANAGEMENT = window_creation.c \
+	create_all_sprites.c
 $(eval WINDOW_MANAGEMENT=$(addprefix src/window_management/, $(WINDOW_MANAGEMENT)))
 
 EVENT_MANAGEMENT = manage_key.c

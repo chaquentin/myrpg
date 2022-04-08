@@ -10,44 +10,77 @@
 
     #include "SFML/Graphics.h"
 
-    #define ALL_SPRITES 27
     #define PI 3.1415926535
-    #define HEAD 0
-    #define TOP 1
+    #define NBR_CAT 7
+    #define NBR_DECOR 1
+    #define NBR_WALL 21
+    #define NBR_NIGGER 8
+    #define NBR_SHIRT 8
+    #define NBR_HAT 3
+    #define NBR_PANTS 16
+    #define NBR_ENEMIES 9
+    #define NBR_WEAPON 3
 
-    enum all_sprites {WoodenFloor, WallBL, WallBR, WallUL, WallUR, WallB,
-    WallBM, WallUM, WallRM, WallLM, WallL,
-    NiggerRifle, NiggerGun,
-    FireShirtGun, FireShirtRifle,
-    FlowerShirtGun, FlowerShirtRifle,
-    BlackShirtGun, BlackShirtRifle,
-    TankTopShirtGun, TankTopShirtRifle,
-    BlackCap, BlackDourag, FireCap,
-    Gun, M4, Sniper};
+    enum type{Decor, Wall, Nigger, Shirt, Hat, Pants, Weapon};
 
-    enum decor {WoodenFloor, WallBL, WallBR, WallUL, WallUR, WallB,
-    WallBM, WallUM, WallRM, WallLM, WallL};
+    enum decor {WoodenFloor};
+    static const sfIntRect decor_rect[1] = {{0, 0, 64, 64}};
 
-    enum nigger {NiggerRifle, NiggerGun};
-    
+    enum wall {ExtWallS, ExtWallSR, ExtWallSL, ExtWallH, ExtWallHU,
+    ExtWallHD, ExtWallUR, ExtWallUL, ExtWallBR, ExtWallBL,
+    IntWallS, IntWallSR, IntWallSL, IntWallH, IntWallHU,
+    IntWallHD, IntWallUR, IntWallUL, IntWallBR, IntWallBL, IntWallSq};
+    static const sfIntRect wall_rect[21] = {{64, 0, 64, 64}, {64, 64, 64, 64},
+    {64, 128, 64, 64}, {64, 192, 64, 64}, {64, 256, 64, 64}, {64, 320, 64, 64},
+    {64, 384, 64, 64}, {64, 448, 64, 64}, {64, 512, 64, 64}, {64, 576, 64, 64},
+    {128, 0, 64, 64}, {128, 64, 64, 64}, {128, 128, 64, 64},
+    {128, 192, 64, 64}, {128, 256, 64, 64}, {128, 320, 64, 64},
+    {128, 384, 64, 64}, {128, 448, 64, 64}, {128, 512, 64, 64},
+    {128, 576, 64, 64}, {128, 640, 64, 64}};
+
+    enum nigger {NiggerGun1, NiggerGun2, NiggerGun3, NiggerGun4,
+    NiggerRifle1, NiggerRifle2, NiggerRifle3, NiggerRifle4};
+    static const sfIntRect nigger_rect[8] = {{192, 0, 64, 64}, {256, 0, 64, 64},
+    {320, 0, 64, 64}, {384, 0, 64, 64}, {192, 64, 64, 64},
+    {256, 64, 64, 64}, {320, 64, 64, 64}, {384, 64, 64, 64}};
+
+    enum shirt {TankRifle, TankGun, BlackRifle, BlackGun,
+    FlowerRifle, FlowerGun, FireRifle, FireGun};
+    static const sfIntRect shirt_rect[8] = {{640, 0, 64, 64}, {704, 0, 64, 64},
+    {640, 64, 64, 64}, {704, 64, 64, 64}, {640, 128, 64, 64},
+    {740, 128, 64, 64}, {640, 192, 64, 64}, {704, 192, 64, 64}};
+    static int shirt_swag[4] = {1, 5, 15, 25};
+
+    enum hat {BlackCap, BlackDourag, FireCap};
+    static const sfIntRect hat_rect[3] = {{768, 0, 64, 64}, {768, 64, 64, 64},
+    {768, 128, 64, 64}};
+    static int hat_swag[3] = {3, 15, 20};
+
+    enum pants {BlueGun1, BlueGun2, BlueGun3, BlueGun4,
+    BlueRifle1, BlueRifle2, BlueRifle3, BlueRifle4,
+    BlackGun1, BlackGun2, BlackGun3, BlackGun4,
+    BlackRifle1, BlackRifle2, BlackRifle3, BlackRifle4};
+    static const sfIntRect pants_rect[16] = {{832, 0, 64, 64}, {896, 0, 64, 64},
+    {960, 0, 64, 64}, {1024, 0, 64, 64}, {1088, 0, 64, 64}, {1152, 0, 64, 64},
+    {1216, 0, 64, 64}, {1280, 0, 64, 64}, {832, 64, 64, 64}, {896, 64, 64, 64},
+    {960, 64, 64, 64}, {1024, 64, 64, 64}, {1088, 64, 64, 64},
+    {1152, 64, 64, 64}, {1216, 64, 64, 64}, {1280, 64, 64, 64}};
+    static int pants_swag[2] = {1, 2};
+
+    enum enemies {EnemyGun1, EnemyGun2, EnemyGun3,
+    EnemyGlock1, EnemyGlock2, EnemyGlock3,
+    EnemyShotgun1, EnemyShotgun2, EnemyShotgun3};
+    static const sfIntRect enemies_rect[9] = {{448, 0, 64, 64}, {512, 0, 64, 64},
+    {576, 0, 64, 64}, {448, 64, 64, 64}, {512, 64, 64, 64},
+    {576, 64, 64, 64}, {448, 256, 64, 64}, {512, 256, 64, 64},
+    {576, 256, 64, 64}};
+
+    enum weapon {Gun, M4, Sniper};
+    static const sfIntRect weapon_rect[3] = {{192, 128, 64, 64}, {256, 128, 64, 64},
+    {256, 192, 64, 64}};
+    static const int gun_damage[3][4] = {{9, 24, 2.3, 1.3},
+    {30, 33, 0.1, 3.1}, {10, 88, 1.25, 3.37}};
+
     static const int swag[] = {15, 25, 5, 1, 3, 15, 20};
-    enum clothes {FireShirt_c, FlowerShirt_c, BlackShirt_c, TankTopShirt_c,
-    BlackCap_c, BlackDourag_c, FireCap_c};
-
-    static const int gun_damage[3][4] = {{9, 24, 2.3, 1.3}, {30, 33, 0.1, 3.1},
-    {10, 88, 1.25, 3.37}};
-    enum weapon {Gun_w, M4_w, Sniper_w};
-
-    static const sfIntRect all_rect[27] = {{0, 0, 64, 64}, {64, 0, 64, 64},
-    {128, 0, 64, 64}, {192, 0, 64, 64}, {256, 0, 64, 64}, {320, 0, 64, 64},
-    {384, 0, 64, 64}, {448, 0, 64, 64}, {512, 0, 64, 64}, {576, 0, 64, 64},
-    {640, 0, 64, 64},
-    {0, 64, 64, 64}, {64, 64, 64, 64},
-    {128, 64, 64, 64}, {192, 64, 64, 64},
-    {256, 64, 64, 64}, {320, 64, 64, 64},
-    {384, 64, 64, 64}, {448, 64, 64, 64},
-    {512, 64, 64, 64}, {576, 64, 64, 64},
-    {640, 64, 64, 64}, {704, 64, 64, 64}, {768, 64, 64, 64},
-    {0, 128, 64, 64}, {64, 128, 64, 64}, {128, 128, 64, 64}};
 
 #endif

@@ -14,7 +14,7 @@
     #include "enemies.h"
 
     typedef struct game_s {
-        sfSprite **all_sprite;
+        sfSprite ***all_sprite;
         sfRenderWindow *window;
         sfTexture *texture;
         sfClock *clock;
@@ -23,17 +23,10 @@
         float delta_time;
     } game_t;
 
-    typedef struct game_object_s {
-        sfSprite *sprite;
-        sfVector2f pos;
-        enum all_sprites texture;
-        void *data;
-    } game_object_t;
-
     typedef struct weapon_s {
         sfSprite *sprite;
         sfBool is_gun;
-        enum all_sprites weapon;
+        enum weapon weapon;
         int ammo;
         int damage;
         float reload_time;
@@ -41,11 +34,13 @@
     } weapon_t;
 
     typedef struct clothes_s {
-        sfSprite *top_sprite;
-        sfSprite *head_sprite;
+        sfSprite *shirt_sprite;
+        sfSprite *hat_sprite;
+        sfSprite *pants_sprite;
+        enum hat hat;
+        enum shirt top;
+        enum pants pants;
         sfBool is_gun;
-        enum clothes head;
-        enum clothes top;
         int swag;
     } clothes_t;
 
@@ -54,7 +49,7 @@
         clothes_t *clothes;
         sfSprite *sprite;
         sfVector2f pos;
-        enum all_sprites actual_sprites;
+        enum nigger player;
         int swag;
         int health;
         int speed;

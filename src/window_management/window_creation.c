@@ -7,6 +7,7 @@
 
 #include <stdlib.h>
 #include "structure.h"
+#include "prototype.h"
 
 void destroy_game(game_t *game)
 {
@@ -14,33 +15,34 @@ void destroy_game(game_t *game)
         sfRenderWindow_destroy(game->window);
     if (game->texture)
         sfTexture_destroy(game->texture);
-    if (game->all_sprite) {
-        for (int i = 0; game->all_sprite[i]; i++)
-            sfSprite_destroy(game->all_sprite[i]);
-        free(game->all_sprite);
-    }
+    if (game->all_sprite)
+        destroy_all_sprites(game->all_sprite);
     if (game->clock)
         sfClock_destroy(game->clock);
     free(game);
 }
 
-sfSprite **create_sprites(sfTexture *texture)
+sfSprite ***create_all_sprites(sfTexture *texture)
 {
-    sfSprite **all_sprites = malloc(sizeof(sfSprite *) * (ALL_SPRITES + 1));
+    sfSprite ***all_sprite = malloc(sizeof(sfSprite **) * (NBR_CAT + 1));
 
-    if (!all_sprites)
+    if (!all_sprite)
         return NULL;
-    for (int i = 0; i < ALL_SPRITES; i++) {
-        all_sprites[i] = sfSprite_create();
-        if (!all_sprites[i]) {
-            all_sprites[i] = NULL;
+    all_sprite[0] = create_sprites(NBR_DECOR, decor_rect, texture);
+    all_sprite[1] = create_sprites(NBR_WALL, wall_rect, texture);
+    all_sprite[2] = create_sprites(NBR_NIGGER, nigger_rect, texture);
+    all_sprite[3] = create_sprites(NBR_SHIRT, shirt_rect, texture);
+    all_sprite[4] = create_sprites(NBR_HAT, hat_rect, texture);
+    all_sprite[5] = create_sprites(NBR_PANTS, pants_rect, texture);
+    all_sprite[6] = create_sprites(NBR_WEAPON, weapon_rect, texture);
+    all_sprite[7] = NULL;
+    for (int i = 0; i < NBR_CAT; i++) {
+        if (!all_sprite[i]) {
+            destroy_all_sprites(all_sprite);
             return NULL;
         }
-        sfSprite_setTexture(all_sprites[i], texture, sfFalse);
-        sfSprite_setTextureRect(all_sprites[i], all_rect[i]);
     }
-    all_sprites[ALL_SPRITES] = NULL;
-    return all_sprites;
+    return all_sprite;
 }
 
 sfRenderWindow *create_window(void)
@@ -72,7 +74,7 @@ game_t *create_game(void)
         destroy_game(game);
         return NULL;
     }
-    game->all_sprite = create_sprites(game->texture);
+    game->all_sprite = create_all_sprites(game->texture);
     if (!game->all_sprite) {
         destroy_game(game);
         return NULL;

@@ -8,51 +8,35 @@
 #include <stdlib.h>
 #include "structure.h"
 
-int destroy_weapon(weapon_t *weapon)
+static weapon_t *init_weapon(void)
 {
-    if (!weapon) 
-        return 84;
-    if (weapon->sprite)
-        sfSprite_destroy(weapon->sprite);
-    free(weapon);
-    return (0);
+    weapon_t *new_weapon = NULL;
+
+    new_weapon = malloc(sizeof(weapon_t));
+    if (new_weapon == NULL)
+        return NULL;
+    new_weapon->sprite = NULL;
+    new_weapon->is_gun = sfTrue;
+    new_weapon->weapon = -1;
+    new_weapon->damage = 0;
+    new_weapon->ammo = 0;
+    new_weapon->reload_time = 0.0;
+    new_weapon->fire_rate = 0.0;
+    return new_weapon;
 }
 
-int update_is_gun(player_t *player, game_t *game)
+weapon_t *create_start_weapon(game_t *game)
 {
-    if (player->clothes->is_gun == sfTrue &&
-    player->actual_sprites % 2)
-        return (0);
-}
-
-weapon_t *create_weapon(enum weapon type, game_t *game)
-{
-    weapon_t *weapon = malloc(sizeof(weapon_t));
+    weapon_t *weapon = init_weapon();
 
     if (!weapon)
         return NULL;
-    weapon->ammo = gun_damage[type][0];
-    weapon->damage = gun_damage[type][1];
-    weapon->reload_time = gun_damage[type][2];
-    weapon->fire_rate = gun_damage[type][3];
-    weapon->weapon = type + 24;
-    weapon->sprite = game->all_sprite[weapon->weapon];
-    return (weapon);
-}
-
-int update_weapon(player_t *player, game_t *game, enum weapon type)
-{
-    if (!player->weapon)
-        player->weapon = create_weapon(type, game);
-    if (!player->weapon)
-        return 84;
-    player->weapon->ammo = gun_damage[type][0];
-    player->weapon->damage = gun_damage[type][1];
-    player->weapon->reload_time = gun_damage[type][2];
-    player->weapon->fire_rate = gun_damage[type][3];
-    player->weapon->weapon = type + 24;
-    player->weapon->sprite = game->all_sprite[type + 24];
-    if (type < 1)
-        player->clothes->is_gun = sfTrue;
-    return 0;
+    weapon->weapon = Gun;
+    weapon->sprite = game->all_sprite[Weapon][weapon->weapon];
+    weapon->is_gun = sfTrue;
+    weapon->damage = gun_damage[weapon->weapon][0];
+    weapon->ammo = gun_damage[weapon->weapon][1];
+    weapon->fire_rate = gun_damage[weapon->weapon][2];
+    weapon->reload_time = gun_damage[weapon->weapon][3];
+    return weapon;
 }
