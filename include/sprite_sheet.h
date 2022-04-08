@@ -11,7 +11,7 @@
     #include "SFML/Graphics.h"
 
     #define PI 3.1415926535
-    #define NBR_CAT 7
+    #define NBR_CAT 8
     #define NBR_DECOR 1
     #define NBR_WALL 21
     #define NBR_PLAYER 8
@@ -21,7 +21,7 @@
     #define NBR_ENEMIES 9
     #define NBR_WEAPON 3
 
-    enum type{Decor, Wall, Player, Shirt, Hat, Pants, Weapon};
+    enum type{Decor, Wall, Player, Shirt, Hat, Pants, Weapon, Enemy};
 
     enum decor {WoodenFloor};
     static const sfIntRect decor_rect[1] = {{0, 0, 64, 64}};
