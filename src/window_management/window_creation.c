@@ -19,6 +19,8 @@ void destroy_game(game_t *game)
         destroy_all_sprites(game->all_sprite);
     if (game->clock)
         sfClock_destroy(game->clock);
+    if (game->levels)
+        destroy_levels(game->levels);
     free(game);
 }
 
@@ -80,5 +82,6 @@ game_t *create_game(void)
         destroy_game(game);
         return NULL;
     }
+    game->levels = create_levels(LEVEL_PATH, game);
     return game;
 }
