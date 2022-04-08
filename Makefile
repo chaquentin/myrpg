@@ -5,6 +5,13 @@
 ## Makefile
 ##
 
+TEXT = " ██████╗ ██████╗  ██████╗\n	\
+		██╔══██╗██╔══██╗██╔════╝\n	\
+		██████╔╝██████╔╝██║  ███╗\n	\
+		██╔══██╗██╔═══╝ ██║   ██║\n	\
+		██║  ██║██║     ╚██████╔╝\n	\
+		╚═╝  ╚═╝╚═╝      ╚═════╝"
+
 SRC = rpg.c \
 	start_game.c
 $(eval SRC=$(addprefix src/, $(SRC)))
@@ -30,13 +37,37 @@ $(eval CLOTHES_MANAGEMENT=$(addprefix src/clothes_management/, $(CLOTHES_MANAGEM
 MATHS_MANAGEMENT = is_intersection.c
 $(eval MATHS_MANAGEMENT=$(addprefix src/maths_management/, $(MATHS_MANAGEMENT)))
 
+ENEMY_MANAGEMENT = enemy_init.c \
+	display_enemies.c
+$(eval ENEMY_MANAGEMENT=$(addprefix src/enemy_management/, $(ENEMY_MANAGEMENT)))
+
+LEVEL_MANAGEMENT = create_map.c 		\
+	create_sprite.c 					\
+	room_init.c
+$(eval LEVEL_MANAGEMENT=$(addprefix src/level_management/, $(LEVEL_MANAGEMENT)))
+
+WORD_ARRAY = is_parser.c				\
+	my_str_to_word_array.c
+$(eval WORD_ARRAY=$(addprefix word_array/, $(WORD_ARRAY)))
+
+STRING_MANAGEMENT = $(WORD_ARRAY) \
+	my_atoi.c \
+	my_strlen.c \
+	my_putnbr.c \
+	my_strdup.c \
+	my_strcmp.c
+$(eval STRING_MANAGEMENT=$(addprefix src/string_management/, $(STRING_MANAGEMENT)))
+
 OBJ = 	$(SRC:.c=.o) 					\
+		$(CLOTHES_MANAGEMENT:.c=.o)		\
+		$(ENEMY_MANAGEMENT:.c=.o)		\
+		$(LEVEL_MANAGEMENT:.c=.o)		\
+		$(EVENT_MANAGEMENT:.c=.o) 		\
+		$(MATHS_MANAGEMENT:.c=.o)		\
 		$(PLAYER_MANAGEMENT:.c=.o) 		\
+		$(STRING_MANAGEMENT:.c=.o)		\
 		$(WEAPON_MANAGEMENT:.c=.o) 		\
 		$(WINDOW_MANAGEMENT:.c=.o) 		\
-		$(EVENT_MANAGEMENT:.c=.o) 		\
-		$(CLOTHES_MANAGEMENT:.c=.o)		\
-		$(MATHS_MANAGEMENT:.c=.o)		\
 
 NAME = my_rpg
 
@@ -46,6 +77,7 @@ LDFLAGS = -lcsfml-graphics -lcsfml-audio -lcsfml-system -lm
 all: $(NAME)
 
 $(NAME): $(OBJ)
+	@echo $(TEXT)
 	$(CC) -o $@ $^ $(LDFLAGS)
 
 clean:
@@ -55,6 +87,10 @@ fclean: clean
 	$(RM) $(NAME)
 
 re: fclean all
+
+rcl: re
+	./$(NAME)
+	$(RM) $(OBJ)
 
 debug: CFLAGS += -g3
 debug:	re
