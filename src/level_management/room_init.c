@@ -78,7 +78,7 @@ level_t **create_levels(char *path, game_t *game)
 }
 
 
-void free_levels(level_t **level)
+void destroy_levels(level_t **level)
 {
     for (int i = 0; level[i]; i++) {
         free(level[i]->corners);
