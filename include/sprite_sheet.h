@@ -14,14 +14,14 @@
     #define NBR_CAT 7
     #define NBR_DECOR 1
     #define NBR_WALL 21
-    #define NBR_NIGGER 8
+    #define NBR_PLAYER 8
     #define NBR_SHIRT 8
     #define NBR_HAT 3
     #define NBR_PANTS 16
     #define NBR_ENEMIES 9
     #define NBR_WEAPON 3
 
-    enum type{Decor, Wall, Nigger, Shirt, Hat, Pants, Weapon};
+    enum type{Decor, Wall, Player, Shirt, Hat, Pants, Weapon};
 
     enum decor {WoodenFloor};
     static const sfIntRect decor_rect[1] = {{0, 0, 64, 64}};
@@ -38,9 +38,9 @@
     {128, 384, 64, 64}, {128, 448, 64, 64}, {128, 512, 64, 64},
     {128, 576, 64, 64}, {128, 640, 64, 64}};
 
-    enum nigger {NiggerGun1, NiggerGun2, NiggerGun3, NiggerGun4,
-    NiggerRifle1, NiggerRifle2, NiggerRifle3, NiggerRifle4};
-    static const sfIntRect nigger_rect[8] = {{192, 0, 64, 64}, {256, 0, 64, 64},
+    enum player {PlayerGun1, PlayerGun2, PlayerGun3, PlayerGun4,
+    PlayerRifle1, PlayerRifle2, PlayerRifle3, PlayerRifle4};
+    static const sfIntRect player_rect[8] = {{192, 0, 64, 64}, {256, 0, 64, 64},
     {320, 0, 64, 64}, {384, 0, 64, 64}, {192, 64, 64, 64},
     {256, 64, 64, 64}, {320, 64, 64, 64}, {384, 64, 64, 64}};
 
