@@ -18,7 +18,6 @@ int main(int ac, char **av)
     if (!game)
         return 84;
     sfRenderWindow_setFramerateLimit(game->window, game->framerate_limit);
-    game->levels = create_levels(LEVEL_PATH, game);
     player = create_player(game);
     if (!player)
         error = 84;
