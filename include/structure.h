@@ -30,7 +30,7 @@
         sfSprite *sprite;
         sfBool alive;
         enum behaviours behaviour;
-        enum enemy_type type;
+        enum enemies type;
         int angle; 
         int speed;
         int jump_rate;
