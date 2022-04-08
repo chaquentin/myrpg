@@ -12,12 +12,47 @@
     #include <SFML/System.h>
     #include "sprite_sheet.h"
     #include "enemies.h"
+    #include "level.h"
+
+    typedef struct enemy_jump_s {
+        sfBool is_jumping;
+        int since;
+        sfVector2f pos1;
+        sfVector2f pos2;
+    } enemy_jump_t;
+
+    typedef struct enemy_s {
+        enemy_jump_t *jump;
+        sfVector2f player_pos;
+        sfVector2f idle_around;
+        sfVector2f pos;
+        sfTexture *texture;
+        sfSprite *sprite;
+        sfBool alive;
+        enum behaviours behaviour;
+        enum enemy_type type;
+        int angle; 
+        int speed;
+        int jump_rate;
+        int idled_since;
+    } enemy_t;
+
+    typedef struct level_s {
+        enemy_t **enemies;
+        sfVector2f *corners;
+        sfSprite *sprite;
+        sfTexture *texture;
+        enum levels level;
+        char **map;
+    } level_t;
 
     typedef struct game_s {
         sfSprite ***all_sprite;
+        level_t **levels;
         sfRenderWindow *window;
         sfTexture *texture;
         sfClock *clock;
+        enum levels current_level;
         enum game_scene scene;
         int framerate_limit;
         float delta_time;
