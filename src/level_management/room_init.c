@@ -48,9 +48,9 @@ level_t *create_level(enum levels level_name, char *str, game_t *game)
         return NULL;
     level->enemies = enemies_create(parts[1], game);
     level->map = create_map(parts[0]);
-    level->corners = create_corners(level->map);
-    level->texture = create_texture(level->map);
-    level->sprite = create_sprite(level->map);
+    level->corners = create_map_corners(level->map);
+    level->texture = create_map_texture(level->map);
+    level->sprite = create_map_sprite(level->map);
     level->level = level_name;
     my_free_word_array(parts);
     return level;
@@ -82,6 +82,7 @@ void destroy_levels(level_t **level)
 {
     for (int i = 0; level[i]; i++) {
         free(level[i]->corners);
+        // /!\ NO SPRITES/TEXTURES/MAPS FOR THE MAP YET /!\ //
         /*
         for (int j = 0; level[i]->map[j]; j++)
             free(level[i]->map[j]);
