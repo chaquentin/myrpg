@@ -13,13 +13,13 @@
 #include "prototype.h"
 #include "sprite_sheet.h"
 
-enum enemy_type get_enemy_type(char *str)
+enum enemies get_enemy_type(char *str)
 {
-    if (my_strcmp(str, "Purple") == 0)
-        return Purple;
-    if (my_strcmp(str, "Hood") == 0)
-        return Hood;
-    return Error;
+    if (my_strcmp(str, "EnemyGun1") == 0)
+        return EnemyGun1;
+    if (my_strcmp(str, "EnemyGun2") == 0)
+        return EnemyGun2;
+    return -1;
 }
 
 enemy_t *enemy_create(sfVector2f idle_around, char *name, game_t *game)
@@ -31,8 +31,8 @@ enemy_t *enemy_create(sfVector2f idle_around, char *name, game_t *game)
         return NULL;
     enemy->type = get_enemy_type(name);
     enemy->sprite = NULL;
-    if (enemy->type != Error)
-        enemy->sprite = sfSprite_copy(game->all_sprite[Player][PlayerGun1]);
+    if (enemy->type != -1)
+        enemy->sprite = sfSprite_copy(game->all_sprite[Enemy][enemy->type]);
     jump->is_jumping = sfFalse;
     enemy->player_pos = (sfVector2f){-1, -1};
     enemy->pos = idle_around;
@@ -66,7 +66,7 @@ void enemy_destroy(enemy_t *enemy)
 {
     if (!enemy)
         return;
-    if (enemy->type != Error)
+    if (enemy->type != -1)
         sfSprite_destroy(enemy->sprite);
     free(enemy->jump);
     free(enemy);
