@@ -44,6 +44,7 @@ int start_game(game_t *game, player_t *player)
         get_event(game, &event, player);
         move_player(game, player);
         fill_mouse(game, player);
+        display_enemies(game, game->current_level);
         display_player(game, player);
         sfRenderWindow_display(game->window);
     }
