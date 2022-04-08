@@ -12,15 +12,15 @@
 
 void display_enemy(sfRenderWindow *window, enemy_t *enemy)
 {
-    if (enemy->alive == sfTrue && enemy->type != 0) {
+    if (enemy->alive == sfTrue && enemy->type != -1 && enemy->sprite != NULL) {
         sfSprite_setPosition(enemy->sprite, enemy->pos);
         sfRenderWindow_drawSprite(window, enemy->sprite, NULL);
     }
 }
 
-void display_enemies(game_t *game, enum levels level)
+void display_enemies(game_t *game)
 {
-    enemy_t **enemy = game->levels[level]->enemies;
+    enemy_t **enemy = game->levels[game->current_level]->enemies;
     sfRenderWindow *window = game->window;
 
     for (int i = 0; enemy[i]; i++)
