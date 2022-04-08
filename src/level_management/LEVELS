@@ -26,8 +26,8 @@ xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 !
 5
-Purple 0 100
-Hood 0 200
+EnemyGun1 0 100
+EnemyGun2 0 200
 Hello 300 400
 Yellow 400 500
 Hola 500 600
@@ -51,6 +51,6 @@ xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 !
 3
-Yellow 1 2
+EnemyGun1 1 2
 Bruh 2 3
 Dick 3 4
