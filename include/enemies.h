@@ -5,9 +5,6 @@
 ** enemies
 */
 
-/*
-THIS IS A TEMPORARY FILE JUST TO GIVE AN IDEA OF HOW THE ENEMIES WILL WORK
-*/
 #ifndef ENEMIES_H
     #define ENEMIES_H
 
@@ -17,6 +14,5 @@ THIS IS A TEMPORARY FILE JUST TO GIVE AN IDEA OF HOW THE ENEMIES WILL WORK
     Jump_1, Jump_2, Jump_3};
     enum behaviours {Idle, Searching, Attacking};
     enum game_scene {Menu, Game, Option, Pause, Quit, Win};
-    enum enemy_type {Error, Purple, Hood};
 
 #endif
