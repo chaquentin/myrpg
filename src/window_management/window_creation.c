@@ -30,7 +30,7 @@ sfSprite ***create_all_sprites(sfTexture *texture)
         return NULL;
     all_sprite[0] = create_sprites(NBR_DECOR, decor_rect, texture);
     all_sprite[1] = create_sprites(NBR_WALL, wall_rect, texture);
-    all_sprite[2] = create_sprites(NBR_NIGGER, nigger_rect, texture);
+    all_sprite[2] = create_sprites(NBR_PLAYER, player_rect, texture);
     all_sprite[3] = create_sprites(NBR_SHIRT, shirt_rect, texture);
     all_sprite[4] = create_sprites(NBR_HAT, hat_rect, texture);
     all_sprite[5] = create_sprites(NBR_PANTS, pants_rect, texture);

@@ -26,7 +26,6 @@ void fill_mouse(game_t *game, player_t *player)
 
 int update_movement_sprite(player_t *player, int movement, game_t *game)
 {
-    clothes_t *clothes = player->clothes;
     static int state = 0;
     static float time = 0.0;
 
@@ -35,8 +34,7 @@ int update_movement_sprite(player_t *player, int movement, game_t *game)
         return (0);
     }
     time = 0.0;
-    state += 1;
-    if (movement == 0 || state == 4) {
+    if (movement == 0 || ++state == 4) {
         player->player -= player->player % 4;
         player->clothes->pants -= player->clothes->pants % 4;
         state = 0;
@@ -44,8 +42,9 @@ int update_movement_sprite(player_t *player, int movement, game_t *game)
         player->player += 1;
         player->clothes->pants += 1;
     }
-    player->sprite = game->all_sprite[Nigger][player->player];
-    player->clothes->pants_sprite = game->all_sprite[Pants][clothes->pants];
+    player->sprite = game->all_sprite[Player][player->player];
+    player->clothes->pants_sprite =
+    game->all_sprite[Pants][player->clothes->pants];
     return 0;
 }
 

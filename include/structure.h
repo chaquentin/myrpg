@@ -49,7 +49,7 @@
         clothes_t *clothes;
         sfSprite *sprite;
         sfVector2f pos;
-        enum nigger player;
+        enum player player;
         int swag;
         int health;
         int speed;

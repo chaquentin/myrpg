@@ -49,7 +49,7 @@ static player_t *init_player(void)
     player->delta_time = 0;
     player->swag = 0;
     player->pos = (sfVector2f) {928, 508};
-    player->player = NiggerGun1;
+    player->player = PlayerGun1;
     player->sprite = NULL;
     return player;
 }
@@ -60,7 +60,7 @@ player_t *create_player(game_t *game)
 
     if (!player)
         return NULL;
-    player->sprite = game->all_sprite[Nigger][player->player];
+    player->sprite = game->all_sprite[Player][player->player];
     player->movement = malloc_int();
     player->weapon = create_start_weapon(game);
     player->clothes = create_start_clothes(game);
