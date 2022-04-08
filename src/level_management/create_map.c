@@ -17,8 +17,9 @@ char **create_map(char *str)
     return NULL;
 }
 
-sfVector2f *create_corners(char **map)
+sfVector2f *create_map_corners(char **map)
 {
     //en gros il faut capter ou sont les coins de chaque murs et les retourner dans un tableau de sfVector2f
+    //pratique pour les collisions/raytracing
     return NULL;
 }

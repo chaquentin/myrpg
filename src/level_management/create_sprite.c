@@ -9,12 +9,12 @@
 #include <stdio.h>
 #include "level.h"
 
-sfSprite *create_sprite(char **map)
+sfSprite *create_map_sprite(char **map)
 {
     return NULL;
 }
 
-sfTexture *create_texture(char **map)
+sfTexture *create_map_texture(char **map)
 {
     return NULL;
 }
