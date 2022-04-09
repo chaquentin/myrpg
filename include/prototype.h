@@ -12,7 +12,7 @@
 
 //===================================GAME====================================//
 
-    game_t *create_game(void);
+    game_t *create_game(int debug);
     int start_game(game_t *game, player_t *player);
 
     void destroy_game(game_t *game);
@@ -41,19 +41,22 @@
 //====================================MAP====================================//
 
     char **create_map(char *str);
-    sfSprite *create_map_sprite(char **map);
+    sfSprite *create_map_sprite(game_t *game, sfTexture *texture);
     sfVector2f *create_map_corners(char **map);
-    sfTexture *create_texture(char **map);
+    sfTexture *create_map_texture(game_t *game, char **map);
     level_t **create_levels(char *path, game_t *game);
+    void display_map_sprite(game_t *game);
 
     void destroy_levels(level_t **level);
+    void destroy_map(char **map);
+    void destroy_map_corners(sfVector2f *corners);
 
 //=================================ENEMIES==================================//
 
     enemy_t **enemies_create(char *enemies_data, game_t *game);
     void display_enemies(game_t *game);
 
-    void enemy_destroy(enemy_t *enemy);
+    void destroy_enemies(enemy_t **enemies);
 
 //==================================EVENTS===================================//
 
@@ -71,5 +74,10 @@
     int my_strlen(const char *str);
 
     void my_free_word_array(char **array);
+
+//===================================VIEW====================================//
+
+    sfView *create_view(game_t *game, int debug);
+    void view_update(game_t *game, player_t *player);
 
 #endif
