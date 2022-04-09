@@ -60,17 +60,18 @@ sfRenderWindow *create_window(void)
     return window;
 }
 
-game_t *create_game(void)
+game_t *create_game(int debug)
 {
     game_t *game = NULL;
 
     game = malloc(sizeof(game_t));
     if (!game)
         return NULL;
+    game->debug = debug;
     game->scene = Menu;
     game->framerate_limit = 144;
     game->window = create_window();
-    game->texture = sfTexture_createFromFile("asset/sprite_sheet.png", NULL);
+    game->texture = sfTexture_createFromFile(SPRITESHEET_PATH, NULL);
     game->delta_time = 0.0;
     game->clock = sfClock_create();
     if (!game->window || !game->texture) {
@@ -83,5 +84,7 @@ game_t *create_game(void)
         return NULL;
     }
     game->levels = create_levels(LEVEL_PATH, game);
+    game->current_level = 0;
+    game->view = create_view(game, game->debug);
     return game;
 }
