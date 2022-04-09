@@ -62,13 +62,16 @@ enemy_t **enemies_create(char *enemies_data, game_t *game)
     return enemy_array;
 }
 
-void enemy_destroy(enemy_t *enemy)
+void destroy_enemies(enemy_t **enemies)
 {
-    if (!enemy)
+    if (!enemies)
         return;
-    if (enemy->type != -1)
-        sfSprite_destroy(enemy->sprite);
-    free(enemy->jump);
-    free(enemy);
+    for (int i = 0; enemies[i]; i++) {
+        if (enemies[i]->type != -1 && enemies[i]->sprite)
+            sfSprite_destroy(enemies[i]->sprite);
+        free(enemies[i]->jump);
+        free(enemies[i]);
+    }
+    free(enemies);
     return;
 }
