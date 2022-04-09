@@ -48,9 +48,11 @@ level_t *create_level(enum levels level_name, char *str, game_t *game)
         return NULL;
     level->enemies = enemies_create(parts[1], game);
     level->map = create_map(parts[0]);
+    for (int i = 0; i < 18; i++)
+        printf("%s\n", level->map[i]);
     level->corners = create_map_corners(level->map);
-    level->texture = create_map_texture(level->map);
-    level->sprite = create_map_sprite(level->map);
+    level->texture = create_map_texture(game, level->map);
+    level->sprite = create_map_sprite(game, level->texture);
     level->level = level_name;
     my_free_word_array(parts);
     return level;
@@ -77,24 +79,16 @@ level_t **create_levels(char *path, game_t *game)
     return levels;
 }
 
-
 void destroy_levels(level_t **level)
 {
     for (int i = 0; level[i]; i++) {
-        free(level[i]->corners);
-        // /!\ NO SPRITES/TEXTURES/MAPS FOR THE MAP YET /!\ //
-        /*
-        for (int j = 0; level[i]->map[j]; j++)
-            free(level[i]->map[j]);
-        free(level[i]->map);
-        sfTexture_destroy(level[i]->texture);
-        sfSprite_destroy(level[i]->sprite);
-        */
         write(1, "freeing level:  ", 16);
         my_putnbr(i + 1, '\n');
-        for (int j = 0; level[i]->enemies[j]; j++)
-            enemy_destroy(level[i]->enemies[j]);
-        free(level[i]->enemies);
+        destroy_map_corners(level[i]->corners);
+        destroy_map(level[i]->map);
+        destroy_enemies(level[i]->enemies);
+        sfTexture_destroy(level[i]->texture);
+        sfSprite_destroy(level[i]->sprite);
         free(level[i]);
     }
     free(level);
