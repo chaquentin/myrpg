@@ -14,9 +14,12 @@ void fill_mouse(game_t *game, player_t *player)
     sfVector2i get_mouse_pos = sfMouse_getPositionRenderWindow(game->window);
     sfVector2f mouse_pos;
     float rotation = 0.0;
-
     mouse_pos.x = (float)get_mouse_pos.x - player->pos.x;
     mouse_pos.y = (float)get_mouse_pos.y - player->pos.y;
+    if (game->view) {
+        mouse_pos.x = (float)get_mouse_pos.x - 960;
+        mouse_pos.y = (float)get_mouse_pos.y - 540;
+    }
     rotation = atan(mouse_pos.x / mouse_pos.y) * (180.0/PI) * -1;
     if (mouse_pos.y > 0)
         rotation += 180;
