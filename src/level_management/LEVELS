@@ -1,29 +1,31 @@
 NORM:
-'W' = wall
+'E' = wall ext
+'I' = wall int
 ' ' = floor
 't' = table
-'c' = chair
-'C' = carpet
-'s' = sink
-'w' = workbench
+'C' = chair
+'c' = carpet
+'S' = sink
+'W' = workbench
 &
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
+Ww                           w W
+W w                           wW
+W  w                         w W
+W   w                       w  W
+W    w                     w   W
+W     w                   w    W
+W      w                 w     W
+W       w               w      W
+W        wW            w   WWWWW 
+W        WwW          w        W
+W         Ww         w         W
+W           w       w          W
+W            w     w           W
+W             w   w            W
+W              w w             W
+W               w              W
+WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
 !
 5
 EnemyGun1 0 100
@@ -32,6 +34,7 @@ Hello 300 400
 Yellow 400 500
 Hola 500 600
 &
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
