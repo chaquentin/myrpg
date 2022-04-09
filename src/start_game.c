@@ -40,12 +40,14 @@ int start_game(game_t *game, player_t *player)
 
     while (sfRenderWindow_isOpen(game->window)) {
         update_clock(game);
+        view_update(game, player);
         sfRenderWindow_clear(game->window, sfBlack);
         get_event(game, &event, player);
         move_player(game, player);
         fill_mouse(game, player);
+        display_map_sprite(game);
         display_enemies(game);
         display_player(game, player);
         sfRenderWindow_display(game->window);
     }
-}
+}   
