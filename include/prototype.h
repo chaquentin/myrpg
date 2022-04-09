@@ -52,6 +52,7 @@
 
     enemy_t **enemies_create(char *enemies_data, game_t *game);
     void display_enemies(game_t *game);
+
     void enemy_destroy(enemy_t *enemy);
 
 //==================================EVENTS===================================//
