@@ -47,8 +47,9 @@
     } level_t;
 
     typedef struct game_s {
-        sfSprite ***all_sprite;
         level_t **levels;
+        sfView *view;
+        sfSprite ***all_sprite;
         sfRenderWindow *window;
         sfTexture *texture;
         sfClock *clock;
@@ -56,6 +57,7 @@
         enum game_scene scene;
         int framerate_limit;
         float delta_time;
+        int debug;
     } game_t;
 
     typedef struct weapon_s {
