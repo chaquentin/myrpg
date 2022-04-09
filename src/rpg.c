@@ -11,7 +11,7 @@
 
 int main(int ac, char **av)
 {
-    game_t *game = create_game();
+    game_t *game = create_game((ac >= 2 && !my_strcmp(av[1], "-d")));
     player_t *player = NULL;
     int error = 0;
 
