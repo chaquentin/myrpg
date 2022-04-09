@@ -26,10 +26,25 @@
     enum decor {WoodenFloor};
     static const sfIntRect decor_rect[1] = {{0, 0, 64, 64}};
 
-    enum wall {ExtWallS, ExtWallSR, ExtWallSL, ExtWallH, ExtWallHU,
-    ExtWallHD, ExtWallUR, ExtWallUL, ExtWallBR, ExtWallBL,
-    IntWallS, IntWallSR, IntWallSL, IntWallH, IntWallHU,
-    IntWallHD, IntWallUR, IntWallUL, IntWallBR, IntWallBL, IntWallSq};
+    /*
+    c'est possible de me refaire les murs comme si-dessous? merci quentin bebou
+    en gros, si il y a la lettre c'est que il y a un trou dans cette direction, genre:
+    ExtWallNSEW c'est ouvert partout
+    ExtWall c'est ouvert nulle part
+    */
+
+    enum wall2 {ExtWall, ExtWallN, ExtWallS, ExtWallNS, ExtWallE, ExtWallNE,
+    ExtWallSE, ExtWallNSE, ExtWallW, ExtWallNW, ExtWallSW, ExtWallNSW,
+    ExtWallEW, ExtWallNEW, ExtWallSEW, ExtWallNSEW,
+    IntWall, IntWallN, IntWallS, IntWallNS, IntWallE, IntWallNE,
+    IntWallSE, IntWallNSE, IntWallW, IntWallNW, IntWallSW, IntWallNSW,
+    IntWallEW, IntWallNEW, IntWallSEW, IntWallNSEW};
+
+    enum wall {ExtWallNS, ExtWallNSE, ExtWallNSW, ExtWallEW, ExtWallNEW,
+    ExtWallSEW, ExtWallNE, ExtWallNW, ExtWallSE, ExtWallSW,
+    IntWallNS, IntWallNSE, IntWallNSW, IntWallEW, IntWallNEW,
+    IntWallSEW, IntWallNE, IntWallNW, IntWallSE, IntWallSW, IntWallSquare};
+
     static const sfIntRect wall_rect[21] = {{64, 0, 64, 64}, {64, 64, 64, 64},
     {64, 128, 64, 64}, {64, 192, 64, 64}, {64, 256, 64, 64}, {64, 320, 64, 64},
     {64, 384, 64, 64}, {64, 448, 64, 64}, {64, 512, 64, 64}, {64, 576, 64, 64},
