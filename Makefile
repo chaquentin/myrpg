@@ -43,7 +43,8 @@ $(eval ENEMY_MANAGEMENT=$(addprefix src/enemy_management/, $(ENEMY_MANAGEMENT)))
 
 LEVEL_MANAGEMENT = create_map.c 		\
 	create_sprite.c 					\
-	room_init.c
+	room_init.c 						\
+	display_sprite.c
 $(eval LEVEL_MANAGEMENT=$(addprefix src/level_management/, $(LEVEL_MANAGEMENT)))
 
 WORD_ARRAY = is_parser.c				\
@@ -58,6 +59,12 @@ STRING_MANAGEMENT = $(WORD_ARRAY) \
 	my_strcmp.c
 $(eval STRING_MANAGEMENT=$(addprefix src/string_management/, $(STRING_MANAGEMENT)))
 
+VIEW_MANAGEMENT = view_init.c				\
+	view_update.c
+$(eval VIEW_MANAGEMENT=$(addprefix src/view_management/, $(VIEW_MANAGEMENT)))
+
+
+
 OBJ = 	$(SRC:.c=.o) 					\
 		$(CLOTHES_MANAGEMENT:.c=.o)		\
 		$(ENEMY_MANAGEMENT:.c=.o)		\
@@ -68,6 +75,7 @@ OBJ = 	$(SRC:.c=.o) 					\
 		$(STRING_MANAGEMENT:.c=.o)		\
 		$(WEAPON_MANAGEMENT:.c=.o) 		\
 		$(WINDOW_MANAGEMENT:.c=.o) 		\
+		$(VIEW_MANAGEMENT:.c=.o)		\
 
 NAME = my_rpg
 
