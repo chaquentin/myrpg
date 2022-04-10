@@ -21,6 +21,8 @@ void destroy_game(game_t *game)
         sfClock_destroy(game->clock);
     if (game->levels)
         destroy_levels(game->levels);
+    if (game->view)
+        destroy_view(game);
     free(game);
 }
 
