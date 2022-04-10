@@ -48,8 +48,6 @@ level_t *create_level(enum levels level_name, char *str, game_t *game)
         return NULL;
     level->enemies = enemies_create(parts[1], game);
     level->map = create_map(parts[0]);
-    for (int i = 0; i < 18; i++)
-        printf("%s\n", level->map[i]);
     level->corners = create_map_corners(level->map);
     level->texture = create_map_texture(game, level->map);
     level->sprite = create_map_sprite(game, level->texture);

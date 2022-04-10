@@ -14,13 +14,13 @@ sfSprite *get_sprite_wall(game_t *game, char **map, sfVector2i pos)
 {
     int index = (map[pos.y][pos.x] == 'W') ? 0 : 16;
 
-    if (pos.y == 0 || (map[pos.y - 1][pos.x] == 'W' || map[pos.y - 1][pos.x] == 'w'))
+    if (pos.y > 0 && (map[pos.y - 1][pos.x] == 'W' || map[pos.y - 1][pos.x] == 'w'))
         index += 1;
-    if (pos.y == 17 || (map[pos.y + 1][pos.x] == 'W' || map[pos.y + 1][pos.x] == 'w'))
+    if (pos.y < 17 && (map[pos.y + 1][pos.x] == 'W' || map[pos.y + 1][pos.x] == 'w'))
         index += 2;
-    if (pos.x == 31 || (map[pos.y][pos.x + 1] == 'W' || map[pos.y][pos.x + 1] == 'w'))
+    if (pos.x < 31 && (map[pos.y][pos.x + 1] == 'W' || map[pos.y][pos.x + 1] == 'w'))
         index += 4;
-    if (pos.x == 0 || (map[pos.y][pos.x - 1] == 'W' || map[pos.y][pos.x - 1] == 'w'))
+    if (pos.x > 0 && (map[pos.y][pos.x - 1] == 'W' || map[pos.y][pos.x - 1] == 'w'))
         index += 8;
     return game->all_sprite[Wall][index];
 }
@@ -32,7 +32,11 @@ sfSprite *get_sprite(game_t *game, char **map, sfVector2f pos_f)
     if (map[pos.y][pos.x] == 'W' || map[pos.y][pos.x] == 'w')
         return get_sprite_wall(game, map, pos);
 
-    return game->all_sprite[Decor][WoodenFloor];
+    switch (map[pos.y][pos.x]) {
+    case ' ':
+        return game->all_sprite[Decor][WoodenFloor];
+    }
+    return game->all_sprite[Decor][ErrorSprite];
 }
 
 sfSprite *create_map_sprite(game_t *game, sfTexture *texture)
