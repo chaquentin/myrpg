@@ -51,16 +51,17 @@ WORD_ARRAY = is_parser.c				\
 	my_str_to_word_array.c
 $(eval WORD_ARRAY=$(addprefix word_array/, $(WORD_ARRAY)))
 
-STRING_MANAGEMENT = $(WORD_ARRAY) \
-	my_atoi.c \
-	my_strlen.c \
-	my_putnbr.c \
-	my_strdup.c \
+STRING_MANAGEMENT = $(WORD_ARRAY) 		\
+	my_atoi.c 							\
+	my_strlen.c 						\
+	my_putnbr.c 						\
+	my_strdup.c 						\
 	my_strcmp.c
 $(eval STRING_MANAGEMENT=$(addprefix src/string_management/, $(STRING_MANAGEMENT)))
 
 VIEW_MANAGEMENT = view_init.c				\
-	view_update.c
+	view_update.c 							\
+	view_destroy.c
 $(eval VIEW_MANAGEMENT=$(addprefix src/view_management/, $(VIEW_MANAGEMENT)))
 
 
