@@ -80,4 +80,6 @@
     sfView *create_view(game_t *game, int debug);
     void view_update(game_t *game, player_t *player);
 
+    void destroy_view(game_t *game);
+
 #endif
