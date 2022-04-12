@@ -21,6 +21,12 @@
         sfVector2f pos2;
     } enemy_jump_t;
 
+    typedef struct button_s {
+        sfSprite *sprite;
+        enum button status;
+        enum game_scene next_scene;
+    } button_t;
+
     typedef struct enemy_s {
         enemy_jump_t *jump;
         sfVector2f player_pos;

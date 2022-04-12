@@ -11,7 +11,7 @@
     #include "SFML/Graphics.h"
 
     #define PI 3.1415926535
-    #define NBR_CAT 8
+    #define NBR_CAT 9
     #define NBR_DECOR 2
     #define NBR_WALL 32
     #define NBR_PLAYER 8
@@ -20,9 +20,10 @@
     #define NBR_PANTS 16
     #define NBR_ENEMIES 9
     #define NBR_WEAPON 3
+    #define NBR_BUTTON 6
     #define SPRITESHEET_PATH "asset/sprite_sheet.png"
 
-    enum type{Decor, Wall, Player, Shirt, Hat, Pants, Weapon, Enemy};
+    enum type{Decor, Wall, Player, Shirt, Hat, Pants, Weapon, Enemy, Button};
 
     enum decor {WoodenFloor, ErrorSprite};
     static const sfIntRect decor_rect[NBR_DECOR] = {{0, 0, 64, 64}, {0, 64, 64, 64}};
@@ -33,6 +34,11 @@
     IntWall, IntWallN, IntWallS, IntWallNS, IntWallE, IntWallNE,
     IntWallSE, IntWallNSE, IntWallW, IntWallNW, IntWallSW, IntWallNSW,
     IntWallEW, IntWallNEW, IntWallSEW, IntWallNSEW};
+
+    enum button {Play1, Play2, Playe3, Exit1, Exit2, Exit3};
+    static const sfIntRect button_rect[NBR_BUTTON] = {
+        {1344, 0, 128, 64}, {1472, 0, 128, 64}, {1600, 0, 128, 64},
+        {1344, 64, 128, 64}, {1472, 64, 128, 64}, {1600, 64, 128, 64}};
 
     static const sfIntRect wall_rect[NBR_WALL] = {
         {64, 0, 64, 64}, {64, 64, 64, 64}, {64, 128, 64, 64},

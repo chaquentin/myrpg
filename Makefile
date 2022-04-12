@@ -64,8 +64,6 @@ VIEW_MANAGEMENT = view_init.c				\
 	view_destroy.c
 $(eval VIEW_MANAGEMENT=$(addprefix src/view_management/, $(VIEW_MANAGEMENT)))
 
-
-
 OBJ = 	$(SRC:.c=.o) 					\
 		$(CLOTHES_MANAGEMENT:.c=.o)		\
 		$(ENEMY_MANAGEMENT:.c=.o)		\
@@ -78,22 +76,28 @@ OBJ = 	$(SRC:.c=.o) 					\
 		$(WINDOW_MANAGEMENT:.c=.o) 		\
 		$(VIEW_MANAGEMENT:.c=.o)		\
 
+%.o: %.c
+	@$(CC) -c $< $(CFLAGS) -o $@
+
 NAME = my_rpg
 
-CFLAGS = -I include
+CFLAGS = -I include -Wno-deprecated-declarations
 LDFLAGS = -lcsfml-graphics -lcsfml-audio -lcsfml-system -lm
 
-all: $(NAME)
+text:
+	@echo $(TEXT)
+
+all: text $(NAME)
 
 $(NAME): $(OBJ)
-	@echo $(TEXT)
-	$(CC) -o $@ $^ $(LDFLAGS)
+	@$(CC) -o $@ $^ $(LDFLAGS)
+	@echo "Compilation succesfully done"
 
 clean:
-	$(RM) $(OBJ)
+	@$(RM) $(OBJ)
 
 fclean: clean
-	$(RM) $(NAME)
+	@$(RM) $(NAME)
 
 re: fclean all
 
@@ -103,3 +107,5 @@ rcl: re
 
 debug: CFLAGS += -g3
 debug:	re
+
+.PHONY: debug clean fclean re rcl text all
