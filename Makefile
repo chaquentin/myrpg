@@ -5,12 +5,26 @@
 ## Makefile
 ##
 
-TEXT = " ██████╗ ██████╗  ██████╗\n	\
-		██╔══██╗██╔══██╗██╔════╝\n	\
-		██████╔╝██████╔╝██║  ███╗\n	\
-		██╔══██╗██╔═══╝ ██║   ██║\n	\
-		██║  ██║██║     ╚██████╔╝\n	\
-		╚═╝  ╚═╝╚═╝      ╚═════╝"
+
+BGY = "\e[103m"
+BG% = $(D%)"\e[49m"
+D = "\e[2m"
+D% = "\e[22m"
+R = $(D)"\e[31m"
+Y = "\e[93m"
+COL% = $(D%)"\e[39m"
+ALL% = "\e[0m"
+
+TEXT =  $(Y)"         ▄▄▄▄"$(R)$(BGY)"                   "$(BG%)$(Y)"▄▄▄▄\n"
+TEXT += "   ▄▄"$(R)$(BGY)"                                 "$(BG%)$(Y)"▄▄\n"
+TEXT += " ▄"$(R)$(BGY)"       ██████╗ ██████╗  ██████╗        "$(BG%)$(Y)"▄\n"
+TEXT += " "$(R)$(BGY)"        ██╔══██╗██╔══██╗██╔════╝         "$(BG%)$(Y)"\n"
+TEXT += ""$(R)$(BGY)"         ██████╔╝██████╔╝██║  ███╗         "$(BG%)$(Y)"\n"
+TEXT += ""$(R)$(BGY)"         ██╔══██╗██╔═══╝ ██║   ██║         "$(BG%)$(Y)"\n"
+TEXT += " "$(R)$(BGY)"        ██║  ██║██║     ╚██████╔╝        "$(BG%)$(Y)"\n"
+TEXT += " ▀"$(R)$(BGY)"       ╚═╝  ╚═╝╚═╝      ╚═════╝        "$(BG%)$(Y)"▀\n"
+TEXT += "   ▀▀"$(R)$(BGY)"                                 "$(BG%)$(Y)"▀▀\n"
+TEXT += "        ▀▀▀▀"$(BGY)"                   "$(BG%)"▀▀▀▀"
 
 SRC = rpg.c \
 	start_game.c
@@ -64,8 +78,6 @@ VIEW_MANAGEMENT = view_init.c				\
 	view_destroy.c
 $(eval VIEW_MANAGEMENT=$(addprefix src/view_management/, $(VIEW_MANAGEMENT)))
 
-
-
 OBJ = 	$(SRC:.c=.o) 					\
 		$(CLOTHES_MANAGEMENT:.c=.o)		\
 		$(ENEMY_MANAGEMENT:.c=.o)		\
@@ -80,14 +92,14 @@ OBJ = 	$(SRC:.c=.o) 					\
 
 NAME = my_rpg
 
-CFLAGS = -I include
+CFLAGS = -I include -Wno-deprecated-declarations
 LDFLAGS = -lcsfml-graphics -lcsfml-audio -lcsfml-system -lm
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@echo $(TEXT)
-	$(CC) -o $@ $^ $(LDFLAGS)
+	@echo $(TEXT)$(ALL%)
+	@$(CC) -o $@ $^ $(LDFLAGS)
 
 clean:
 	$(RM) $(OBJ)
@@ -99,7 +111,7 @@ re: fclean all
 
 rcl: re
 	./$(NAME)
-	$(RM) $(OBJ)
+	@$(RM) $(OBJ)
 
 debug: CFLAGS += -g3
-debug:	re
+debug: re
