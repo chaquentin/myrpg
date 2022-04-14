@@ -6,8 +6,8 @@
 ##
 
 
-R+BGY = "\e[2m\e[31m\e[103m"
-BG%+Y = "\e[22m\e[49m\e[93m"
+R+BGY = "\e[2;31;103m"
+BG%+Y = "\e[22;49;93m"
 ALL% = "\e[0m"
 
 TEXT = $(BG%+Y)\\n
