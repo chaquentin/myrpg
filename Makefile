@@ -26,19 +26,20 @@ SRC = rpg.c \
 	start_game.c
 $(eval SRC=$(addprefix src/, $(SRC)))
 
-PLAYER_MANAGEMENT = player_creation.c \
-	display_player.c \
+PLAYER_MANAGEMENT = player_creation.c	 \
+	display_player.c 					\
 	move_player.c
 $(eval PLAYER_MANAGEMENT=$(addprefix src/player_management/, $(PLAYER_MANAGEMENT)))
 
 WEAPON_MANAGEMENT = weapon_creation.c
 $(eval WEAPON_MANAGEMENT=$(addprefix src/weapon_management/, $(WEAPON_MANAGEMENT)))
 
-WINDOW_MANAGEMENT = window_creation.c \
+WINDOW_MANAGEMENT = window_creation.c 	\
 	create_all_sprites.c
 $(eval WINDOW_MANAGEMENT=$(addprefix src/window_management/, $(WINDOW_MANAGEMENT)))
 
-EVENT_MANAGEMENT = manage_key.c
+EVENT_MANAGEMENT = manage_key.c 		\
+	manage_particles.c
 $(eval EVENT_MANAGEMENT=$(addprefix src/manage_event/, $(EVENT_MANAGEMENT)))
 
 CLOTHES_MANAGEMENT = create_clothes.c
@@ -47,7 +48,7 @@ $(eval CLOTHES_MANAGEMENT=$(addprefix src/clothes_management/, $(CLOTHES_MANAGEM
 MATHS_MANAGEMENT = is_intersection.c
 $(eval MATHS_MANAGEMENT=$(addprefix src/maths_management/, $(MATHS_MANAGEMENT)))
 
-ENEMY_MANAGEMENT = enemy_init.c \
+ENEMY_MANAGEMENT = enemy_init.c 		\
 	display_enemies.c
 $(eval ENEMY_MANAGEMENT=$(addprefix src/enemy_management/, $(ENEMY_MANAGEMENT)))
 
@@ -69,8 +70,8 @@ STRING_MANAGEMENT = $(WORD_ARRAY) 		\
 	my_strcmp.c
 $(eval STRING_MANAGEMENT=$(addprefix src/string_management/, $(STRING_MANAGEMENT)))
 
-VIEW_MANAGEMENT = view_init.c				\
-	view_update.c 							\
+VIEW_MANAGEMENT = view_init.c			\
+	view_update.c 						\
 	view_destroy.c
 $(eval VIEW_MANAGEMENT=$(addprefix src/view_management/, $(VIEW_MANAGEMENT)))
 
