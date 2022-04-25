@@ -94,13 +94,23 @@
 
 //=============================DRAWING=FUNCTIONS=============================//
 
-    void draw_line(game_t *game, sfVector2f p1, sfVector2f p2, sfColor color, int thick);
-    void draw_point(sfRenderWindow *window, sfVector2f point, sfColor color, int size);
+    void draw_line(game_t *game, sfVector2f p1, sfVector2f p2, sfColor color,
+    int thick);
+    void draw_point(sfRenderWindow *window, sfVector2f point, sfColor color,
+    int size);
     void draw_rays(player_t *player, game_t *game, line_t *walls);
 
 //===================================MATH====================================//
 
-    sfVector2f is_intersection(sfVector2f p1, sfVector2f p2, sfVector2f p3, sfVector2f p4);
+    sfVector2f is_intersection(sfVector2f p1, sfVector2f p2,
+    sfVector2f p3, sfVector2f p4);
     float get_distance(sfVector2f p1, sfVector2f p2);
+
+//==================================SOUNDS===================================//
+
+    sounds_t *create_all_sounds(void);
+    int destroy_sounds(sounds_t *sounds);
+    int destroy_sounds_buffer(sfSoundBuffer **soud_buffer);
+    int destroy_musics(sfMusic **musics);
 
 #endif

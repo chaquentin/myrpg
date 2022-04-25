@@ -10,9 +10,15 @@
 
     #include <SFML/Graphics.h>
     #include <SFML/System.h>
+    #include <SFML/Audio.h>
     #include "sprite_sheet.h"
     #include "enemies.h"
     #include "level.h"
+
+    typedef struct souds_s {
+        sfSoundBuffer **all_buffer;
+        sfMusic **all_musics;
+    } sounds_t;
 
     typedef struct sprite_s {
         sfSprite *sprite;
