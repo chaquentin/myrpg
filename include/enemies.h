@@ -15,4 +15,6 @@
     enum behaviours {Idle, Searching, Attacking};
     enum game_scene {Menu, Game, Option, Pause, Quit, Win};
 
+    #define FLOAT_TO_INT(x) ((x)>=0?(int)((x)+0.5):(int)((x)-0.5))
+
 #endif

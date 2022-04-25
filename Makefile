@@ -34,7 +34,8 @@ $(eval EVENT_MANAGEMENT=$(addprefix src/manage_event/, $(EVENT_MANAGEMENT)))
 CLOTHES_MANAGEMENT = create_clothes.c
 $(eval CLOTHES_MANAGEMENT=$(addprefix src/clothes_management/, $(CLOTHES_MANAGEMENT)))
 
-MATHS_MANAGEMENT = is_intersection.c
+MATHS_MANAGEMENT = is_intersection.c 	\
+	get_distance.c
 $(eval MATHS_MANAGEMENT=$(addprefix src/maths_management/, $(MATHS_MANAGEMENT)))
 
 ENEMY_MANAGEMENT = enemy_init.c \
@@ -44,7 +45,9 @@ $(eval ENEMY_MANAGEMENT=$(addprefix src/enemy_management/, $(ENEMY_MANAGEMENT)))
 LEVEL_MANAGEMENT = create_map.c 		\
 	create_sprite.c 					\
 	room_init.c 						\
-	display_sprite.c
+	display_sprite.c					\
+	corners_init.c						\
+	corners_count.c
 $(eval LEVEL_MANAGEMENT=$(addprefix src/level_management/, $(LEVEL_MANAGEMENT)))
 
 WORD_ARRAY = is_parser.c				\
@@ -64,6 +67,12 @@ VIEW_MANAGEMENT = view_init.c				\
 	view_destroy.c
 $(eval VIEW_MANAGEMENT=$(addprefix src/view_management/, $(VIEW_MANAGEMENT)))
 
+DRAWING_FUNCTIONS = draw_line.c				\
+	draw_point.c							\
+	draw_rays.c
+$(eval DRAWING_FUNCTIONS=$(addprefix src/drawing_functions/, $(DRAWING_FUNCTIONS)))
+
+
 OBJ = 	$(SRC:.c=.o) 					\
 		$(CLOTHES_MANAGEMENT:.c=.o)		\
 		$(ENEMY_MANAGEMENT:.c=.o)		\
@@ -75,6 +84,7 @@ OBJ = 	$(SRC:.c=.o) 					\
 		$(WEAPON_MANAGEMENT:.c=.o) 		\
 		$(WINDOW_MANAGEMENT:.c=.o) 		\
 		$(VIEW_MANAGEMENT:.c=.o)		\
+		$(DRAWING_FUNCTIONS:.c=.o)		\
 
 %.o: %.c
 	@$(CC) -c $< $(CFLAGS) -o $@
