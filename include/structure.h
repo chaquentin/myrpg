@@ -20,6 +20,11 @@
         sfVector2f pos;
     } sprite_t;
 
+    typedef struct line_s {
+        sfVector2f pos1;
+        sfVector2f pos2;
+    } line_t;
+
     typedef struct enemy_jump_s {
         sfBool is_jumping;
         int since;
@@ -53,9 +58,10 @@
 
     typedef struct level_s {
         enemy_t **enemies;
-        sfVector2f *corners;
+        line_t *walls;
         sfSprite *sprite;
         sfTexture *texture;
+        sfVector2i size;
         enum levels level;
         char **map;
     } level_t;

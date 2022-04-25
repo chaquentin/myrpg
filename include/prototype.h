@@ -47,16 +47,19 @@
 
 //====================================MAP====================================//
 
-    char **create_map(char *str);
+    char **create_map(char *str, sfVector2i map_size);
     sfSprite *create_map_sprite(game_t *game, sfTexture *texture);
-    sfVector2f *create_map_corners(char **map);
-    sfTexture *create_map_texture(game_t *game, char **map);
+    sfTexture *create_map_texture(game_t *game, char **map, level_t *level);
     level_t **create_levels(char *path, game_t *game);
     void display_map_sprite(game_t *game);
 
+    line_t *create_map_walls(level_t *level, game_t *game);
+    int count_walls(level_t *level);
+    int count_adjacent_walls(level_t *level, sfVector2i pos);
+
     void destroy_levels(level_t **level);
     void destroy_map(char **map);
-    void destroy_map_corners(sfVector2f *corners);
+    void destroy_map_walls(line_t *walls);
 
 //=================================ENEMIES==================================//
 
@@ -88,5 +91,16 @@
     void view_update(game_t *game, player_t *player);
 
     void destroy_view(game_t *game);
+
+//=============================DRAWING=FUNCTIONS=============================//
+
+    void draw_line(game_t *game, sfVector2f p1, sfVector2f p2, sfColor color, int thick);
+    void draw_point(sfRenderWindow *window, sfVector2f point, sfColor color, int size);
+    void draw_rays(player_t *player, game_t *game, line_t *walls);
+
+//===================================MATH====================================//
+
+    sfVector2f is_intersection(sfVector2f p1, sfVector2f p2, sfVector2f p3, sfVector2f p4);
+    float get_distance(sfVector2f p1, sfVector2f p2);
 
 #endif

@@ -11,7 +11,7 @@
 #include "level.h"
 #include "prototype.h"
 
-char **create_map(char *str)
+char **create_map(char *str, sfVector2i map_size)
 {
     char **map = malloc(sizeof(char *) * 18);
     char **temp = my_str_to_word_array(str, "\n");
@@ -29,7 +29,6 @@ char **create_map(char *str)
     my_free_word_array(temp);
     return map;
 }
-
 void destroy_map(char **map)
 {
     if (map) {
@@ -37,17 +36,4 @@ void destroy_map(char **map)
             free(map[i]);
         free(map);
     }
-}
-
-sfVector2f *create_map_corners(char **map)
-{
-    //en gros il faut capter ou sont les coins de chaque murs et les retourner dans un tableau de sfVector2f
-    //pratique pour les collisions/raytracing
-    return NULL;
-}
-
-void destroy_map_corners(sfVector2f *corners)
-{
-    if (corners)
-        free(corners);
 }
