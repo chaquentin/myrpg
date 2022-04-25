@@ -19,6 +19,5 @@ sfView *create_view(game_t *game, int debug)
     sfView_setCenter(view, pos);
     sfView_setSize(view, (sfVector2f){960, 540});
     sfView_zoom(view, 1);
-    sfRenderWindow_setView(game->window, view);
     return view;
 }

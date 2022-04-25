@@ -14,6 +14,12 @@
     #include "enemies.h"
     #include "level.h"
 
+    typedef struct sprite_s {
+        sfSprite *sprite;
+        sfTexture *texture;
+        sfVector2f pos;
+    } sprite_t;
+
     typedef struct enemy_jump_s {
         sfBool is_jumping;
         int since;
@@ -23,8 +29,10 @@
 
     typedef struct button_s {
         sfSprite *sprite;
+        sfVector2f pos;
         enum button status;
         enum game_scene next_scene;
+        int state;
     } button_t;
 
     typedef struct enemy_s {

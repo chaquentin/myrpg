@@ -34,8 +34,8 @@ weapon_t *create_start_weapon(game_t *game)
     weapon->weapon = Gun;
     weapon->sprite = game->all_sprite[Weapon][weapon->weapon];
     weapon->is_gun = sfTrue;
-    weapon->damage = gun_damage[weapon->weapon][0];
-    weapon->ammo = gun_damage[weapon->weapon][1];
+    weapon->damage = gun_damage[weapon->weapon][1];
+    weapon->ammo = gun_damage[weapon->weapon][0];
     weapon->fire_rate = gun_damage[weapon->weapon][2];
     weapon->reload_time = gun_damage[weapon->weapon][3];
     return weapon;

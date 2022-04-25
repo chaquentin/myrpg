@@ -15,7 +15,7 @@ int manage_key_pressed(game_t *game, sfKeyCode key_code, player_t *player)
         if (key_code == keys[i])
             player->movement[i] = 1;
     if (key_code == sfKeyEscape)
-        sfRenderWindow_close(game->window);
+        game->scene = Quit;
     return 0;
 }
 

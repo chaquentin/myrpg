@@ -13,6 +13,6 @@
     Spotted_1, Spotted_2, Spotted_3, 
     Jump_1, Jump_2, Jump_3};
     enum behaviours {Idle, Searching, Attacking};
-    enum game_scene {Menu, Game, Option, Pause, Quit, Win};
+    enum game_scene {Quit, Menu, Game, Option, Pause, Win, Help};
 
 #endif

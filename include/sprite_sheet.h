@@ -12,7 +12,7 @@
 
     #define PI 3.1415926535
     #define NBR_CAT 9
-    #define NBR_DECOR 2
+    #define NBR_DECOR 3
     #define NBR_WALL 32
     #define NBR_PLAYER 8
     #define NBR_SHIRT 8
@@ -20,13 +20,14 @@
     #define NBR_PANTS 16
     #define NBR_ENEMIES 9
     #define NBR_WEAPON 3
-    #define NBR_BUTTON 6
+    #define NBR_BUTTON 21
     #define SPRITESHEET_PATH "asset/sprite_sheet.png"
 
     enum type{Decor, Wall, Player, Shirt, Hat, Pants, Weapon, Enemy, Button};
 
-    enum decor {WoodenFloor, ErrorSprite};
-    static const sfIntRect decor_rect[NBR_DECOR] = {{0, 0, 64, 64}, {0, 64, 64, 64}};
+    enum decor {WoodenFloor, ErrorSprite, OptionGround};
+    static const sfIntRect decor_rect[NBR_DECOR] = {{0, 0, 64, 64}, {0, 64, 64, 64},
+    {1334, 256, 512, 512}};
 
     enum wall {ExtWall, ExtWallN, ExtWallS, ExtWallNS, ExtWallE, ExtWallNE,
     ExtWallSE, ExtWallNSE, ExtWallW, ExtWallNW, ExtWallSW, ExtWallNSW,
@@ -35,10 +36,18 @@
     IntWallSE, IntWallNSE, IntWallW, IntWallNW, IntWallSW, IntWallNSW,
     IntWallEW, IntWallNEW, IntWallSEW, IntWallNSEW};
 
-    enum button {Play1, Play2, Playe3, Exit1, Exit2, Exit3};
+    enum button {Play1, Play2, Playe3, Exit1, Exit2, Exit3,
+    Settings1, Settings2, Settings3, How1, How2, How3,
+    Wheel1, Wheel2, Wheel3, LArrow1, LArrow2, LArrow3,
+    RArrow1, RArrow2, RArrow3};
     static const sfIntRect button_rect[NBR_BUTTON] = {
         {1344, 0, 128, 64}, {1472, 0, 128, 64}, {1600, 0, 128, 64},
-        {1344, 64, 128, 64}, {1472, 64, 128, 64}, {1600, 64, 128, 64}};
+        {1344, 64, 128, 64}, {1472, 64, 128, 64}, {1600, 64, 128, 64},
+        {1344, 128, 128, 64}, {1472, 128, 128, 64}, {1600, 128, 128, 64},
+        {1344, 192, 128, 64}, {1472, 192, 128, 64}, {1600, 192, 128, 64},
+        {1728, 0, 64, 64}, {1792, 0, 64, 64}, {1856, 0, 64, 64},
+        {1728, 192, 64, 64}, {1792, 192, 64, 64}, {1856, 192, 64, 64},
+        {1728, 128, 64, 64}, {1792, 128, 64, 64}, {1856, 128, 64, 64}};
 
     static const sfIntRect wall_rect[NBR_WALL] = {
         {64, 0, 64, 64}, {64, 64, 64, 64}, {64, 128, 64, 64},

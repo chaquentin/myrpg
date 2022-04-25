@@ -51,6 +51,10 @@ WORD_ARRAY = is_parser.c				\
 	my_str_to_word_array.c
 $(eval WORD_ARRAY=$(addprefix word_array/, $(WORD_ARRAY)))
 
+BUTTON_MANAGEMENT = create_button.c \
+	manage_scene.c
+$(eval BUTTON_MANAGEMENT=$(addprefix src/menu_management/, $(BUTTON_MANAGEMENT)))
+
 STRING_MANAGEMENT = $(WORD_ARRAY) 		\
 	my_atoi.c 							\
 	my_strlen.c 						\
@@ -75,6 +79,7 @@ OBJ = 	$(SRC:.c=.o) 					\
 		$(WEAPON_MANAGEMENT:.c=.o) 		\
 		$(WINDOW_MANAGEMENT:.c=.o) 		\
 		$(VIEW_MANAGEMENT:.c=.o)		\
+		$(BUTTON_MANAGEMENT:.c=.o)		\
 
 %.o: %.c
 	@$(CC) -c $< $(CFLAGS) -o $@
@@ -82,14 +87,12 @@ OBJ = 	$(SRC:.c=.o) 					\
 NAME = my_rpg
 
 CFLAGS = -I include -Wno-deprecated-declarations
-LDFLAGS = -lcsfml-graphics -lcsfml-audio -lcsfml-system -lm
+LDFLAGS = -lcsfml-graphics -lcsfml-audio -lcsfml-system -lcsfml-window -lm 
 
-text:
-	@echo $(TEXT)
-
-all: text $(NAME)
+all: $(NAME)
 
 $(NAME): $(OBJ)
+	@echo $(TEXT)
 	@$(CC) -o $@ $^ $(LDFLAGS)
 	@echo "Compilation succesfully done"
 

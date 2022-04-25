@@ -5,9 +5,10 @@
 ** create_button
 */
 
+#include <stdlib.h>
 #include "structure.h"
 
-button_t* create_button(enum button type, game_t *game,
+button_t *create_button(enum button type, game_t *game,
 enum game_scene next_scene)
 {
     button_t *button = malloc(sizeof(button_t));
@@ -17,5 +18,6 @@ enum game_scene next_scene)
     button->status = type;
     button->sprite = game->all_sprite[Button][type];
     button->next_scene = next_scene;
+    button->pos = (sfVector2f) {0, 0};
     return button;
 }

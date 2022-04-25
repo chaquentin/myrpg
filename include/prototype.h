@@ -13,9 +13,16 @@
 //===================================GAME====================================//
 
     game_t *create_game(int debug);
-    int start_game(game_t *game, player_t *player);
+    int game(game_t *game, player_t *player, sfEvent event);
+    int manage_scene(game_t *game);
 
     void destroy_game(game_t *game);
+
+//===================================BUTTON===================================//
+
+    button_t* create_button(enum button type, game_t *game,
+    enum game_scene next_scene);
+
 
 //==================================PLAYER===================================//
 
