@@ -27,19 +27,29 @@ SRC = rpg.c \
 	start_game.c
 $(eval SRC=$(addprefix src/, $(SRC)))
 
+<<<<<<< HEAD
 PLAYER_MANAGEMENT = player_creation.c	\
 	display_player.c					\
+=======
+PLAYER_MANAGEMENT = player_creation.c	 \
+	display_player.c 					\
+>>>>>>> 9b7d0acbdbd6b4094d5ecc58c2021dd6652f2867
 	move_player.c
 $(eval PLAYER_MANAGEMENT=$(addprefix src/player_management/, $(PLAYER_MANAGEMENT)))
 
 WEAPON_MANAGEMENT = weapon_creation.c
 $(eval WEAPON_MANAGEMENT=$(addprefix src/weapon_management/, $(WEAPON_MANAGEMENT)))
 
+<<<<<<< HEAD
 WINDOW_MANAGEMENT = window_creation.c	\
+=======
+WINDOW_MANAGEMENT = window_creation.c 	\
+>>>>>>> 9b7d0acbdbd6b4094d5ecc58c2021dd6652f2867
 	create_all_sprites.c
 $(eval WINDOW_MANAGEMENT=$(addprefix src/window_management/, $(WINDOW_MANAGEMENT)))
 
-EVENT_MANAGEMENT = manage_key.c
+EVENT_MANAGEMENT = manage_key.c 		\
+	manage_particles.c
 $(eval EVENT_MANAGEMENT=$(addprefix src/manage_event/, $(EVENT_MANAGEMENT)))
 
 CLOTHES_MANAGEMENT = create_clothes.c
