@@ -46,10 +46,12 @@ level_t *create_level(enum levels level_name, char *str, game_t *game)
 
     if (!level || !parts)
         return NULL;
+    level->size.x = 32;
+    level->size.y = 18;
     level->enemies = enemies_create(parts[1], game);
-    level->map = create_map(parts[0]);
-    level->corners = create_map_corners(level->map);
-    level->texture = create_map_texture(game, level->map);
+    level->map = create_map(parts[0], level->size);
+    level->walls = create_map_walls(level, game);
+    level->texture = create_map_texture(game, level->map, level);
     level->sprite = create_map_sprite(game, level->texture);
     level->level = level_name;
     my_free_word_array(parts);
@@ -82,7 +84,7 @@ void destroy_levels(level_t **level)
     for (int i = 0; level[i]; i++) {
         write(1, "freeing level:  ", 16);
         my_putnbr(i + 1, '\n');
-        destroy_map_corners(level[i]->corners);
+        destroy_map_walls(level[i]->walls);
         destroy_map(level[i]->map);
         destroy_enemies(level[i]->enemies);
         sfTexture_destroy(level[i]->texture);

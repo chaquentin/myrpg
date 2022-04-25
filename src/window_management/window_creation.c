@@ -40,7 +40,8 @@ sfSprite ***create_all_sprites(sfTexture *texture)
     all_sprite[5] = create_sprites(NBR_PANTS, pants_rect, texture);
     all_sprite[6] = create_sprites(NBR_WEAPON, weapon_rect, texture);
     all_sprite[7] = create_sprites(NBR_ENEMIES, enemies_rect, texture);
-    all_sprite[8] = NULL;
+    all_sprite[8] = create_sprites(NBR_BUTTON, button_rect, texture);
+    all_sprite[9] = NULL;
     for (int i = 0; i < NBR_CAT; i++) {
         if (!all_sprite[i]) {
             destroy_all_sprites(all_sprite);

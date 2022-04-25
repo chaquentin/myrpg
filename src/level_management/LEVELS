@@ -1,31 +1,30 @@
 NORM:
-'E' = wall ext
-'I' = wall int
+'W' = wall ext
+'w' = wall int
 ' ' = floor
 't' = table
 'C' = chair
 'c' = carpet
 'S' = sink
-'W' = workbench
 &
-WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
-Ww                           w W
-W w                           wW
-W  w                         w W
-W   w                       w  W
-W    w                     w   W
-W     w                   w    W
-W      w                 w     W
-W       w               w      W
-W        wW            w   WWWWW 
-W        WwW          w        W
-W         Ww         w         W
-W           w       w          W
-W            w     w           W
-W             w   w            W
-W              w w             W
-W               w              W
-WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
+W                               
+ W                              
+ W                              
+                                
+                                
+        WW                      
+        W                       
+        W                       
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
 !
 5
 EnemyGun1 0 100

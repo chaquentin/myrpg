@@ -49,7 +49,7 @@ sfSprite *create_map_sprite(game_t *game, sfTexture *texture)
     return sprite;
 }
 
-sfTexture *create_map_texture(game_t *game, char **map)
+sfTexture *create_map_texture(game_t *game, char **map, level_t *level)
 {
     sfSprite *sprite = NULL;
     sfImage *image = NULL;

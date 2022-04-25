@@ -21,20 +21,21 @@ TEXT += " "$(R+BGY)"         ██║  ██║██║     ╚████�
 TEXT += "  "$(R+BGY)"        ╚═╝  ╚═╝╚═╝      ╚═════╝         "$(BG%+Y)"  \n"
 TEXT += "    ▀▀"$(R+BGY)"                                 "$(BG%+Y)"▀▀    \n"
 TEXT += "        ▀▀▀▀"$(R+BGY)"                     "$(BG%+Y)"▀▀▀▀        \n"
+TEXT += $(ALL%)
 
 SRC = rpg.c \
 	start_game.c
 $(eval SRC=$(addprefix src/, $(SRC)))
 
-PLAYER_MANAGEMENT = player_creation.c \
-	display_player.c \
+PLAYER_MANAGEMENT = player_creation.c	\
+	display_player.c					\
 	move_player.c
 $(eval PLAYER_MANAGEMENT=$(addprefix src/player_management/, $(PLAYER_MANAGEMENT)))
 
 WEAPON_MANAGEMENT = weapon_creation.c
 $(eval WEAPON_MANAGEMENT=$(addprefix src/weapon_management/, $(WEAPON_MANAGEMENT)))
 
-WINDOW_MANAGEMENT = window_creation.c \
+WINDOW_MANAGEMENT = window_creation.c	\
 	create_all_sprites.c
 $(eval WINDOW_MANAGEMENT=$(addprefix src/window_management/, $(WINDOW_MANAGEMENT)))
 
@@ -44,17 +45,20 @@ $(eval EVENT_MANAGEMENT=$(addprefix src/manage_event/, $(EVENT_MANAGEMENT)))
 CLOTHES_MANAGEMENT = create_clothes.c
 $(eval CLOTHES_MANAGEMENT=$(addprefix src/clothes_management/, $(CLOTHES_MANAGEMENT)))
 
-MATHS_MANAGEMENT = is_intersection.c
+MATHS_MANAGEMENT = is_intersection.c 	\
+	get_distance.c
 $(eval MATHS_MANAGEMENT=$(addprefix src/maths_management/, $(MATHS_MANAGEMENT)))
 
-ENEMY_MANAGEMENT = enemy_init.c \
+ENEMY_MANAGEMENT = enemy_init.c 		\
 	display_enemies.c
 $(eval ENEMY_MANAGEMENT=$(addprefix src/enemy_management/, $(ENEMY_MANAGEMENT)))
 
 LEVEL_MANAGEMENT = create_map.c 		\
 	create_sprite.c 					\
 	room_init.c 						\
-	display_sprite.c
+	display_sprite.c					\
+	corners_init.c						\
+	corners_count.c
 $(eval LEVEL_MANAGEMENT=$(addprefix src/level_management/, $(LEVEL_MANAGEMENT)))
 
 WORD_ARRAY = is_parser.c				\
@@ -69,10 +73,16 @@ STRING_MANAGEMENT = $(WORD_ARRAY) 		\
 	my_strcmp.c
 $(eval STRING_MANAGEMENT=$(addprefix src/string_management/, $(STRING_MANAGEMENT)))
 
-VIEW_MANAGEMENT = view_init.c				\
-	view_update.c 							\
+VIEW_MANAGEMENT = view_init.c			\
+	view_update.c 						\
 	view_destroy.c
 $(eval VIEW_MANAGEMENT=$(addprefix src/view_management/, $(VIEW_MANAGEMENT)))
+
+DRAWING_FUNCTIONS = draw_line.c			\
+	draw_point.c						\
+	draw_rays.c
+$(eval DRAWING_FUNCTIONS=$(addprefix src/drawing_functions/, $(DRAWING_FUNCTIONS)))
+
 
 OBJ = 	$(SRC:.c=.o) 					\
 		$(CLOTHES_MANAGEMENT:.c=.o)		\
@@ -85,23 +95,30 @@ OBJ = 	$(SRC:.c=.o) 					\
 		$(WEAPON_MANAGEMENT:.c=.o) 		\
 		$(WINDOW_MANAGEMENT:.c=.o) 		\
 		$(VIEW_MANAGEMENT:.c=.o)		\
+		$(DRAWING_FUNCTIONS:.c=.o)		\
+
+%.o: %.c
+	@$(CC) -c $< $(CFLAGS) -o $@
 
 NAME = my_rpg
 
 CFLAGS = -I include -Wno-deprecated-declarations
 LDFLAGS = -lcsfml-graphics -lcsfml-audio -lcsfml-system -lm
 
-all: $(NAME)
+text:
+	@echo $(TEXT)
+
+all: text $(NAME)
 
 $(NAME): $(OBJ)
-	@echo $(TEXT)$(ALL%)
 	@$(CC) -o $@ $^ $(LDFLAGS)
+	@echo "Compilation done"
 
 clean:
-	$(RM) $(OBJ)
+	@$(RM) $(OBJ)
 
 fclean: clean
-	$(RM) $(NAME)
+	@$(RM) $(NAME)
 
 re: fclean all
 
@@ -110,4 +127,5 @@ rcl: re
 	@$(RM) $(OBJ)
 
 debug: CFLAGS += -g3
-debug: re
+
+.PHONY: debug clean fclean re rcl text all
