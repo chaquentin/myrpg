@@ -47,11 +47,14 @@ CLOTHES_MANAGEMENT = create_clothes.c
 $(eval CLOTHES_MANAGEMENT=$(addprefix src/clothes_management/, $(CLOTHES_MANAGEMENT)))
 
 MATHS_MANAGEMENT = is_intersection.c 	\
-	get_distance.c
+	get_distance.c						\
+	get_randint.c
 $(eval MATHS_MANAGEMENT=$(addprefix src/maths_management/, $(MATHS_MANAGEMENT)))
 
 ENEMY_MANAGEMENT = enemy_init.c 		\
-	display_enemies.c
+	display_enemies.c					\
+	enemy_move.c						\
+	enemy_turn.c
 $(eval ENEMY_MANAGEMENT=$(addprefix src/enemy_management/, $(ENEMY_MANAGEMENT)))
 
 LEVEL_MANAGEMENT = create_map.c 		\
@@ -108,7 +111,7 @@ OBJ = 	$(SRC:.c=.o) 					\
 
 NAME = my_rpg
 
-CFLAGS = -I include -Wno-deprecated-declarations
+CFLAGS = -I include -g3 -Wno-deprecated-declarations
 LDFLAGS = -lcsfml-graphics -lcsfml-audio -lcsfml-system -lcsfml-window -lm 
 
 all: $(NAME)
@@ -130,6 +133,7 @@ rcl: re
 	./$(NAME)
 	@$(RM) $(OBJ)
 
-debug: CFLAGS += -g3
+debug: CFLAGS += -g3 -Wno-deprecated-declarations
+debug: re 
 
 .PHONY: debug clean fclean re rcl text all

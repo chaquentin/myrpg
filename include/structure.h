@@ -14,6 +14,33 @@
     #include "enemies.h"
     #include "level.h"
 
+    typedef struct enemy_turn_s {
+        float start_angle;
+        float add_angle;
+    } enemy_turn_t;
+
+    typedef struct enemy_jump_s {
+        sfBool is_jumping;
+        int since;
+        sfVector2f pos1;
+        sfVector2f pos2;
+    } enemy_jump_t;
+
+    typedef struct enemy_s {
+        sfVector2f player_pos;
+        sfVector2f idle_around;
+        sfVector2f pos;
+        sfTexture *texture;
+        sfSprite *sprite;
+        sfBool alive;
+        enum behaviours behaviour;
+        enum actions current_action;
+        enum enemy_types type;
+        void *next_action;
+        int angle;
+        int idled_since;
+    } enemy_t;
+
     typedef struct sprite_s {
         sfSprite *sprite;
         sfTexture *texture;
@@ -25,13 +52,6 @@
         sfVector2f pos2;
     } line_t;
 
-    typedef struct enemy_jump_s {
-        sfBool is_jumping;
-        int since;
-        sfVector2f pos1;
-        sfVector2f pos2;
-    } enemy_jump_t;
-
     typedef struct button_s {
         sfSprite *sprite;
         sfVector2f pos;
@@ -39,22 +59,6 @@
         enum game_scene next_scene;
         int state;
     } button_t;
-
-    typedef struct enemy_s {
-        enemy_jump_t *jump;
-        sfVector2f player_pos;
-        sfVector2f idle_around;
-        sfVector2f pos;
-        sfTexture *texture;
-        sfSprite *sprite;
-        sfBool alive;
-        enum behaviours behaviour;
-        enum enemies type;
-        int angle; 
-        int speed;
-        int jump_rate;
-        int idled_since;
-    } enemy_t;
 
     typedef struct level_s {
         enemy_t **enemies;

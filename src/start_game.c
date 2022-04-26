@@ -50,6 +50,7 @@ int game(game_t *game, player_t *player, sfEvent event)
     sfRenderWindow_clear(game->window, sfBlack);
     get_event(game, &event, player);
     move_player(game, player);
+    enemy_actions(game, player);
     fill_mouse(game, player);
     display(game, player);
     return 0;

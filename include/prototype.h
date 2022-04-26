@@ -65,6 +65,8 @@
 
     enemy_t **enemies_create(char *enemies_data, game_t *game);
     void display_enemies(game_t *game);
+    int enemy_actions(game_t *game, player_t *player);
+    int enemy_turn(game_t *game, enemy_t *enemy);
 
     void destroy_enemies(enemy_t **enemies);
 
@@ -102,5 +104,6 @@
 
     sfVector2f is_intersection(sfVector2f p1, sfVector2f p2, sfVector2f p3, sfVector2f p4);
     float get_distance(sfVector2f p1, sfVector2f p2);
+    int get_randint(int min, int max);
 
 #endif

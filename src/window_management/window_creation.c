@@ -56,7 +56,7 @@ sfRenderWindow *create_window(void)
     sfVideoMode mode = {1920, 1080, 32};
     sfRenderWindow *window = NULL;
 
-    window = sfRenderWindow_create(mode, "Niggay land", sfFullscreen, NULL);
+    window = sfRenderWindow_create(mode, "RPG", sfFullscreen, NULL);
     sfRenderWindow_setFramerateLimit(window, 144);
     if (window == NULL)
         return NULL;
