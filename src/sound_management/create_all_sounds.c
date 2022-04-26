@@ -9,13 +9,14 @@
 #include "structure.h"
 #include "prototype.h"
 
-static const char *sounds_file[] = {"asset/sounds/chinese.ogg",
+static const char *sounds_file[7] = {"asset/sounds/chinese.ogg",
 "asset/sounds/english.ogg", "asset/sounds/german.ogg",
-"asset/sounds/spanish.ogg"};
+"asset/sounds/spanish.ogg", "asset/sounds/the_best.ogg",
+"asset/sounds/arabe.ogg"};
 
 static const char *musics_file[] = {};
 
-static int my_arrlen(void **src)
+static int my_arrlen(const char *src[])
 {
     int i = 0;
 
@@ -27,7 +28,7 @@ static int my_arrlen(void **src)
 sfMusic **create_all_musics(void)
 {
     sfMusic **all_musics = NULL;
-    int length = my_arrlen((void **) musics_file);
+    int length = my_arrlen(musics_file);
 
     all_musics = malloc(sizeof(sfMusic *) * (length + 1));
     if (!all_musics)
@@ -47,13 +48,13 @@ sfMusic **create_all_musics(void)
 sfSoundBuffer **create_all_sounds_buffer(void)
 {
     sfSoundBuffer **all_sounds = NULL;
-    int length = my_arrlen((void **) sounds_file);
+    int length = my_arrlen(sounds_file);
 
     all_sounds = malloc(sizeof(sfSoundBuffer *) * (length + 1));
     if (!all_sounds)
         return NULL;
     all_sounds[length] = NULL;
-    for (int i = 0; all_sounds[i]; i++) {
+    for (int i = 0; i < length; i++) {
         all_sounds[i] = sfSoundBuffer_createFromFile(sounds_file[i]);
         if (!all_sounds[i]) {
             all_sounds[i] = NULL;
@@ -62,6 +63,16 @@ sfSoundBuffer **create_all_sounds_buffer(void)
         }
     }
     return all_sounds;
+}
+
+int set_default_volume(sounds_t *sounds)
+{
+    sounds->music_vol = 100;
+    sounds->sound_vol = 100;
+    for (int i = 0; sounds->all_musics[i]; i++) {
+        sfMusic_setVolume(sounds->all_musics[i], sounds->music_vol);
+    }
+    return 0;
 }
 
 sounds_t *create_all_sounds(void)
@@ -79,5 +90,6 @@ sounds_t *create_all_sounds(void)
         destroy_sounds(sounds);
         return NULL;
     }
+    set_default_volume(sounds);
     return sounds;
 }

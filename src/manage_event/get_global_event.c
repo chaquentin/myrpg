@@ -13,9 +13,9 @@ sfVector2f mouse_pos, game_t *game)
     sfVector2f obj_pos = object->pos;
 
     if (obj_pos.x < mouse_pos.x &&
-    mouse_pos.x < obj_pos.x + 384 &&
+    mouse_pos.x < obj_pos.x + object->size.x &&
     obj_pos.y < mouse_pos.y &&
-    mouse_pos.y < obj_pos.y + 192) {
+    mouse_pos.y < obj_pos.y + object->size.y) {
         return 1;
     }
     return 0;
@@ -27,12 +27,16 @@ int manage_click(button_t *object, sfVector2f mouse_pos, game_t *game)
     int is_collision = verify_colision(object, mouse_pos, game);
     int state = 0;
 
-    if (is_collision && is_pressed)
+    if (is_collision && is_pressed) {
         state = 2;
+        object->is_click = 1;
+    }
     else if (is_collision)
         state = 1;
-    else
+    else {
         state = 0;
+        object->is_click = 0;
+    }
     object->sprite = game->all_sprite[Button][state + object->status];
     object->state = state;
     return 0;
@@ -51,8 +55,10 @@ int manage_mouse(game_t *game, sfEvent *event, button_t **all_button)
 int manage_released(game_t *game, button_t **all_button)
 {
     for (int i = 0; all_button[i]; i++) {
-        if (all_button[i]->state == 1)
+        if (all_button[i]->is_click == 1) {
             game->scene = all_button[i]->next_scene;
+            all_button[i]->is_click = 0;
+        }
     }
 }
 
@@ -64,5 +70,4 @@ void get_event(game_t *game, sfEvent *event, button_t **all_button)
             game->scene = Quit;
         else if (event->type == sfEvtMouseButtonReleased)
             manage_released(game, all_button);
-        // manage_spec_scene(game->scene);
 }

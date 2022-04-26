@@ -16,6 +16,8 @@
     int game(game_t *game, player_t *player, sfEvent event);
     int manage_scene(game_t *game);
     int menu(game_t *game, player_t *player, sfEvent event);
+    int option(game_t *game, player_t *player, sfEvent event);
+    int help(game_t *game, player_t *player, sfEvent event);
 
     void destroy_game(game_t *game);
 

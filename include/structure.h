@@ -15,9 +15,20 @@
     #include "enemies.h"
     #include "level.h"
 
+    typedef struct text_option_s {
+        sfText *text;
+        sfFont *font;
+        char *txt[6];
+        int music_vol;
+        int sound_vol;
+        int framerate_limit;
+    } text_option_t;
+
     typedef struct souds_s {
         sfSoundBuffer **all_buffer;
         sfMusic **all_musics;
+        int sound_vol;
+        int music_vol;
     } sounds_t;
 
     typedef struct sprite_s {
@@ -41,9 +52,11 @@
     typedef struct button_s {
         sfSprite *sprite;
         sfVector2f pos;
+        sfVector2f size;
         enum button status;
         enum game_scene next_scene;
         int state;
+        int is_click;
     } button_t;
 
     typedef struct enemy_s {

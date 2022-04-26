@@ -71,7 +71,9 @@ SCENE_MANAGEMENT = create_button.c	\
 	manage_scene.c					\
 	button_click.c					\
 	menu_management.c				\
-	sprite_management.c
+	sprite_management.c				\
+	option_management.c				\
+	how_to_play.c
 $(eval SCENE_MANAGEMENT=$(addprefix src/scene_management/, $(SCENE_MANAGEMENT)))
 
 STRING_MANAGEMENT = $(WORD_ARRAY) 		\
@@ -139,5 +141,6 @@ rcl: re
 	@$(RM) $(OBJ)
 
 debug: CFLAGS += -g3
+debug: re
 
 .PHONY: debug clean fclean re rcl text all
