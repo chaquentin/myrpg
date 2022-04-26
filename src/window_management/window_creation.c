@@ -23,6 +23,7 @@ void destroy_game(game_t *game)
         destroy_levels(game->levels);
     if (game->view)
         destroy_view(game);
+    destroy_sounds(game->sounds);
     free(game);
 }
 
@@ -32,15 +33,15 @@ sfSprite ***create_all_sprites(sfTexture *texture)
 
     if (!all_sprite)
         return NULL;
-    all_sprite[0] = create_sprites(NBR_DECOR, decor_rect, texture);
-    all_sprite[1] = create_sprites(NBR_WALL, wall_rect, texture);
-    all_sprite[2] = create_sprites(NBR_PLAYER, player_rect, texture);
-    all_sprite[3] = create_sprites(NBR_SHIRT, shirt_rect, texture);
-    all_sprite[4] = create_sprites(NBR_HAT, hat_rect, texture);
-    all_sprite[5] = create_sprites(NBR_PANTS, pants_rect, texture);
-    all_sprite[6] = create_sprites(NBR_WEAPON, weapon_rect, texture);
-    all_sprite[7] = create_sprites(NBR_ENEMIES, enemies_rect, texture);
-    all_sprite[8] = create_sprites(NBR_BUTTON, button_rect, texture);
+    all_sprite[0] = create_all_sprite(NBR_DECOR, decor_rect, texture);
+    all_sprite[1] = create_all_sprite(NBR_WALL, wall_rect, texture);
+    all_sprite[2] = create_all_sprite(NBR_PLAYER, player_rect, texture);
+    all_sprite[3] = create_all_sprite(NBR_SHIRT, shirt_rect, texture);
+    all_sprite[4] = create_all_sprite(NBR_HAT, hat_rect, texture);
+    all_sprite[5] = create_all_sprite(NBR_PANTS, pants_rect, texture);
+    all_sprite[6] = create_all_sprite(NBR_WEAPON, weapon_rect, texture);
+    all_sprite[7] = create_all_sprite(NBR_ENEMIES, enemies_rect, texture);
+    all_sprite[8] = create_all_sprite(NBR_BUTTON, button_rect, texture);
     all_sprite[9] = NULL;
     for (int i = 0; i < NBR_CAT; i++) {
         if (!all_sprite[i]) {
@@ -77,7 +78,8 @@ game_t *create_game(int debug)
     game->texture = sfTexture_createFromFile(SPRITESHEET_PATH, NULL);
     game->delta_time = 0.0;
     game->clock = sfClock_create();
-    if (!game->window || !game->texture) {
+    game->sounds = create_all_sounds();
+    if (!game->window || !game->texture || !game->sounds) {
         destroy_game(game);
         return NULL;
     }

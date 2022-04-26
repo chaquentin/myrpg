@@ -40,7 +40,8 @@ WINDOW_MANAGEMENT = window_creation.c 	\
 $(eval WINDOW_MANAGEMENT=$(addprefix src/window_management/, $(WINDOW_MANAGEMENT)))
 
 EVENT_MANAGEMENT = manage_key.c 		\
-	manage_particles.c
+	manage_particles.c					\
+	get_global_event.c
 $(eval EVENT_MANAGEMENT=$(addprefix src/manage_event/, $(EVENT_MANAGEMENT)))
 
 CLOTHES_MANAGEMENT = create_clothes.c
@@ -69,9 +70,12 @@ WORD_ARRAY = is_parser.c				\
 	my_str_to_word_array.c
 $(eval WORD_ARRAY=$(addprefix word_array/, $(WORD_ARRAY)))
 
-BUTTON_MANAGEMENT = create_button.c \
-	manage_scene.c
-$(eval BUTTON_MANAGEMENT=$(addprefix src/menu_management/, $(BUTTON_MANAGEMENT)))
+SCENE_MANAGEMENT = create_button.c	\
+	manage_scene.c					\
+	button_click.c					\
+	menu_management.c				\
+	sprite_management.c
+$(eval SCENE_MANAGEMENT=$(addprefix src/scene_management/, $(SCENE_MANAGEMENT)))
 
 STRING_MANAGEMENT = $(WORD_ARRAY) 		\
 	my_atoi.c 							\
@@ -91,6 +95,9 @@ DRAWING_FUNCTIONS = draw_line.c			\
 	draw_rays.c
 $(eval DRAWING_FUNCTIONS=$(addprefix src/drawing_functions/, $(DRAWING_FUNCTIONS)))
 
+SOUNDS_MANAGEMENT = create_all_sounds.c	\
+	destroy_sounds.c
+$(eval SOUNDS_MANAGEMENT=$(addprefix src/sound_management/, $(SOUNDS_MANAGEMENT)))
 
 OBJ = 	$(SRC:.c=.o) 					\
 		$(CLOTHES_MANAGEMENT:.c=.o)		\
@@ -103,8 +110,9 @@ OBJ = 	$(SRC:.c=.o) 					\
 		$(WEAPON_MANAGEMENT:.c=.o) 		\
 		$(WINDOW_MANAGEMENT:.c=.o) 		\
 		$(VIEW_MANAGEMENT:.c=.o)		\
-		$(BUTTON_MANAGEMENT:.c=.o)		\
+		$(SCENE_MANAGEMENT:.c=.o)		\
 		$(DRAWING_FUNCTIONS:.c=.o)		\
+		$(SOUNDS_MANAGEMENT:.c=.o)		\
 
 %.o: %.c
 	@$(CC) -c $< $(CFLAGS) -o $@

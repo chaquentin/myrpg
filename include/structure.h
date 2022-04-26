@@ -10,14 +10,26 @@
 
     #include <SFML/Graphics.h>
     #include <SFML/System.h>
+    #include <SFML/Audio.h>
     #include "sprite_sheet.h"
     #include "enemies.h"
     #include "level.h"
 
-    typedef struct enemy_turn_s {
-        float start_angle;
-        float add_angle;
-    } enemy_turn_t;
+    typedef struct souds_s {
+        sfSoundBuffer **all_buffer;
+        sfMusic **all_musics;
+    } sounds_t;
+
+    typedef struct sprite_s {
+        sfSprite *sprite;
+        sfTexture *texture;
+        sfVector2f pos;
+    } sprite_t;
+
+    typedef struct line_s {
+        sfVector2f pos1;
+        sfVector2f pos2;
+    } line_t;
 
     typedef struct enemy_jump_s {
         sfBool is_jumping;
@@ -25,6 +37,11 @@
         sfVector2f pos1;
         sfVector2f pos2;
     } enemy_jump_t;
+
+    typedef struct enemy_turn_s {
+        float start_angle;
+        float add_angle;
+    } enemy_turn_t;
 
     typedef struct enemy_s {
         sfVector2f player_pos;
@@ -72,6 +89,7 @@
 
     typedef struct game_s {
         level_t **levels;
+        sounds_t *sounds;
         sfView *view;
         sfSprite ***all_sprite;
         sfRenderWindow *window;
