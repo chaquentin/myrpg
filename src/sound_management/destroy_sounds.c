@@ -24,7 +24,7 @@ int destroy_sounds_buffer(sfSoundBuffer **soud_buffer)
     if (soud_buffer == NULL)
         return 84;
     for (int i = 0; soud_buffer[i]; i++) {
-        sfMusic_destroy(soud_buffer[i]);
+        sfSoundBuffer_destroy(soud_buffer[i]);
     }
     free(soud_buffer);
     return 0;

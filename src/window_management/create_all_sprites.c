@@ -28,7 +28,7 @@ int destroy_all_sprites(sfSprite ***sprites)
     return 0;
 }
 
-sfSprite **create_sprites(int nbr, const sfIntRect rect[nbr],
+sfSprite **create_all_sprite(int nbr, const sfIntRect rect[nbr],
 sfTexture *texture)
 {
     sfSprite **sprites = malloc(sizeof(sfSprite *) * (nbr + 1));

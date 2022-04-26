@@ -9,7 +9,7 @@
 #include "prototype.h"
 #include "structure.h"
 
-static void get_event(game_t *game, sfEvent *event, player_t *player)
+static void get_player_event(game_t *game, sfEvent *event, player_t *player)
 {
     while (sfRenderWindow_pollEvent(game->window, event)) {
         if (event->type == sfEvtKeyPressed)
@@ -48,7 +48,7 @@ int game(game_t *game, player_t *player, sfEvent event)
     update_clock(game);
     view_update(game, player);
     sfRenderWindow_clear(game->window, sfBlack);
-    get_event(game, &event, player);
+    get_player_event(game, &event, player);
     move_player(game, player);
     fill_mouse(game, player);
     display(game, player);

@@ -15,6 +15,7 @@
     game_t *create_game(int debug);
     int game(game_t *game, player_t *player, sfEvent event);
     int manage_scene(game_t *game);
+    int menu(game_t *game, player_t *player, sfEvent event);
 
     void destroy_game(game_t *game);
 
@@ -22,7 +23,8 @@
 
     button_t* create_button(enum button type, game_t *game,
     enum game_scene next_scene);
-
+    int display_button(button_t **button, game_t *game);
+    int destroy_button(button_t **button);
 
 //==================================PLAYER===================================//
 
@@ -40,9 +42,11 @@
 
 //==================================SPRITES==================================//
 
-    sfSprite **create_sprites(int nbr,
+    sfSprite **create_all_sprite(int nbr,
     const sfIntRect rect[nbr], sfTexture *texture);
+    sprite_t *create_sprite(char *path);
 
+    int destroy_sprite(sprite_t *sprite);
     int destroy_all_sprites(sfSprite ***sprites);
 
 //====================================MAP====================================//
@@ -72,6 +76,9 @@
 
     int manage_key_pressed(game_t *game, sfKeyCode key_code, player_t *player);
     int manage_key_released(sfKeyCode key_code, player_t *player);
+    void get_event(game_t *game, sfEvent *event, button_t **all_button);
+    int manage_mouse(game_t *game, sfEvent *event, button_t **all_button);
+    int manage_released(game_t *game, button_t **all_button);
 
 //===================================WORDS===================================//
 

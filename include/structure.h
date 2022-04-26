@@ -74,6 +74,7 @@
 
     typedef struct game_s {
         level_t **levels;
+        sounds_t *sounds;
         sfView *view;
         sfSprite ***all_sprite;
         sfRenderWindow *window;
