@@ -12,7 +12,7 @@
 
     #define PI 3.1415926535
     #define NBR_CAT 9
-    #define NBR_DECOR 3
+    #define NBR_DECOR 10
     #define NBR_WALL 32
     #define NBR_PLAYER 8
     #define NBR_SHIRT 8
@@ -25,9 +25,12 @@
 
     enum type{Decor, Wall, Player, Shirt, Hat, Pants, Weapon, Enemy, Button};
 
-    enum decor {WoodenFloor, ErrorSprite, OptionGround};
-    static const sfIntRect decor_rect[NBR_DECOR] = {{0, 0, 64, 64}, {0, 64, 64, 64},
-    {1334, 256, 512, 512}};
+    enum decor {WoodenFloor, ErrorSprite, OptionGround, HowToPlayGround,
+    Chinese, Usa, Spain, Deutsch, Euskara, Arabe};
+    static const sfIntRect decor_rect[NBR_DECOR] = {{0, 0, 64, 64},
+    {0, 64, 64, 64}, {1334, 256, 512, 512}, {1334, 768, 576, 512},
+    {0, 256, 64, 64}, {0, 64, 64, 64}, {0, 128, 64, 64}, {0, 192, 64, 64},
+    {0, 320, 64, 64}, {0, 384, 64, 64}};
 
     enum wall {ExtWall, ExtWallN, ExtWallS, ExtWallNS, ExtWallE, ExtWallNE,
     ExtWallSE, ExtWallNSE, ExtWallW, ExtWallNW, ExtWallSW, ExtWallNSW,

@@ -18,6 +18,8 @@
     int menu(game_t *game, player_t *player, sfEvent event);
     int option(game_t *game, player_t *player, sfEvent event);
     int help(game_t *game, player_t *player, sfEvent event);
+    int scene_button_management(game_t *game, sfEvent *event,
+    button_t **scene_button);
 
     void destroy_game(game_t *game);
 

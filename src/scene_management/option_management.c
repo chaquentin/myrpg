@@ -10,9 +10,10 @@
 #include "structure.h"
 
 static int fps[] = {15, 30, 60, 120, 144, 160, 240};
-static sfVector2f txt_pos[] = {{770, 190}, {770, 430}, {900, 700}, {900, 300}, {900, 520}, {900, 800}};
+static sfVector2f txt_pos[] = {{770, 190}, {770, 430}, {900, 700},
+{900, 300}, {900, 520}, {900, 800}};
 
-static int scene_button_management(game_t *game, sfEvent *event,
+int scene_button_management(game_t *game, sfEvent *event,
 button_t **scene_button)
 {
     if (event->type == sfEvtClosed || sfKeyboard_isKeyPressed(sfKeyEscape))

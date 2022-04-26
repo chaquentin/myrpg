@@ -10,8 +10,8 @@
 #include "prototype.h"
 
 static const char *sounds_file[7] = {"asset/sounds/chinese.ogg",
-"asset/sounds/english.ogg", "asset/sounds/german.ogg",
-"asset/sounds/spanish.ogg", "asset/sounds/the_best.ogg",
+"asset/sounds/english.ogg", "asset/sounds/spanish.ogg",
+"asset/sounds/german.ogg", "asset/sounds/the_best.ogg",
 "asset/sounds/arabe.ogg"};
 
 static const char *musics_file[] = {};
