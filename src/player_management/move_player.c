@@ -108,4 +108,3 @@ void move_player(game_t *game, player_t *player)
     manage_player_colision(game, player, movement, 0);
     update_movement_sprite(player, abs(movement.x) + abs(movement.y), game);
 }
- 
