@@ -8,7 +8,7 @@
 #ifndef SPRITE_SHEET_H_
     #define SPRITE_SHEET_H_
 
-    #include "SFML/Graphics.h"
+    #include <SFML/Graphics.h>
 
     #define PI 3.1415926535
     #define NBR_CAT 9
