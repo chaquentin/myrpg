@@ -25,7 +25,7 @@
 
 //===================================BUTTON===================================//
 
-    button_t* create_button(enum button type, game_t *game,
+    button_t *create_button(enum button type, game_t *game,
     enum game_scene next_scene);
     int display_button(button_t **button, game_t *game);
     int destroy_button(button_t **button);
@@ -139,5 +139,7 @@
     int update_text(text_option_t *option_txt, game_t *game);
     int display_option(game_t *game, button_t **scene_button,
     button_t **option_button, text_option_t *option_txt);
+    int get_option_event(game_t *game, sfEvent *event,
+    button_t **scene_button, button_t **option_button);
 
 #endif

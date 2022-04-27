@@ -17,8 +17,8 @@ int is_collide(sfVector2f player, sfVector2f pos, line_t *walls)
     sfVector2f pos3;
 
     for (int i = 0; walls[i].pos1.x != -1; i++) {
-        pos1  = walls[i].pos1;
-        pos2  = walls[i].pos2;
+        pos1 = walls[i].pos1;
+        pos2 = walls[i].pos2;
         pos3 = is_intersection(player, pos, pos1, pos2);
         if (get_distance(pos3, pos) < 100)
             return 0;
@@ -28,7 +28,7 @@ int is_collide(sfVector2f player, sfVector2f pos, line_t *walls)
 
 line_t get_coos(sfVector2i pos, level_t *level, char c)
 {
-    line_t line = (line_t){(sfVector2f){-1, -1}, (sfVector2f){-1, -1}};
+    line_t line = (line_t) {(sfVector2f) {-1, -1}, (sfVector2f) {-1, -1}};
 
     if (c == 'N' || c == 'W')
         line.pos1 = (sfVector2f) {pos.x, pos.y};
@@ -56,22 +56,18 @@ int add_wall(sfVector2i pos, level_t *level, line_t *walls, int index)
     if (level->map[pos.y][pos.x] != 'W' && level->map[pos.y][pos.x] != 'w')
         return 0;
     if (n != 'W' && n != 'w') {
-        printf("%i : %i -> %c\n", pos.x, pos.y, 'N');
         walls[index + count] = get_coos(pos, level, 'N');
         count++;
     }
     if (s != 'W' && s != 'w') {
-        printf("%i : %i -> %c\n", pos.x, pos.y, 'S');
         walls[index + count] = get_coos(pos, level, 'S');
         count++;
     }
     if (e != 'W' && e != 'w') {
-        printf("%i : %i -> %c\n", pos.x, pos.y, 'E');
         walls[index + count] = get_coos(pos, level, 'E');
         count++;
     }
     if (w != 'W' && w != 'w') {
-        printf("%i : %i -> %c\n", pos.x, pos.y, 'W');
         walls[index + count] = get_coos(pos, level, 'W');
         count++;
     }
@@ -86,9 +82,7 @@ line_t *create_map_walls(level_t *level, game_t *game)
     int y = 0;
     int index = 0;
 
-    printf("%d\n", nbr_walls);
-
-    walls[nbr_walls] = (line_t){(sfVector2f) {-1, -1}, (sfVector2f) {-1, -1}};
+    walls[nbr_walls] = (line_t) {(sfVector2f) {-1, -1}, (sfVector2f) {-1, -1}};
     for (int i = 0; i < level->size.y * level->size.x; i++) {
         y = i / level->size.x;
         x = i % level->size.x;
