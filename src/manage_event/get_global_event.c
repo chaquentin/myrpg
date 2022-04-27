@@ -7,7 +7,7 @@
 
 #include "structure.h"
 
-int verify_colision(button_t *object,
+int verify_mouse_colision(button_t *object,
 sfVector2f mouse_pos, game_t *game)
 {
     sfVector2f obj_pos = object->pos;
@@ -24,7 +24,7 @@ sfVector2f mouse_pos, game_t *game)
 int manage_click(button_t *object, sfVector2f mouse_pos, game_t *game)
 {
     int is_pressed = sfMouse_isButtonPressed(sfMouseLeft);
-    int is_collision = verify_colision(object, mouse_pos, game);
+    int is_collision = verify_mouse_colision(object, mouse_pos, game);
     int state = 0;
 
     if (is_collision && is_pressed) {
