@@ -69,7 +69,7 @@
         sfBool alive;
         enum behaviours behaviour;
         enum enemies type;
-        int angle; 
+        int angle;
         int speed;
         int jump_rate;
         int idled_since;

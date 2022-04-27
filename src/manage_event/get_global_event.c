@@ -30,10 +30,9 @@ int manage_click(button_t *object, sfVector2f mouse_pos, game_t *game)
     if (is_collision && is_pressed) {
         state = 2;
         object->is_click = 1;
-    }
-    else if (is_collision)
+    } else if (is_collision) {
         state = 1;
-    else {
+    } else {
         state = 0;
         object->is_click = 0;
     }
@@ -65,7 +64,7 @@ int manage_released(game_t *game, button_t **all_button)
 void get_event(game_t *game, sfEvent *event, button_t **all_button)
 {
     manage_mouse(game, event, all_button);
-    while(sfRenderWindow_pollEvent(game->window, event))
+    while (sfRenderWindow_pollEvent(game->window, event))
         if (event->type == sfEvtClosed || sfKeyboard_isKeyPressed(sfKeyEscape))
             game->scene = Quit;
         else if (event->type == sfEvtMouseButtonReleased)

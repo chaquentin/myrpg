@@ -20,7 +20,7 @@ void fill_mouse(game_t *game, player_t *player)
         mouse_pos.x = (float)get_mouse_pos.x - 960;
         mouse_pos.y = (float)get_mouse_pos.y - 540;
     }
-    rotation = atan(mouse_pos.x / mouse_pos.y) * (180.0/PI) * -1;
+    rotation = atan(mouse_pos.x / mouse_pos.y) * (180.0 / PI) * -1;
     if (mouse_pos.y > 0)
         rotation += 180;
     sfSprite_setOrigin(player->sprite, (sfVector2f) {32, 32});

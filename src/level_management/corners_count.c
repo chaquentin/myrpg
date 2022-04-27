@@ -32,6 +32,6 @@ int count_walls(level_t *level)
 
     for (int y = 0; y < level->size.y; y++)
         for (int x = 0; x < level->size.x; x++)
-            count += count_adjacent_walls(level, (sfVector2i){x, y});
+            count += count_adjacent_walls(level, (sfVector2i) {x, y});
     return count;
 }

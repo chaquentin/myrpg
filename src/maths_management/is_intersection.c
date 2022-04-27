@@ -7,7 +7,8 @@
 
 #include <SFML/Graphics.h>
 
-sfVector2f is_intersection(sfVector2f p1, sfVector2f p2, sfVector2f p3, sfVector2f p4)
+sfVector2f is_intersection(sfVector2f p1, sfVector2f p2, sfVector2f p3,
+sfVector2f p4)
 {
     sfVector2f intersection = {-1, -1};
     float a1 = p2.y - p1.y;
@@ -19,7 +20,7 @@ sfVector2f is_intersection(sfVector2f p1, sfVector2f p2, sfVector2f p3, sfVector
     float delta = a1 * b2 - a2 * b1;
 
     if (delta == 0)
-        return (sfVector2f){-1, -1};
+        return (sfVector2f) {-1, -1};
     intersection.x = (b2 * c1 - b1 * c2) / delta;
     intersection.y = (a1 * c2 - a2 * c1) / delta;
     return (intersection);

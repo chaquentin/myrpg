@@ -22,16 +22,12 @@ void draw_rays(player_t *player, game_t *game, line_t *walls)
 
     for (int i = 0; walls[i].pos1.x != -1; i++) {
         for (int j = 0; walls[j].pos1.x != -1; j++) {
-            inter = is_intersection(to_int(player->pos), to_int(walls[j].pos1), to_int(walls[i].pos1), to_int(walls[i].pos2));
+            inter = is_intersection(to_int(player->pos), to_int(walls[j].pos1),
+            to_int(walls[i].pos1), to_int(walls[i].pos2));
             draw_point(game->window, inter, sfRed, 2);
-            inter = is_intersection(to_int(player->pos), to_int(walls[j].pos2), to_int(walls[i].pos1), to_int(walls[i].pos2));
+            inter = is_intersection(to_int(player->pos), to_int(walls[j].pos2),
+            to_int(walls[i].pos1), to_int(walls[i].pos2));
             draw_point(game->window, inter, sfRed, 2);
-            printf("%f;%f %f;%f : %f;%f %f;%f -> %f;%f\n",
-                player->pos.x, player->pos.y,
-                walls[j].pos1.x, walls[j].pos1.y,
-                walls[i].pos1.x, walls[i].pos1.y,
-                walls[j].pos2.x, walls[j].pos2.y,
-                inter.x, inter.y);
         }
     }
 }

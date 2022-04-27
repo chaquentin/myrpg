@@ -34,7 +34,7 @@ enemy_t *enemy_create(sfVector2f idle_around, char *name, game_t *game)
     if (enemy->type != -1)
         enemy->sprite = sfSprite_copy(game->all_sprite[Enemy][enemy->type]);
     jump->is_jumping = sfFalse;
-    enemy->player_pos = (sfVector2f){-1, -1};
+    enemy->player_pos = (sfVector2f) {-1, -1};
     enemy->pos = idle_around;
     enemy->idle_around = idle_around;
     enemy->jump_rate = 1000;
@@ -55,7 +55,8 @@ enemy_t **enemies_create(char *enemies_data, game_t *game)
     enemy_array[nbr_enemies] = NULL;
     for (int i = 0; i < nbr_enemies; i++) {
         enemy = my_str_to_word_array(enemies[i + 1], " ");
-        enemy_array[i] = enemy_create((sfVector2f){my_atoi(enemy[1]), my_atoi(enemy[2])}, enemy[0], game);
+        enemy_array[i] = enemy_create((sfVector2f) {my_atoi(enemy[1]),
+        my_atoi(enemy[2])}, enemy[0], game);
         my_free_word_array(enemy);
     }
     my_free_word_array(enemies);

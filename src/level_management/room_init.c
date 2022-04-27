@@ -24,7 +24,7 @@ char *open_file(char *path)
     write(1, "opening levels file: ", 22);
     if (stat(path, &stats) == -1) {
         write(1, "FAILED\n", 6);
-        return NULL;    
+        return NULL;
     }
     fd = open(path, O_RDONLY);
     buf = malloc(stats.st_size + 1);

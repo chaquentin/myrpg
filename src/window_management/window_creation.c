@@ -43,12 +43,11 @@ sfSprite ***create_all_sprites(sfTexture *texture)
     all_sprite[7] = create_all_sprite(NBR_ENEMIES, enemies_rect, texture);
     all_sprite[8] = create_all_sprite(NBR_BUTTON, button_rect, texture);
     all_sprite[9] = NULL;
-    for (int i = 0; i < NBR_CAT; i++) {
+    for (int i = 0; i < NBR_CAT; i++)
         if (!all_sprite[i]) {
             destroy_all_sprites(all_sprite);
             return NULL;
         }
-    }
     return all_sprite;
 }
 
@@ -64,13 +63,8 @@ sfRenderWindow *create_window(void)
     return window;
 }
 
-game_t *create_game(int debug)
+static int init_game_parameters(game_t *game, int debug)
 {
-    game_t *game = NULL;
-
-    game = malloc(sizeof(game_t));
-    if (!game)
-        return NULL;
     game->debug = debug;
     game->scene = Menu;
     game->framerate_limit = 144;
@@ -79,6 +73,17 @@ game_t *create_game(int debug)
     game->delta_time = 0.0;
     game->clock = sfClock_create();
     game->sounds = create_all_sounds();
+    return 0;
+}
+
+game_t *create_game(int debug)
+{
+    game_t *game = NULL;
+
+    game = malloc(sizeof(game_t));
+    if (!game)
+        return NULL;
+    init_game_parameters(game, debug);
     if (!game->window || !game->texture || !game->sounds) {
         destroy_game(game);
         return NULL;

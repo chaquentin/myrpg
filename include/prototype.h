@@ -124,4 +124,20 @@
     int destroy_sounds_buffer(sfSoundBuffer **soud_buffer);
     int destroy_musics(sfMusic **musics);
 
+//===================================HELP====================================//
+
+    button_t **create_help_button(game_t *game);
+    button_t **create_languages_button(game_t *game);
+    sfSound *create_help_sound(game_t *game);
+    int init_help_sprite(sfSprite *sprite, sfSprite *box);
+    int destroy_help(sprite_t *background, button_t **scene_button,
+    button_t **languages_button, sfSound *sound);
+
+//==================================OPTIONS==================================//
+
+    text_option_t *create_option(game_t *game);
+    int update_text(text_option_t *option_txt, game_t *game);
+    int display_option(game_t *game, button_t **scene_button,
+    button_t **option_button, text_option_t *option_txt);
+
 #endif

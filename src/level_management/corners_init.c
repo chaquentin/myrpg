@@ -31,13 +31,13 @@ line_t get_coos(sfVector2i pos, level_t *level, char c)
     line_t line = (line_t){(sfVector2f){-1, -1}, (sfVector2f){-1, -1}};
 
     if (c == 'N' || c == 'W')
-        line.pos1 = (sfVector2f){pos.x, pos.y};
+        line.pos1 = (sfVector2f) {pos.x, pos.y};
     if (c == 'S' || c == 'E')
-        line.pos1 = (sfVector2f){pos.x, (pos.y + 1)};
+        line.pos1 = (sfVector2f) {pos.x, (pos.y + 1)};
     if (c == 'N' || c == 'W')
-        line.pos2 = (sfVector2f){(pos.x + 1), pos.y};
+        line.pos2 = (sfVector2f) {(pos.x + 1), pos.y};
     if (c == 'S' || c == 'E')
-        line.pos2 = (sfVector2f){(pos.x + 1), (pos.y + 1)};
+        line.pos2 = (sfVector2f) {(pos.x + 1), (pos.y + 1)};
     line.pos1.x *= (64 * 0.9375);
     line.pos1.y *= (64 * 0.9375);
     line.pos2.x *= (64 * 0.9375);
@@ -88,11 +88,11 @@ line_t *create_map_walls(level_t *level, game_t *game)
 
     printf("%d\n", nbr_walls);
 
-    walls[nbr_walls] = (line_t){(sfVector2f){-1, -1}, (sfVector2f){-1, -1}};
+    walls[nbr_walls] = (line_t){(sfVector2f) {-1, -1}, (sfVector2f) {-1, -1}};
     for (int i = 0; i < level->size.y * level->size.x; i++) {
         y = i / level->size.x;
         x = i % level->size.x;
-        index += (add_wall((sfVector2i){x, y}, level, walls, index));
+        index += (add_wall((sfVector2i) {x, y}, level, walls, index));
     }
     return walls;
 }

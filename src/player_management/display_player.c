@@ -22,7 +22,7 @@ static int display_clothe(game_t *game, player_t *player, sfSprite *clothe)
 static int display_weapon(game_t *game, player_t *player)
 {
     if (player->weapon->sprite) {
-        sfSprite_setOrigin(player->weapon->sprite, (sfVector2f){32, 32});
+        sfSprite_setOrigin(player->weapon->sprite, (sfVector2f) {32, 32});
         sfSprite_setRotation(player->weapon->sprite,
         sfSprite_getRotation(player->sprite));
         sfSprite_setPosition(player->weapon->sprite, player->pos);
