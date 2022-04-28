@@ -16,6 +16,10 @@ int manage_key_pressed(game_t *game, sfKeyCode key_code, player_t *player)
             player->movement[i] = 1;
     if (key_code == sfKeyEscape)
         game->scene = Quit;
+    if (key_code == sfKeyR)
+        player->weapon->ammo = player->weapon->ammo_max;
+    if (key_code == sfKeySpace && player->weapon->ammo > 0)
+        player->weapon->ammo--;
     return 0;
 }
 

@@ -20,12 +20,14 @@ int *malloc_int(void)
     return (array);
 }
 
-int destroy_player(player_t *player)
+int destroy_player(game_t *game, player_t *player)
 {
     if (player == NULL)
         return (84);
+    display_health(game, player, 1);
+    display_guns(game, player, 1);
     if (player->weapon != NULL)
-        free(player->weapon);
+        destroy_weapon(player->weapon);
     if (player->clothes != NULL)
         free(player->clothes);
     if (player->movement != NULL)
@@ -66,7 +68,7 @@ player_t *create_player(game_t *game)
     player->clothes = create_start_clothes(game);
     player->is_clicked = sfFalse;
     if (!player->movement || !player->weapon || !player->clothes) {
-        destroy_player(player);
+        destroy_player(game, player);
         return NULL;
     }
     return player;

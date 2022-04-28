@@ -15,9 +15,13 @@
     #include "enemies.h"
     #include "level.h"
 
+    typedef struct npc_s {
+        sfSprite *sprite;
+        sfVector2f pos;
+        char **all_dialogs;
+    } npc_t;
+
     typedef struct text_option_s {
-        sfText *text;
-        sfFont *font;
         char *txt[6];
         int music_vol;
         int sound_vol;
@@ -92,6 +96,8 @@
         sfSprite ***all_sprite;
         sfRenderWindow *window;
         sfTexture *texture;
+        sfText *text;
+        sfFont *font;
         sfClock *clock;
         enum levels current_level;
         enum game_scene scene;
@@ -105,6 +111,7 @@
         sfBool is_gun;
         enum weapon weapon;
         int ammo;
+        int ammo_max;
         int damage;
         float reload_time;
         float fire_rate;

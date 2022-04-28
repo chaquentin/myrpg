@@ -95,8 +95,7 @@ $(eval STRING_MANAGEMENT=\
 	$(addprefix src/string_management/, $(STRING_MANAGEMENT)))
 
 VIEW_MANAGEMENT = view_init.c			\
-	view_update.c 						\
-	view_destroy.c
+	view_update.c
 $(eval VIEW_MANAGEMENT=$(addprefix src/view_management/, $(VIEW_MANAGEMENT)))
 
 DRAWING_FUNCTIONS = draw_line.c			\

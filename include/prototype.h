@@ -36,8 +36,11 @@
     int display_player(game_t *game, player_t *player);
     void move_player(game_t *game, player_t *player);
     void fill_mouse(game_t *game, player_t *player);
+    int display_health(game_t *game, player_t *player, int is_destruct);
+    int display_guns(game_t *game, player_t *player, int is_destruct);
 
-    int destroy_player(player_t *player);
+    int destroy_player(game_t *game, player_t *player);
+    int destroy_weapon(weapon_t *weapon);
 
 //================================ACCESSORIES================================//
 
@@ -93,6 +96,7 @@
     int my_strcmp(char const *s1, char const *s2);
     char *my_strdup(const char *src);
     int my_strlen(const char *str);
+    char *tranform_in_str(int nbr);
 
     void my_free_word_array(char **array);
 

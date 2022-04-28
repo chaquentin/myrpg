@@ -40,10 +40,6 @@ int destroy_text_option(text_option_t *option_txt)
 {
     if (option_txt == NULL)
         return (84);
-    if (option_txt->font)
-        sfFont_destroy(option_txt->font);
-    if (option_txt->text)
-        sfText_destroy(option_txt->text);
     free(option_txt->txt[3]);
     free(option_txt->txt[4]);
     free(option_txt->txt[5]);
