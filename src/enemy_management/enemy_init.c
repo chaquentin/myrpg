@@ -31,6 +31,8 @@ enemy_t *enemy_create(sfVector2f idle_around, char *name, game_t *game)
 
     if (enemy == NULL || turn == NULL)
         return NULL;
+    idle_around = (sfVector2f){(idle_around.x + 0.5) * (64 * 0.9375),
+    (idle_around.y + 0.5) * (64 * 0.9375)};
     turn->start_angle = 0.0;
     turn->add_angle = (get_randint(0, 200) - 100) / 500.0;
     enemy->type = get_enemy_type(name);

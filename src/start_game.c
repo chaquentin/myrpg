@@ -39,6 +39,8 @@ int display(game_t *game, player_t *player)
     display_map_sprite(game);
     display_enemies(game);
     display_player(game, player);
+    //enemy_debug(game, player);
+    enemy_actions(game, player);
     sfRenderWindow_display(game->window);
     return 0;
 }
@@ -50,7 +52,6 @@ int game(game_t *game, player_t *player, sfEvent event)
     sfRenderWindow_clear(game->window, sfBlack);
     get_player_event(game, &event, player);
     move_player(game, player);
-    enemy_actions(game, player);
     fill_mouse(game, player);
     display(game, player);
     return 0;

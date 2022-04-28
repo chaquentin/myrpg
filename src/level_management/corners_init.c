@@ -32,12 +32,16 @@ line_t get_coos(sfVector2i pos, level_t *level, char c)
 
     if (c == 'N' || c == 'W')
         line.pos1 = (sfVector2f){pos.x, pos.y};
+    if (c == 'S')
+        line.pos1 = (sfVector2f){pos.x, pos.y + 1};
+    if (c == 'E')
+        line.pos1 = (sfVector2f){pos.x + 1, pos.y};
+    if (c == 'N')
+        line.pos2 = (sfVector2f){pos.x + 1, pos.y};
     if (c == 'S' || c == 'E')
-        line.pos1 = (sfVector2f){pos.x, (pos.y + 1)};
-    if (c == 'N' || c == 'W')
-        line.pos2 = (sfVector2f){(pos.x + 1), pos.y};
-    if (c == 'S' || c == 'E')
-        line.pos2 = (sfVector2f){(pos.x + 1), (pos.y + 1)};
+        line.pos2 = (sfVector2f){pos.x + 1, pos.y + 1};
+    if (c == 'W')
+        line.pos2 = (sfVector2f){pos.x, pos.y + 1};
     line.pos1.x *= (64 * 0.9375);
     line.pos1.y *= (64 * 0.9375);
     line.pos2.x *= (64 * 0.9375);
