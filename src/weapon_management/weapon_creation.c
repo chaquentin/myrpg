@@ -8,6 +8,14 @@
 #include <stdlib.h>
 #include "structure.h"
 
+int destroy_weapon(weapon_t *weapon)
+{
+    if (weapon == NULL)
+        return 84;
+    free(weapon);
+    return 0;
+}
+
 static weapon_t *init_weapon(void)
 {
     weapon_t *new_weapon = NULL;
@@ -15,13 +23,6 @@ static weapon_t *init_weapon(void)
     new_weapon = malloc(sizeof(weapon_t));
     if (new_weapon == NULL)
         return NULL;
-    new_weapon->sprite = NULL;
-    new_weapon->is_gun = sfTrue;
-    new_weapon->weapon = -1;
-    new_weapon->damage = 0;
-    new_weapon->ammo = 0;
-    new_weapon->reload_time = 0.0;
-    new_weapon->fire_rate = 0.0;
     return new_weapon;
 }
 
@@ -31,11 +32,12 @@ weapon_t *create_start_weapon(game_t *game)
 
     if (!weapon)
         return NULL;
-    weapon->weapon = Gun;
+    weapon->weapon = Glock;
     weapon->sprite = game->all_sprite[Weapon][weapon->weapon];
     weapon->is_gun = sfTrue;
-    weapon->damage = gun_damage[weapon->weapon][1];
-    weapon->ammo = gun_damage[weapon->weapon][0];
+    weapon->damage = (int)gun_damage[weapon->weapon][0];
+    weapon->ammo = (int)gun_damage[weapon->weapon][1];
+    weapon->ammo_max = weapon->ammo;
     weapon->fire_rate = gun_damage[weapon->weapon][2];
     weapon->reload_time = gun_damage[weapon->weapon][3];
     return weapon;

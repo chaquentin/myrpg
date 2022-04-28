@@ -19,10 +19,13 @@ void destroy_game(game_t *game)
         destroy_all_sprites(game->all_sprite);
     if (game->clock)
         sfClock_destroy(game->clock);
-    if (game->levels)
-        destroy_levels(game->levels);
     if (game->view)
-        destroy_view(game);
+        sfView_destroy(game->view);
+    if (game->text)
+        sfText_destroy(game->text);
+    if (game->font)
+        sfFont_destroy(game->font);
+    destroy_levels(game->levels);
     destroy_sounds(game->sounds);
     free(game);
 }
@@ -56,7 +59,7 @@ sfRenderWindow *create_window(void)
     sfVideoMode mode = {1920, 1080, 32};
     sfRenderWindow *window = NULL;
 
-    window = sfRenderWindow_create(mode, "Niggay land", sfClose, NULL);
+    window = sfRenderWindow_create(mode, "Niggay land", sfClose , NULL);
     sfRenderWindow_setFramerateLimit(window, 144);
     if (window == NULL)
         return NULL;
@@ -73,6 +76,8 @@ static int init_game_parameters(game_t *game, int debug)
     game->delta_time = 0.0;
     game->clock = sfClock_create();
     game->sounds = create_all_sounds();
+    game->text = sfText_create();
+    game->font = sfFont_createFromFile("asset/Team 401.ttf");
     return 0;
 }
 
@@ -84,10 +89,13 @@ game_t *create_game(int debug)
     if (!game)
         return NULL;
     init_game_parameters(game, debug);
-    if (!game->window || !game->texture || !game->sounds) {
+    if (!game->window || !game->texture || !game->sounds || !game->text ||
+    !game->font) {
         destroy_game(game);
         return NULL;
     }
+    sfText_setFont(game->text, game->font);
+    sfText_setCharacterSize(game->text, 50);
     game->all_sprite = create_all_sprites(game->texture);
     if (!game->all_sprite) {
         destroy_game(game);
