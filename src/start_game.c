@@ -39,6 +39,7 @@ int display(game_t *game, player_t *player)
     display_map_sprite(game);
     display_enemies(game);
     display_player(game, player);
+    draw_framebuffer(game);
     sfRenderWindow_display(game->window);
     return 0;
 }

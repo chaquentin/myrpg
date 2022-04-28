@@ -142,4 +142,16 @@
     int get_option_event(game_t *game, sfEvent *event,
     button_t **scene_button, button_t **option_button);
 
+//================================FRAMEBUFFER================================//
+
+    framebuffer_t *framebuffer_create(unsigned int width, unsigned int height);
+    void framebuffer_destroy(framebuffer_t *framebuffer);
+    void draw_framebuffer(game_t *game);
+    framebuffer_t *fill_buffer(framebuffer_t *framebuffer, sfColor color);
+    void put_pixel(framebuffer_t *framebuffer, int x, int y, sfColor color);
+    void dsquare(framebuffer_t *buf, sfVector2f pos, int size, sfColor col);
+    void dline(framebuffer_t *buf, sfVector2f pos[2], int w, sfColor c);
+    sfVector2f iline(framebuffer_t *buf, sfVector2f p1, int arg[3], sfColor c);
+    void dcircle(framebuffer_t *buf, sfVector2f pos, sfColor col, int r[2]);
+
 #endif

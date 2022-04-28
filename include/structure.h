@@ -15,6 +15,12 @@
     #include "enemies.h"
     #include "level.h"
 
+    typedef struct frambuffer_s{
+        unsigned int width;
+        unsigned int height;
+        sfUint8 *pixels;
+    } framebuffer_t;
+
     typedef struct text_option_s {
         sfText *text;
         sfFont *font;
@@ -88,6 +94,7 @@
     typedef struct game_s {
         level_t **levels;
         sounds_t *sounds;
+        framebuffer_t *framebuffer;
         sfView *view;
         sfSprite ***all_sprite;
         sfRenderWindow *window;

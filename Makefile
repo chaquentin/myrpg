@@ -42,7 +42,6 @@ $(eval WINDOW_MANAGEMENT=\
 	$(addprefix src/window_management/, $(WINDOW_MANAGEMENT)))
 
 EVENT_MANAGEMENT = manage_key.c 		\
-	manage_particles.c					\
 	get_global_event.c
 $(eval EVENT_MANAGEMENT=$(addprefix src/manage_event/, $(EVENT_MANAGEMENT)))
 
@@ -99,16 +98,17 @@ VIEW_MANAGEMENT = view_init.c			\
 	view_destroy.c
 $(eval VIEW_MANAGEMENT=$(addprefix src/view_management/, $(VIEW_MANAGEMENT)))
 
-DRAWING_FUNCTIONS = draw_line.c			\
-	draw_point.c						\
-	draw_rays.c
-$(eval DRAWING_FUNCTIONS=\
-	$(addprefix src/drawing_functions/, $(DRAWING_FUNCTIONS)))
-
 SOUNDS_MANAGEMENT = create_all_sounds.c	\
 	destroy_sounds.c
 $(eval SOUNDS_MANAGEMENT=\
 	$(addprefix src/sound_management/, $(SOUNDS_MANAGEMENT)))
+
+FRAMEBUFFER = draw_framebuffer.c\
+	fill_framebuffer.c\
+	framebuffer_init.c\
+	lines_framebuffer.c\
+	put_pixel_framebuffer.c
+$(eval FRAMEBUFFER=$(addprefix src/framebuffer/, $(FRAMEBUFFER)))
 
 OBJ = 	$(SRC:.c=.o) 					\
 		$(CLOTHES_MANAGEMENT:.c=.o)		\
@@ -122,7 +122,7 @@ OBJ = 	$(SRC:.c=.o) 					\
 		$(WINDOW_MANAGEMENT:.c=.o) 		\
 		$(VIEW_MANAGEMENT:.c=.o)		\
 		$(SCENE_MANAGEMENT:.c=.o)		\
-		$(DRAWING_FUNCTIONS:.c=.o)		\
+		$(FRAMEBUFFER:.c=.o)		\
 		$(SOUNDS_MANAGEMENT:.c=.o)		\
 
 %.o: %.c
