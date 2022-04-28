@@ -46,8 +46,8 @@ sfVector2f spots_player(game_t *game, player_t *player, int index)
         inter = is_intersection(enemy->pos, player->pos, walls[i].pos1, walls[i].pos2);
         if (inter.x != -1) {
             is_inter++;
-            draw_line(game, walls[i].pos1, walls[i].pos2, sfGreen, 2);
-            draw_point(game->window, inter, sfRed, 5);
+            //draw_line(game, walls[i].pos1, walls[i].pos2, sfGreen, 2);
+            //draw_point(game->window, inter, sfRed, 5);
         }
     }
     distance = get_distance(enemy->pos, player->pos);
@@ -65,12 +65,15 @@ enum behaviours get_behaviour(game_t *game, player_t *player, int index)
     enum behaviours behaviour = enemy->behaviour;
     sfVector2f pos = spots_player(game, player, index);
 
+    /*
     if (enemy->player_pos.x == -1)
         printf("invisible\n");
     else {
         printf("visible\n");
         behaviour = Searching;
     }
+    */
+
     return behaviour;
 }
 
