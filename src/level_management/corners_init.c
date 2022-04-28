@@ -52,24 +52,16 @@ int add_wall(sfVector2i pos, level_t *level, line_t *walls, int index)
     char e = (pos.x < level->size.x - 1) ? level->map[pos.y][pos.x + 1] : '0';
     char w = (pos.x > 0) ? level->map[pos.y][pos.x - 1] : '0';
     int count = 0;
+    char direction[4] = {n, s, e, w};
+    char write_direction[4] = {'N', 'S', 'E', 'W'};
 
     if (level->map[pos.y][pos.x] != 'W' && level->map[pos.y][pos.x] != 'w')
         return 0;
-    if (n != 'W' && n != 'w') {
-        walls[index + count] = get_coos(pos, level, 'N');
-        count++;
-    }
-    if (s != 'W' && s != 'w') {
-        walls[index + count] = get_coos(pos, level, 'S');
-        count++;
-    }
-    if (e != 'W' && e != 'w') {
-        walls[index + count] = get_coos(pos, level, 'E');
-        count++;
-    }
-    if (w != 'W' && w != 'w') {
-        walls[index + count] = get_coos(pos, level, 'W');
-        count++;
+    for (int i = 0; i < 4; i++) {
+        if (direction[i] != 'W' && direction[i] != 'w') {
+            walls[index + count] = get_coos(pos, level, write_direction[i]);
+            count++;
+        }
     }
     return count;
 }

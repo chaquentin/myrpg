@@ -64,6 +64,7 @@ player_t *create_player(game_t *game)
     player->movement = malloc_int();
     player->weapon = create_start_weapon(game);
     player->clothes = create_start_clothes(game);
+    player->is_clicked = sfFalse;
     if (!player->movement || !player->weapon || !player->clothes) {
         destroy_player(player);
         return NULL;

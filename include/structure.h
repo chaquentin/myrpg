@@ -126,6 +126,7 @@
         clothes_t *clothes;
         sfSprite *sprite;
         sfVector2f pos;
+        sfBool is_clicked;
         enum player player;
         int swag;
         int health;
