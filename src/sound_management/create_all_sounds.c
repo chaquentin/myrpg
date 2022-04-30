@@ -9,12 +9,12 @@
 #include "structure.h"
 #include "prototype.h"
 
-static const char *sounds_file[7] = {"asset/sounds/chinese.ogg",
+static const char *sounds_file[8] = {"asset/sounds/chinese.ogg",
 "asset/sounds/english.ogg", "asset/sounds/spanish.ogg",
 "asset/sounds/german.ogg", "asset/sounds/the_best.ogg",
-"asset/sounds/arabe.ogg"};
+"asset/sounds/arabe.ogg", "asset/sounds/piou.ogg"};
 
-static const char *musics_file[] = {};
+static const char *musics_file[1] = {};
 
 static int my_arrlen(const char *src[])
 {

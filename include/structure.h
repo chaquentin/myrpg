@@ -15,6 +15,20 @@
     #include "enemies.h"
     #include "level.h"
 
+    typedef struct bullet_s {
+        sfSprite *sprite;
+        sfVector2f pos;
+        int id;
+        int damage;
+        struct bullet_s *next;
+    } bullet_t;
+
+    typedef struct all_bullet_s {
+        struct bullet_s *first;
+        struct bullet_s *last;
+        int size;
+    } all_bullet_t;
+
     typedef struct npc_s {
         sfSprite *sprite;
         sfVector2f pos;
@@ -108,6 +122,7 @@
 
     typedef struct weapon_s {
         sfSprite *sprite;
+        sfSound *sound;
         sfBool is_gun;
         enum weapon weapon;
         int ammo;

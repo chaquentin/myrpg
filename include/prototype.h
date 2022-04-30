@@ -38,6 +38,9 @@
     void fill_mouse(game_t *game, player_t *player);
     int display_health(game_t *game, player_t *player, int is_destruct);
     int display_guns(game_t *game, player_t *player, int is_destruct);
+    int shoot(game_t *game, player_t *player, int is_click);
+    int update_sprite(player_t *player, game_t *game);
+    int change_weapon(player_t *player, game_t *game, enum weapon type);
 
     int destroy_player(game_t *game, player_t *player);
     int destroy_weapon(weapon_t *weapon);

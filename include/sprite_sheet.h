@@ -19,7 +19,7 @@
     #define NBR_HAT 3
     #define NBR_PANTS 16
     #define NBR_ENEMIES 9
-    #define NBR_WEAPON 11
+    #define NBR_WEAPON 12
     #define NBR_BUTTON 21
     #define SPRITESHEET_PATH "asset/sprite_sheet.png"
 
@@ -108,12 +108,12 @@
     {576, 256, 64, 64}};
 
     enum weapon {Glock, M9, MicroGun, Revolver, Re45, Uzi, Sniper, M4, AWP,
-    FA456, Scar};
+    FA456, Scar, Bullet};
     static const sfIntRect weapon_rect[NBR_WEAPON] = {{192, 128, 64, 64},
     {192, 192, 64, 64}, {192, 256, 64, 64}, {192, 320, 64, 64},
     {192, 384, 64, 64}, {192, 448, 64, 64}, {256, 128, 64, 64},
     {256, 192, 64, 64}, {256, 256, 64, 64}, {256, 320, 64, 64},
-    {256, 384, 64, 64}};
+    {256, 384, 64, 64}, {320, 256, 64, 64}};
     static const float gun_damage[11][4] = {{9, 24, 1.4, 1.3},
     {32, 7, 1.3, 1.4}, {16, 5, 1.0, 1.1}, {75, 6, 1.6, 3.7},
     {27, 15, 0.3, 0.8}, {28, 30, 0.4, 2}, {88, 10, 2.13, 3.37},

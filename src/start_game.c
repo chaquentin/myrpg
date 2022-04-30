@@ -11,12 +11,15 @@
 
 static void get_game_event(game_t *game, sfEvent *event, player_t *player)
 {
+    shoot(game, player, 0);
     while (sfRenderWindow_pollEvent(game->window, event)) {
         if (event->type == sfEvtKeyPressed)
             manage_key_pressed(game, event->key.code, player);
         if (event->type == sfEvtKeyReleased)
             manage_key_released(event->key.code, player);
     }
+    if (player->is_clicked && player->weapon->ammo > 0)
+        shoot(game, player, 1);
 }
 
 int update_clock(game_t *game)

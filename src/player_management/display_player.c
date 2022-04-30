@@ -8,6 +8,23 @@
 #include <stdlib.h>
 #include "structure.h"
 
+int update_sprite(player_t *player, game_t *game)
+{
+    if (player->weapon->is_gun) {
+        player->player = PlayerGun1 + (player->player % 4);
+        player->clothes->top += (player->clothes->top % 2) ? 0 : 1;
+        player->clothes->pants -= (player->clothes->pants % 8 > 3) ? 4 : 0;
+    } else {
+        player->player = PlayerRifle1 + (player->player % 4);
+        player->clothes->top += (player->clothes->top % 2) ? 0 : 1;
+        player->clothes->pants += (player->clothes->pants % 8 < 4) ? 4 : 0;
+    }
+    player->sprite = game->all_sprite[Player][player->player];
+    player->clothes->shirt_sprite = game->all_sprite[Shirt][player->clothes->top];
+    player->clothes->pants_sprite = game->all_sprite[Pants][player->clothes->pants];
+    return 0;
+}
+
 static int display_clothe(game_t *game, player_t *player, sfSprite *clothe)
 {
     if (!clothe)
