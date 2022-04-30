@@ -29,6 +29,7 @@ char **create_map(char *str, sfVector2i map_size)
     my_free_word_array(temp);
     return map;
 }
+
 void destroy_map(char **map)
 {
     if (map) {

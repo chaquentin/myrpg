@@ -9,16 +9,6 @@
 #include "prototype.h"
 #include "structure.h"
 
-static int get_option_event(game_t *game, sfEvent *event, button_t **all_button)
-{
-    manage_mouse(game, event, all_button);
-    while(sfRenderWindow_pollEvent(game->window, event))
-        if (event->type == sfEvtClosed || sfKeyboard_isKeyPressed(sfKeyEscape))
-            game->scene = Quit;
-        else if (event->type == sfEvtMouseButtonReleased)
-            manage_released(game, all_button);
-}
-
 button_t **init_menu_buton(game_t *game)
 {
     button_t **button = NULL;
@@ -48,7 +38,7 @@ int menu(game_t *game, player_t *player, sfEvent event)
     if (button == NULL || !mexicano)
         game->scene = Quit;
     while (game->scene == Menu) {
-        get_option_event(game, &event , button);
+        get_event(game, &event , button);
         sfRenderWindow_drawSprite(game->window, mexicano->sprite, NULL);
         display_button(button, game);
         sfRenderWindow_display(game->window);

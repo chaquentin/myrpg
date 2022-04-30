@@ -16,12 +16,16 @@
     int game(game_t *game, player_t *player, sfEvent event);
     int manage_scene(game_t *game);
     int menu(game_t *game, player_t *player, sfEvent event);
+    int option(game_t *game, player_t *player, sfEvent event);
+    int help(game_t *game, player_t *player, sfEvent event);
+    int scene_button_management(game_t *game, sfEvent *event,
+    button_t **scene_button);
 
     void destroy_game(game_t *game);
 
 //===================================BUTTON===================================//
 
-    button_t* create_button(enum button type, game_t *game,
+    button_t *create_button(enum button type, game_t *game,
     enum game_scene next_scene);
     int display_button(button_t **button, game_t *game);
     int destroy_button(button_t **button);
@@ -32,8 +36,14 @@
     int display_player(game_t *game, player_t *player);
     void move_player(game_t *game, player_t *player);
     void fill_mouse(game_t *game, player_t *player);
+    int display_health(game_t *game, player_t *player, int is_destruct);
+    int display_guns(game_t *game, player_t *player, int is_destruct);
+    int shoot(game_t *game, player_t *player, int is_click);
+    int update_sprite(player_t *player, game_t *game);
+    int change_weapon(player_t *player, game_t *game, enum weapon type);
 
-    int destroy_player(player_t *player);
+    int destroy_player(game_t *game, player_t *player);
+    int destroy_weapon(weapon_t *weapon);
 
 //================================ACCESSORIES================================//
 
@@ -93,6 +103,7 @@
     int my_strcmp(char const *s1, char const *s2);
     char *my_strdup(const char *src);
     int my_strlen(const char *str);
+    char *tranform_in_str(int nbr);
 
     void my_free_word_array(char **array);
 
@@ -126,5 +137,23 @@
     int destroy_sounds(sounds_t *sounds);
     int destroy_sounds_buffer(sfSoundBuffer **soud_buffer);
     int destroy_musics(sfMusic **musics);
+
+//===================================HELP====================================//
+
+    button_t **create_help_button(game_t *game);
+    button_t **create_languages_button(game_t *game);
+    sfSound *create_help_sound(game_t *game);
+    int init_help_sprite(sfSprite *sprite, sfSprite *box);
+    int destroy_help(sprite_t *background, button_t **scene_button,
+    button_t **languages_button, sfSound *sound);
+
+//==================================OPTIONS==================================//
+
+    text_option_t *create_option(game_t *game);
+    int update_text(text_option_t *option_txt, game_t *game);
+    int display_option(game_t *game, button_t **scene_button,
+    button_t **option_button, text_option_t *option_txt);
+    int get_option_event(game_t *game, sfEvent *event,
+    button_t **scene_button, button_t **option_button);
 
 #endif

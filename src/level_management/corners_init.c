@@ -17,8 +17,8 @@ int is_collide(sfVector2f player, sfVector2f pos, line_t *walls)
     sfVector2f pos3;
 
     for (int i = 0; walls[i].pos1.x != -1; i++) {
-        pos1  = walls[i].pos1;
-        pos2  = walls[i].pos2;
+        pos1 = walls[i].pos1;
+        pos2 = walls[i].pos2;
         pos3 = is_intersection(player, pos, pos1, pos2);
         if (get_distance(pos3, pos) < 100)
             return 0;
@@ -28,9 +28,10 @@ int is_collide(sfVector2f player, sfVector2f pos, line_t *walls)
 
 line_t get_coos(sfVector2i pos, level_t *level, char c)
 {
-    line_t line = (line_t){(sfVector2f){-1, -1}, (sfVector2f){-1, -1}};
+    line_t line = (line_t) {(sfVector2f) {-1, -1}, (sfVector2f) {-1, -1}};
 
     if (c == 'N' || c == 'W')
+<<<<<<< HEAD
         line.pos1 = (sfVector2f){pos.x, pos.y};
     if (c == 'S')
         line.pos1 = (sfVector2f){pos.x, pos.y + 1};
@@ -42,6 +43,15 @@ line_t get_coos(sfVector2i pos, level_t *level, char c)
         line.pos2 = (sfVector2f){pos.x + 1, pos.y + 1};
     if (c == 'W')
         line.pos2 = (sfVector2f){pos.x, pos.y + 1};
+=======
+        line.pos1 = (sfVector2f) {pos.x, pos.y};
+    if (c == 'S' || c == 'E')
+        line.pos1 = (sfVector2f) {pos.x, (pos.y + 1)};
+    if (c == 'N' || c == 'W')
+        line.pos2 = (sfVector2f) {(pos.x + 1), pos.y};
+    if (c == 'S' || c == 'E')
+        line.pos2 = (sfVector2f) {(pos.x + 1), (pos.y + 1)};
+>>>>>>> origin/dev
     line.pos1.x *= (64 * 0.9375);
     line.pos1.y *= (64 * 0.9375);
     line.pos2.x *= (64 * 0.9375);
@@ -56,9 +66,12 @@ int add_wall(sfVector2i pos, level_t *level, line_t *walls, int index)
     char e = (pos.x < level->size.x - 1) ? level->map[pos.y][pos.x + 1] : '0';
     char w = (pos.x > 0) ? level->map[pos.y][pos.x - 1] : '0';
     int count = 0;
+    char direction[4] = {n, s, e, w};
+    char write_direction[4] = {'N', 'S', 'E', 'W'};
 
     if (level->map[pos.y][pos.x] != 'W' && level->map[pos.y][pos.x] != 'w')
         return 0;
+<<<<<<< HEAD
     if (n != 'W' && n != 'w') {
         walls[index + count] = get_coos(pos, level, 'N');
         count++;
@@ -74,6 +87,13 @@ int add_wall(sfVector2i pos, level_t *level, line_t *walls, int index)
     if (w != 'W' && w != 'w') {
         walls[index + count] = get_coos(pos, level, 'W');
         count++;
+=======
+    for (int i = 0; i < 4; i++) {
+        if (direction[i] != 'W' && direction[i] != 'w') {
+            walls[index + count] = get_coos(pos, level, write_direction[i]);
+            count++;
+        }
+>>>>>>> origin/dev
     }
     return count;
 }
@@ -86,11 +106,15 @@ line_t *create_map_walls(level_t *level, game_t *game)
     int y = 0;
     int index = 0;
 
+<<<<<<< HEAD
     walls[nbr_walls] = (line_t){(sfVector2f){-1, -1}, (sfVector2f){-1, -1}};
+=======
+    walls[nbr_walls] = (line_t) {(sfVector2f) {-1, -1}, (sfVector2f) {-1, -1}};
+>>>>>>> origin/dev
     for (int i = 0; i < level->size.y * level->size.x; i++) {
         y = i / level->size.x;
         x = i % level->size.x;
-        index += (add_wall((sfVector2i){x, y}, level, walls, index));
+        index += (add_wall((sfVector2i) {x, y}, level, walls, index));
     }
     return walls;
 }

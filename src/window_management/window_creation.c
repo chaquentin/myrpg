@@ -19,10 +19,13 @@ void destroy_game(game_t *game)
         destroy_all_sprites(game->all_sprite);
     if (game->clock)
         sfClock_destroy(game->clock);
-    if (game->levels)
-        destroy_levels(game->levels);
     if (game->view)
-        destroy_view(game);
+        sfView_destroy(game->view);
+    if (game->text)
+        sfText_destroy(game->text);
+    if (game->font)
+        sfFont_destroy(game->font);
+    destroy_levels(game->levels);
     destroy_sounds(game->sounds);
     free(game);
 }
@@ -43,12 +46,11 @@ sfSprite ***create_all_sprites(sfTexture *texture)
     all_sprite[7] = create_all_sprite(NBR_ENEMIES, enemies_rect, texture);
     all_sprite[8] = create_all_sprite(NBR_BUTTON, button_rect, texture);
     all_sprite[9] = NULL;
-    for (int i = 0; i < NBR_CAT; i++) {
+    for (int i = 0; i < NBR_CAT; i++)
         if (!all_sprite[i]) {
             destroy_all_sprites(all_sprite);
             return NULL;
         }
-    }
     return all_sprite;
 }
 
@@ -64,13 +66,8 @@ sfRenderWindow *create_window(void)
     return window;
 }
 
-game_t *create_game(int debug)
+static int init_game_parameters(game_t *game, int debug)
 {
-    game_t *game = NULL;
-
-    game = malloc(sizeof(game_t));
-    if (!game)
-        return NULL;
     game->debug = debug;
     game->scene = Menu;
     game->framerate_limit = 144;
@@ -79,10 +76,26 @@ game_t *create_game(int debug)
     game->delta_time = 0.0;
     game->clock = sfClock_create();
     game->sounds = create_all_sounds();
-    if (!game->window || !game->texture || !game->sounds) {
+    game->text = sfText_create();
+    game->font = sfFont_createFromFile("asset/Team 401.ttf");
+    return 0;
+}
+
+game_t *create_game(int debug)
+{
+    game_t *game = NULL;
+
+    game = malloc(sizeof(game_t));
+    if (!game)
+        return NULL;
+    init_game_parameters(game, debug);
+    if (!game->window || !game->texture || !game->sounds || !game->text ||
+    !game->font) {
         destroy_game(game);
         return NULL;
     }
+    sfText_setFont(game->text, game->font);
+    sfText_setCharacterSize(game->text, 50);
     game->all_sprite = create_all_sprites(game->texture);
     if (!game->all_sprite) {
         destroy_game(game);

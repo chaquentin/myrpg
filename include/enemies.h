@@ -9,8 +9,8 @@
     #define ENEMIES_H
 
     enum enemy_sounds {
-    Idle_1, Idle_2, Idle_3, 
-    Spotted_1, Spotted_2, Spotted_3, 
+    Idle_1, Idle_2, Idle_3,
+    Spotted_1, Spotted_2, Spotted_3,
     Jump_1, Jump_2, Jump_3};
     enum behaviours {Idle, Searching, Attacking};
     enum actions {Sound, Jump, Turn};

@@ -61,9 +61,9 @@ sfTexture *create_map_texture(game_t *game, char **map, level_t *level)
     sfRenderWindow_clear(game->window, sfBlack);
     for (int y = 0; y < 18; y++)
         for (int x = 0; x < 32; x++) {
-            sprite = get_sprite(game, map, (sfVector2f){x, y});
-            sfSprite_setScale(sprite, (sfVector2f){0.9375, 0.9375});
-            sfSprite_setPosition(sprite, (sfVector2f){x * (64 * 0.9375),
+            sprite = get_sprite(game, map, (sfVector2f) {x, y});
+            sfSprite_setScale(sprite, (sfVector2f) {0.9375, 0.9375});
+            sfSprite_setPosition(sprite, (sfVector2f) {x * (64 * 0.9375),
             y * (64 * 0.9375)});
             sfRenderWindow_drawSprite(game->window, sprite, NULL);
         }

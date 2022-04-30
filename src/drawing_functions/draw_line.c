@@ -8,7 +8,8 @@
 #include <SFML/Graphics.h>
 #include "structure.h"
 
-void draw_line(game_t *game, sfVector2f p1, sfVector2f p2, sfColor color,int thick)
+void draw_line(game_t *game, sfVector2f p1, sfVector2f p2,
+sfColor color, int thick)
 {
     sfConvexShape *convex1 = sfConvexShape_create();
     sfConvexShape *convex2 = sfConvexShape_create();

@@ -15,9 +15,38 @@
     #include "enemies.h"
     #include "level.h"
 
+    typedef struct bullet_s {
+        sfSprite *sprite;
+        sfVector2f pos;
+        int id;
+        int damage;
+        struct bullet_s *next;
+    } bullet_t;
+
+    typedef struct all_bullet_s {
+        struct bullet_s *first;
+        struct bullet_s *last;
+        int size;
+    } all_bullet_t;
+
+    typedef struct npc_s {
+        sfSprite *sprite;
+        sfVector2f pos;
+        char **all_dialogs;
+    } npc_t;
+
+    typedef struct text_option_s {
+        char *txt[6];
+        int music_vol;
+        int sound_vol;
+        int framerate_limit;
+    } text_option_t;
+
     typedef struct souds_s {
         sfSoundBuffer **all_buffer;
         sfMusic **all_musics;
+        int sound_vol;
+        int music_vol;
     } sounds_t;
 
     typedef struct sprite_s {
@@ -37,6 +66,16 @@
         float start_angle;
         float add_angle;
     } enemy_turn_t;
+
+    typedef struct button_s {
+        sfSprite *sprite;
+        sfVector2f pos;
+        sfVector2f size;
+        enum button status;
+        enum game_scene next_scene;
+        int state;
+        int is_click;
+    } button_t;
 
     typedef struct enemy_s {
         sfVector2f player_pos;
@@ -58,14 +97,6 @@
         sfVector2f pos2;
     } line_t;
 
-    typedef struct button_s {
-        sfSprite *sprite;
-        sfVector2f pos;
-        enum button status;
-        enum game_scene next_scene;
-        int state;
-    } button_t;
-
     typedef struct level_s {
         enemy_t **enemies;
         line_t *walls;
@@ -83,6 +114,8 @@
         sfSprite ***all_sprite;
         sfRenderWindow *window;
         sfTexture *texture;
+        sfText *text;
+        sfFont *font;
         sfClock *clock;
         enum levels current_level;
         enum game_scene scene;
@@ -93,9 +126,11 @@
 
     typedef struct weapon_s {
         sfSprite *sprite;
+        sfSound *sound;
         sfBool is_gun;
         enum weapon weapon;
         int ammo;
+        int ammo_max;
         int damage;
         float reload_time;
         float fire_rate;
@@ -117,6 +152,7 @@
         clothes_t *clothes;
         sfSprite *sprite;
         sfVector2f pos;
+        sfBool is_clicked;
         enum player player;
         int swag;
         int health;
