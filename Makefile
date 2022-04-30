@@ -102,15 +102,9 @@ $(eval VIEW_MANAGEMENT=$(addprefix src/view_management/, $(VIEW_MANAGEMENT)))
 
 DRAWING_FUNCTIONS = draw_line.c			\
 	draw_point.c						\
-<<<<<<< HEAD
 	draw_rays.c							\
 	draw_circle.c
 $(eval DRAWING_FUNCTIONS=$(addprefix src/drawing_functions/, $(DRAWING_FUNCTIONS)))
-=======
-	draw_rays.c
-$(eval DRAWING_FUNCTIONS=\
-	$(addprefix src/drawing_functions/, $(DRAWING_FUNCTIONS)))
->>>>>>> origin/dev
 
 SOUNDS_MANAGEMENT = create_all_sounds.c	\
 	destroy_sounds.c
@@ -159,12 +153,7 @@ rcl: re
 	./$(NAME)
 	@$(RM) $(OBJ)
 
-<<<<<<< HEAD
 debug: CFLAGS += -g3 -Wno-deprecated-declarations
 debug: re 
-=======
-debug: CFLAGS += -g3
-debug: re
->>>>>>> origin/dev
 
 .PHONY: debug clean fclean re rcl text all
