@@ -36,8 +36,7 @@ int shoot(game_t *game, player_t *player, int is_click)
         last_shoot += game->delta_time;
     }
     if (last_shoot > player->weapon->fire_rate && is_click && !is_reloading) {
-        sfSound_play(player->weapon->sound);
-        append(game->all_bullets, game, player->pos, player->weapon->damage);
+        fire_weapon(game, player);
         player->weapon->ammo--;
         last_shoot = 0.0;
     }

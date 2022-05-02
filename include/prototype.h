@@ -139,6 +139,22 @@
     int destroy_sounds_buffer(sfSoundBuffer **soud_buffer);
     int destroy_musics(sfMusic **musics);
 
+//=================================BULLETS===================================//
+
+    all_bullet_t *init_list(void);
+    bullet_t *create_bullet(game_t *game, sfVector2f pos, int damage, float);
+    int add_first(all_bullet_t *list, bullet_t *bullet);
+    int append(all_bullet_t *list, bullet_t *bullet);
+    int fire_weapon(game_t *game, player_t *player);
+    int display_bullets(all_bullet_t *list, game_t *game);
+    int update_bullets(game_t *game);
+
+    int remove_first(all_bullet_t *list);
+    int remove_last(all_bullet_t *list);
+    int remove_id(all_bullet_t *list, int id);
+    int destroy_all_bullet(all_bullet_t *list);
+    int destroy_bullet(bullet_t *bullet);
+
 //===================================HELP====================================//
 
     button_t **create_help_button(game_t *game);
@@ -156,19 +172,6 @@
     button_t **option_button, text_option_t *option_txt);
     int get_option_event(game_t *game, sfEvent *event,
     button_t **scene_button, button_t **option_button);
-
-//==================================BULLETS==================================//
-
-    all_bullet_t *init_list(void);
-    bullet_t *create_bullet(game_t *game, sfVector2f pos, int damage);
-    int add_first(all_bullet_t *list, game_t *game, sfVector2f pos, int damag);
-    int append(all_bullet_t *list, game_t *game, sfVector2f pos, int damage);
-
-    int remove_first(all_bullet_t *list);
-    int remove_last(all_bullet_t *list);
-    int remove_id(all_bullet_t *list, int id);
-    int destroy_bullet(bullet_t *bullet);
-    int destroy_all_bullet(all_bullet_t *list);
 
 //==============================NPC=MANAGEMENT===============================//
 

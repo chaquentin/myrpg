@@ -8,6 +8,7 @@
 #include <stdlib.h>
 #include "prototype.h"
 #include "structure.h"
+#include "prototype.h"
 
 int remove_id(all_bullet_t *list, int id)
 {
@@ -63,10 +64,8 @@ int remove_first(all_bullet_t *list)
     return (0);
 }
 
-int add_first(all_bullet_t *list, game_t *game, sfVector2f pos, int damage)
+int add_first(all_bullet_t *list, bullet_t *new)
 {
-    bullet_t *new = create_bullet(game, pos, damage);
-
     if (new == NULL)
         return (84);
     if (list->first == NULL) {
@@ -80,10 +79,8 @@ int add_first(all_bullet_t *list, game_t *game, sfVector2f pos, int damage)
     return (0);
 }
 
-int append(all_bullet_t *list, game_t *game, sfVector2f pos, int damage)
+int append(all_bullet_t *list, bullet_t *new)
 {
-    bullet_t *new = create_bullet(game, pos, damage);
-
     if (new == NULL)
         return (84);
     if (list->first == NULL) {

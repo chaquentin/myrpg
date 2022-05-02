@@ -88,9 +88,9 @@ int display(game_t *game, player_t *player)
     display_map_sprite(game);
     display_enemies(game);
     display_player(game, player);
+    enemy_actions(game, player);
     display_health(game, player, 0);
     display_guns(game, player, 0);
-    enemy_actions(game, player);
     sfRenderWindow_display(game->window);
     return 0;
 }
