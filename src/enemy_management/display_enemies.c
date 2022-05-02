@@ -13,6 +13,7 @@
 void display_enemy(sfRenderWindow *window, enemy_t *enemy)
 {
     if (enemy->alive == sfTrue && enemy->type != -1 && enemy->sprite != NULL) {
+        sfSprite_setRotation(enemy->sprite, enemy->angle);
         sfSprite_setPosition(enemy->sprite, enemy->pos);
         sfRenderWindow_drawSprite(window, enemy->sprite, NULL);
     }

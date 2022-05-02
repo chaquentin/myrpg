@@ -21,8 +21,8 @@
     static int shooting_speed[3] = {1, 2, 3};
 
     #define NBR_ACTIONS 3
-    #define MIN_TIME_IDLE 500
-    #define MAX_TIME_IDLE 1000
+    #define MIN_TIME_IDLE 100
+    #define MAX_TIME_IDLE 200
     #define VIEW_DISTANCE 250
 
 #endif

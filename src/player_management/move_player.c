@@ -56,7 +56,7 @@ static int verify_player_collision(player_t *player, sfVector2f pos,
 sfVector2f size)
 {
     sfIntRect player_hitbox = {(int)player->pos.x - 28,
-    (int)player->pos.y - 28, 60, 60};
+    (int)player->pos.y - 28, 56, 56};
     sfIntRect wall_hitbox = {(int)pos.x, (int)pos.y, (int)size.x, (int)size.y};
 
     if (wall_hitbox.width == 0)

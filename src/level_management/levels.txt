@@ -26,12 +26,16 @@ W            w   w             W
 W            w   w             W
 WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
 !
-5
-EnemyGun 0 100
-EnemyGun 70 250
-EnemyShotgun 150 100
-Yellow 400 500
-Hola 500 600
+9
+Gangster 840 480
+Gangster 100 250
+Gangster 1500 100
+Gangster 1700 120
+Gangster 1600 500
+Gangster 1550 900
+Gangster 1200 950
+Hoods 150 100
+Hoods 700 950
 &
 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx

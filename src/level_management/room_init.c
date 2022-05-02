@@ -109,8 +109,10 @@ level_t **create_levels(char *path, game_t *game)
     return levels;
 }
 
-void destroy_levels(level_t **level)
+int destroy_levels(level_t **level)
 {
+    if (level == NULL)
+        return (84);
     for (int i = 0; level[i]; i++) {
         write(1, "freeing level:  ", 16);
         my_putnbr(i + 1, '\n');
@@ -122,4 +124,5 @@ void destroy_levels(level_t **level)
         free(level[i]);
     }
     free(level);
+    return 0;
 }

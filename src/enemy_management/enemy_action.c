@@ -22,8 +22,7 @@ int enemy_idle(game_t *game, player_t *player, int index)
         return 0;
     }
     enemy->idled_since++;
-    switch (enemy->current_action)
-    {
+    switch (enemy->current_action) {
     case Sound:
         break;
     case Jump:
@@ -43,20 +42,18 @@ sfVector2f spots_player(game_t *game, player_t *player, int index)
     int is_inter = 0;
 
     for (int i = 0; walls[i].pos1.x != -1; i++) {
-        inter = is_intersection(enemy->pos, player->pos, walls[i].pos1, walls[i].pos2);
-        if (inter.x != -1) {
+        inter = is_intersection(enemy->pos, player->pos, walls[i].pos1,
+        walls[i].pos2);
+        if (inter.x != -1)
             is_inter++;
-            draw_line(game, walls[i].pos1, walls[i].pos2, sfGreen, 2);
-            draw_point(game->window, inter, sfRed, 5);
-        }
     }
     distance = get_distance(enemy->pos, player->pos);
     if (is_inter == 0 && distance < VIEW_DISTANCE) {
         enemy->player_pos = player->pos;
         return player->pos;
     }
-    enemy->player_pos = (sfVector2f){-1, -1};
-    return (sfVector2f){-1, -1};
+    enemy->player_pos = (sfVector2f) {-1, -1};
+    return (sfVector2f) {-1, -1};
 }
 
 enum behaviours get_behaviour(game_t *game, player_t *player, int index)
@@ -65,12 +62,8 @@ enum behaviours get_behaviour(game_t *game, player_t *player, int index)
     enum behaviours behaviour = enemy->behaviour;
     sfVector2f pos = spots_player(game, player, index);
 
-    if (enemy->player_pos.x == -1)
-        printf("invisible\n");
-    else {
-        printf("visible\n");
+    if (enemy->player_pos.x != -1)
         behaviour = Searching;
-    }
     return behaviour;
 }
 

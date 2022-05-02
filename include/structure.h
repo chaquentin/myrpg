@@ -89,7 +89,7 @@
         enum actions current_action;
         enum enemy_types type;
         void *next_action;
-        int angle;
+        float angle;
         int idled_since;
     } enemy_t;
 
@@ -97,14 +97,6 @@
         sfVector2f pos1;
         sfVector2f pos2;
     } line_t;
-
-    typedef struct button_s {
-        sfSprite *sprite;
-        sfVector2f pos;
-        enum button status;
-        enum game_scene next_scene;
-        int state;
-    } button_t;
 
     typedef struct level_s {
         enemy_t **enemies;

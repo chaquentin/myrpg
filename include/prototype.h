@@ -71,7 +71,7 @@
     int count_walls(level_t *level);
     int count_adjacent_walls(level_t *level, sfVector2i pos);
 
-    void destroy_levels(level_t **level);
+    int destroy_levels(level_t **level);
     void destroy_map(char **map);
     void destroy_map_walls(line_t *walls);
 

@@ -60,11 +60,7 @@ sfRenderWindow *create_window(void)
     sfVideoMode mode = {1920, 1080, 32};
     sfRenderWindow *window = NULL;
 
-<<<<<<< HEAD
-    window = sfRenderWindow_create(mode, "Niggay land", sfClose , NULL);
-=======
     window = sfRenderWindow_create(mode, "RPG", sfClose, NULL);
->>>>>>> origin/enemies
     sfRenderWindow_setFramerateLimit(window, 144);
     if (window == NULL)
         return NULL;
@@ -108,6 +104,10 @@ game_t *create_game(int debug)
         return NULL;
     }
     game->levels = create_levels(LEVEL_PATH, game);
+    if (!game->levels) {
+        destroy_game(game);
+        return NULL;
+    }
     game->current_level = 0;
     game->view = create_view(game, game->debug);
     return game;
