@@ -56,11 +56,6 @@
         sfVector2f pos;
     } sprite_t;
 
-    typedef struct line_s {
-        sfVector2f pos1;
-        sfVector2f pos2;
-    } line_t;
-
     typedef struct enemy_jump_s {
         sfBool is_jumping;
         int since;
@@ -78,8 +73,12 @@
         int is_click;
     } button_t;
 
+    typedef struct enemy_turn_s {
+        float start_angle;
+        float add_angle;
+    } enemy_turn_t;
+
     typedef struct enemy_s {
-        enemy_jump_t *jump;
         sfVector2f player_pos;
         sfVector2f idle_around;
         sfVector2f pos;
@@ -87,12 +86,25 @@
         sfSprite *sprite;
         sfBool alive;
         enum behaviours behaviour;
-        enum enemies type;
+        enum actions current_action;
+        enum enemy_types type;
+        void *next_action;
         int angle;
-        int speed;
-        int jump_rate;
         int idled_since;
     } enemy_t;
+
+    typedef struct line_s {
+        sfVector2f pos1;
+        sfVector2f pos2;
+    } line_t;
+
+    typedef struct button_s {
+        sfSprite *sprite;
+        sfVector2f pos;
+        enum button status;
+        enum game_scene next_scene;
+        int state;
+    } button_t;
 
     typedef struct level_s {
         enemy_t **enemies;

@@ -13,37 +13,42 @@
 #include "prototype.h"
 #include "sprite_sheet.h"
 
-enum enemies get_enemy_type(char *str)
+enum enemy_types get_enemy_type(char *str)
 {
-    if (my_strcmp(str, "EnemyGun") == 0)
-        return EnemyGun2;
-    if (my_strcmp(str, "EnemyGlock") == 0)
-        return EnemyGlock2;
-    if (my_strcmp(str, "EnemyShotgun") == 0)
-        return EnemyShotgun2;
+    if (my_strcmp(str, "Gangster") == 0)
+        return Gangster;
+    if (my_strcmp(str, "Hoods") == 0)
+        return Hoods;
+    if (my_strcmp(str, "Durag") == 0)
+        return Durag;
     return -1;
 }
 
 enemy_t *enemy_create(sfVector2f idle_around, char *name, game_t *game)
 {
     enemy_t *enemy = malloc(sizeof(enemy_t));
-    enemy_jump_t *jump = malloc(sizeof(enemy_jump_t));
+    enemy_turn_t *turn = malloc(sizeof(enemy_turn_t));
 
-    if (!enemy || !jump)
+    if (enemy == NULL || turn == NULL)
         return NULL;
+    idle_around = (sfVector2f){(idle_around.x + 0.5) * (64 * 0.9375),
+    (idle_around.y + 0.5) * (64 * 0.9375)};
+    turn->start_angle = 0.0;
+    turn->add_angle = (get_randint(0, 200) - 100) / 500.0;
     enemy->type = get_enemy_type(name);
     enemy->sprite = NULL;
-    if (enemy->type != -1)
+    if (enemy->type != -1) {
         enemy->sprite = sfSprite_copy(game->all_sprite[Enemy][enemy->type]);
-    jump->is_jumping = sfFalse;
-    enemy->player_pos = (sfVector2f) {-1, -1};
+        sfSprite_setOrigin(enemy->sprite, (sfVector2f){32, 32});
+    }
+    enemy->player_pos = (sfVector2f){-1, -1};
     enemy->pos = idle_around;
     enemy->idle_around = idle_around;
-    enemy->jump_rate = 1000;
     enemy->alive = sfTrue;
     enemy->idled_since = 0;
-    enemy->jump = jump;
     enemy->behaviour = Idle;
+    enemy->next_action = turn;
+    enemy->current_action = Turn;
     return enemy;
 }
 
@@ -72,7 +77,7 @@ void destroy_enemies(enemy_t **enemies)
     for (int i = 0; enemies[i]; i++) {
         if (enemies[i]->type != -1 && enemies[i]->sprite)
             sfSprite_destroy(enemies[i]->sprite);
-        free(enemies[i]->jump);
+        free(enemies[i]->next_action);
         free(enemies[i]);
     }
     free(enemies);

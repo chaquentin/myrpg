@@ -6,22 +6,45 @@
 */
 
 #include <SFML/Graphics.h>
+#include <stdio.h>
 
-sfVector2f is_intersection(sfVector2f p1, sfVector2f p2, sfVector2f p3,
-sfVector2f p4)
+float get_biggest(float a, float b)
 {
-    sfVector2f intersection = {-1, -1};
-    float a1 = p2.y - p1.y;
-    float b1 = p1.x - p2.x;
-    float c1 = a1 * p1.x + b1 * p1.y;
-    float a2 = p4.y - p3.y;
-    float b2 = p3.x - p4.x;
-    float c2 = a2 * p3.x + b2 * p3.y;
+    if (a > b)
+        return a;
+    return b;
+}
+
+float get_smallest(float a, float b)
+{
+    if (a < b)
+        return a;
+    return b;
+}
+
+sfVector2f is_intersection(sfVector2f A, sfVector2f B,
+sfVector2f C, sfVector2f D)
+{
+    sfVector2f inter = {-1, -1};
+    float a1 = B.y - A.y;
+    float b1 = A.x - B.x;
+    float c1 = a1 * A.x + b1 * A.y;
+    float a2 = D.y - C.y;
+    float b2 = C.x - D.x;
+    float c2 = a2 * C.x + b2 * C.y;
     float delta = a1 * b2 - a2 * b1;
 
     if (delta == 0)
-        return (sfVector2f) {-1, -1};
-    intersection.x = (b2 * c1 - b1 * c2) / delta;
-    intersection.y = (a1 * c2 - a2 * c1) / delta;
-    return (intersection);
+        return (sfVector2f){-1, -1};
+    inter.x = (b2 * c1 - b1 * c2) / delta;
+    inter.y = (a1 * c2 - a2 * c1) / delta;
+    if (inter.x < get_smallest(A.x, B.x) || inter.x > get_biggest(A.x, B.x))
+        return (sfVector2f){-1, -1};
+    if (inter.x < get_smallest(C.x, D.x) || inter.x > get_biggest(C.x, D.x))
+        return (sfVector2f){-1, -1};
+    if (inter.y < get_smallest(A.y, B.y) || inter.y > get_biggest(A.y, B.y))
+        return (sfVector2f){-1, -1};
+    if (inter.y < get_smallest(C.y, D.y) || inter.y > get_biggest(C.y, D.y))
+        return (sfVector2f){-1, -1};
+    return (inter);
 }

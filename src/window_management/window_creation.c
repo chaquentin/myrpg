@@ -60,7 +60,11 @@ sfRenderWindow *create_window(void)
     sfVideoMode mode = {1920, 1080, 32};
     sfRenderWindow *window = NULL;
 
+<<<<<<< HEAD
     window = sfRenderWindow_create(mode, "Niggay land", sfClose , NULL);
+=======
+    window = sfRenderWindow_create(mode, "RPG", sfClose, NULL);
+>>>>>>> origin/enemies
     sfRenderWindow_setFramerateLimit(window, 144);
     if (window == NULL)
         return NULL;

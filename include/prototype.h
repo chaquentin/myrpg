@@ -79,6 +79,10 @@
 
     enemy_t **enemies_create(char *enemies_data, game_t *game);
     void display_enemies(game_t *game);
+    int enemy_actions(game_t *game, player_t *player);
+    int enemy_turn(game_t *game, enemy_t *enemy);
+
+    int enemy_debug(game_t *game, player_t *player);
 
     void destroy_enemies(enemy_t **enemies);
 
@@ -118,12 +122,15 @@
     void draw_point(sfRenderWindow *window, sfVector2f point, sfColor color,
     int size);
     void draw_rays(player_t *player, game_t *game, line_t *walls);
+    void draw_circle(sfRenderWindow *window, sfVector2f pos, float radius, 
+    sfColor color);
 
 //===================================MATH====================================//
 
     sfVector2f is_intersection(sfVector2f p1, sfVector2f p2,
     sfVector2f p3, sfVector2f p4);
     float get_distance(sfVector2f p1, sfVector2f p2);
+    int get_randint(int min, int max);
 
 //==================================SOUNDS===================================//
 
