@@ -7,29 +7,29 @@ NORM:
 'c' = carpet
 'S' = sink
 &
-W                               
- W                              
- W                              
-                                
-                                
-        WW                      
-        W                       
-        W                       
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
+WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
+W   w      w    w              W
+W   w      w    w              W
+W   w      w    w   wwwwwwwwwwwW
+W   w   w                      W
+W   w   w                      W
+W   w   w  wwwwwwwww   w       W
+W       w              w       W
+W       w              w       W
+W       w  wwwwwwwww   w       W
+Wwwwwwwww              w       W
+W                      w       W
+W                w     w       W
+W  wwwwwwwwwww   w     wwwwwwwwW
+W            w   w             W
+W            w   w             W
+W            w   w             W
+WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
 !
 5
-EnemyGun1 0 100
-EnemyGun2 0 200
-Hello 300 400
+EnemyGun 0 100
+EnemyGun 70 250
+EnemyShotgun 150 100
 Yellow 400 500
 Hola 500 600
 &

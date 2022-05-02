@@ -19,11 +19,12 @@ bullet_t *create_bullet(game_t *game, sfVector2f pos, int damage)
     bullet->pos = pos;
     bullet->id = id;
     bullet->damage = damage;
+    bullet->next = NULL;
     id = (id > 1000) ? 0 : id + 1;
     return (bullet);
 }
 
-destroy_bullet(bullet_t *bullet)
+int destroy_bullet(bullet_t *bullet)
 {
     if (bullet == NULL)
         return 84;

@@ -15,10 +15,12 @@
 
 enum enemies get_enemy_type(char *str)
 {
-    if (my_strcmp(str, "EnemyGun1") == 0)
-        return EnemyGun1;
-    if (my_strcmp(str, "EnemyGun2") == 0)
+    if (my_strcmp(str, "EnemyGun") == 0)
         return EnemyGun2;
+    if (my_strcmp(str, "EnemyGlock") == 0)
+        return EnemyGlock2;
+    if (my_strcmp(str, "EnemyShotgun") == 0)
+        return EnemyShotgun2;
     return -1;
 }
 

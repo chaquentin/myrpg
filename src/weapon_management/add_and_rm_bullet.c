@@ -6,6 +6,7 @@
 */
 
 #include <stdlib.h>
+#include "prototype.h"
 #include "structure.h"
 
 int remove_id(all_bullet_t *list, int id)

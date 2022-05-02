@@ -104,8 +104,8 @@
     EnemyShotgun1, EnemyShotgun2, EnemyShotgun3};
     static const sfIntRect enemies_rect[NBR_ENEMIES] = {{448, 0, 64, 64},
     {512, 0, 64, 64}, {576, 0, 64, 64}, {448, 64, 64, 64}, {512, 64, 64, 64},
-    {576, 64, 64, 64}, {448, 256, 64, 64}, {512, 256, 64, 64},
-    {576, 256, 64, 64}};
+    {576, 64, 64, 64}, {448, 128, 64, 64}, {512, 128, 64, 64},
+    {576, 128, 64, 64}};
 
     enum weapon {Glock, M9, MicroGun, Revolver, Re45, Uzi, Sniper, M4, AWP,
     FA456, Scar, Bullet};

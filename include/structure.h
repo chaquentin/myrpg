@@ -33,6 +33,7 @@
         sfSprite *sprite;
         sfVector2f pos;
         char **all_dialogs;
+        int stage;
     } npc_t;
 
     typedef struct text_option_s {
@@ -113,6 +114,7 @@
         sfText *text;
         sfFont *font;
         sfClock *clock;
+        all_bullet_t *all_bullets;
         enum levels current_level;
         enum game_scene scene;
         int framerate_limit;

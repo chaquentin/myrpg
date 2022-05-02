@@ -50,7 +50,7 @@ static player_t *init_player(void)
     player->health = 100;
     player->delta_time = 0;
     player->swag = 0;
-    player->pos = (sfVector2f) {928, 508};
+    player->pos = (sfVector2f) {928, 928};
     player->player = PlayerGun1;
     player->sprite = NULL;
     return player;

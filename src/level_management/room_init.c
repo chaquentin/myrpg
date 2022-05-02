@@ -8,32 +8,62 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <sys/stat.h>
 #include <fcntl.h>
 #include "enemies.h"
 #include "level.h"
 #include "structure.h"
 #include "prototype.h"
 
+static int get_size(const char *path)
+{
+    int fd = open(path, O_RDONLY);
+    int size = 0;
+    char buffer[4096];
+    int readen = 0;
+
+    if (fd == -1)
+        return (-1);
+    readen = read(fd, buffer, 4096);
+    while (readen > 0) {
+        size += readen;
+        readen = read(fd, buffer, 4096);
+    }
+    close(fd);
+    return (size);
+}
+
+char *get_file(const char *path)
+{
+    int fd = 0;
+    int size = get_size(path);
+    char *str = NULL;
+
+    if (size <= 0)
+        return (NULL);
+    str = malloc(sizeof(char) * (size + 1));
+    if (str == NULL)
+        return (NULL);
+    fd = open(path, O_RDONLY);
+    if (fd == -1) {
+        free(str);
+        return (NULL);
+    }
+    read(fd, str, size);
+    str[size] = '\0';
+    close(fd);
+    return (str);
+}
+
 char *open_file(char *path)
 {
-    struct stat stats;
     char *buf = NULL;
-    int fd = 0;
 
     write(1, "opening levels file: ", 22);
-    if (stat(path, &stats) == -1) {
+    buf = get_file(path);
+    if (buf == NULL) {
         write(1, "FAILED\n", 6);
         return NULL;
     }
-    fd = open(path, O_RDONLY);
-    buf = malloc(stats.st_size + 1);
-    if (fd == -1 || read(fd, buf, stats.st_size) == -1 || buf == NULL) {
-        write(1, "FAILED\n", 6);
-        return NULL;
-    }
-    buf[stats.st_size] = '\0';
-    close(fd);
     write(1, "SUCCESS\n", 8);
     return buf;
 }

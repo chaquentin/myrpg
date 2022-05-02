@@ -25,6 +25,7 @@ void destroy_game(game_t *game)
         sfText_destroy(game->text);
     if (game->font)
         sfFont_destroy(game->font);
+    destroy_all_bullet(game->all_bullets);
     destroy_levels(game->levels);
     destroy_sounds(game->sounds);
     free(game);
@@ -78,6 +79,7 @@ static int init_game_parameters(game_t *game, int debug)
     game->sounds = create_all_sounds();
     game->text = sfText_create();
     game->font = sfFont_createFromFile("asset/Team 401.ttf");
+    game->all_bullets = init_list();
     return 0;
 }
 
