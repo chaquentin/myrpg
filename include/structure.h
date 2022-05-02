@@ -17,9 +17,12 @@
 
     typedef struct bullet_s {
         sfSprite *sprite;
+        sfSound *sound;
         sfVector2f pos;
+        sfVector2f stop_pos;
         int id;
         int damage;
+        float angle;
         struct bullet_s *next;
     } bullet_t;
 
@@ -108,6 +111,7 @@
     } level_t;
 
     typedef struct game_s {
+        all_bullet_t *bullets;
         level_t **levels;
         sounds_t *sounds;
         sfView *view;

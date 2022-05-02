@@ -38,13 +38,10 @@ sfVector2f C, sfVector2f D)
         return (sfVector2f){-1, -1};
     inter.x = (b2 * c1 - b1 * c2) / delta;
     inter.y = (a1 * c2 - a2 * c1) / delta;
-    if (inter.x < get_smallest(A.x, B.x) || inter.x > get_biggest(A.x, B.x))
-        return (sfVector2f){-1, -1};
-    if (inter.x < get_smallest(C.x, D.x) || inter.x > get_biggest(C.x, D.x))
-        return (sfVector2f){-1, -1};
-    if (inter.y < get_smallest(A.y, B.y) || inter.y > get_biggest(A.y, B.y))
-        return (sfVector2f){-1, -1};
-    if (inter.y < get_smallest(C.y, D.y) || inter.y > get_biggest(C.y, D.y))
+    if (inter.x < get_smallest(A.x, B.x) || inter.x > get_biggest(A.x, B.x)
+    || (inter.x < get_smallest(C.x, D.x) || inter.x > get_biggest(C.x, D.x))
+    || (inter.y < get_smallest(A.y, B.y) || inter.y > get_biggest(A.y, B.y))
+    || (inter.y < get_smallest(C.y, D.y) || inter.y > get_biggest(C.y, D.y)))
         return (sfVector2f){-1, -1};
     return (inter);
 }

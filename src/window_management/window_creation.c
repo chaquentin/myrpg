@@ -27,6 +27,7 @@ void destroy_game(game_t *game)
         sfFont_destroy(game->font);
     destroy_levels(game->levels);
     destroy_sounds(game->sounds);
+    destroy_all_bullet(game->bullets);
     free(game);
 }
 
@@ -101,8 +102,11 @@ game_t *create_game(int debug)
         destroy_game(game);
         return NULL;
     }
+    game->bullets = init_list();
     game->levels = create_levels(LEVEL_PATH, game);
     game->current_level = 0;
     game->view = create_view(game, game->debug);
+    sfSprite_setScale(game->all_sprite[Weapon][Bullet],
+    (sfVector2f) {0.25, 0.25});
     return game;
 }
