@@ -29,8 +29,8 @@ int update_bullets(game_t *game)
     bullet_t *tmp = bullets->first;
 
     while (tmp != NULL) {
-        tmp->pos.y -= 5 * cos(tmp->angle * M_PI / 180);
-        tmp->pos.x += 5 * sin(tmp->angle * M_PI / 180);
+        tmp->pos.y -= game->delta_time * 1500 * cos(tmp->angle * M_PI / 180);
+        tmp->pos.x += game->delta_time * 1500 * sin(tmp->angle * M_PI / 180);
         tmp = tmp->next;
     }
     

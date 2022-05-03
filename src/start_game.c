@@ -88,10 +88,10 @@ int display(game_t *game, player_t *player)
     display_map_sprite(game);
     display_enemies(game);
     display_player(game, player);
-    //enemy_debug(game, player);
     enemy_actions(game, player);
     display_health(game, player, 0);
     display_guns(game, player, 0);
+    display_bullets(game->bullets, game);
     sfRenderWindow_display(game->window);
     return 0;
 }
@@ -104,6 +104,7 @@ int game(game_t *game, player_t *player, sfEvent event)
     get_game_event(game, &event, player);
     move_player(game, player);
     fill_mouse(game, player);
+    update_bullets(game);
     display(game, player);
     return 0;
 }

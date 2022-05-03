@@ -55,7 +55,8 @@ $(eval CLOTHES_MANAGEMENT=\
 
 MATHS_MANAGEMENT = is_intersection.c 	\
 	get_distance.c						\
-	get_randint.c
+	get_randint.c						\
+	direction_to_pos.c
 $(eval MATHS_MANAGEMENT=$(addprefix src/maths_management/, $(MATHS_MANAGEMENT)))
 
 ENEMY_MANAGEMENT = enemy_init.c 		\

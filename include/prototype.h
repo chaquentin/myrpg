@@ -130,6 +130,7 @@
     sfVector2f p3, sfVector2f p4);
     float get_distance(sfVector2f p1, sfVector2f p2);
     int get_randint(int min, int max);
+    sfVector2f direction_to_pos(sfVector2f pos, float angle);
 
 //==================================SOUNDS===================================//
 
