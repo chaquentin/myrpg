@@ -94,7 +94,6 @@ int display(game_t *game, player_t *player)
     display_bullets(game->bullets, game);
     display_player(game, player);
     enemy_actions(game, player);
-    
     display_all_npc(game);
     display_health(game, player, 0);
     display_guns(game, player, 0);
@@ -111,6 +110,7 @@ int game(game_t *game, player_t *player, sfEvent event)
         view_update(game, player);
         sfRenderWindow_clear(game->window, sfBlack);
         npc_event(game, player);
+        manage_bullet(game, player);
         get_game_event(game, &event, player);
         move_player(game, player);
         fill_mouse(game, player);

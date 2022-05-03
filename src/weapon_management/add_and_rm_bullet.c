@@ -18,12 +18,12 @@ int remove_id(all_bullet_t *list, int id)
     while (tmp != NULL) {
         if (tmp->id == id && prev == NULL) {
             list->first = tmp->next;
-            free(tmp);
+            destroy_bullet(tmp);
             list->size--;
             return (0);
         } else if (tmp->id == id) {
             prev->next = tmp->next;
-            free(tmp);
+            destroy_bullet(tmp);
             list->size--;
             return (0);
         }

@@ -154,6 +154,7 @@
     int fire_weapon(game_t *game, player_t *player);
     int display_bullets(all_bullet_t *list, game_t *game);
     int update_bullets(game_t *game);
+    int manage_bullet(game_t *game, player_t *player);
 
     int remove_first(all_bullet_t *list);
     int remove_last(all_bullet_t *list);

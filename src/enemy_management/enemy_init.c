@@ -48,6 +48,7 @@ enemy_t *enemy_create(sfVector2f idle_around, char *name, game_t *game)
     enemy->behaviour = Idle;
     enemy->next_action = turn;
     enemy->current_action = Turn;
+    enemy->health = 100;
     enemy->angle = 0.0;
     return enemy;
 }

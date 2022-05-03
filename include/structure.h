@@ -96,6 +96,7 @@
         void *next_action;
         float angle;
         int idled_since;
+        int health;
     } enemy_t;
 
     typedef struct line_s {

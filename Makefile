@@ -36,7 +36,8 @@ $(eval PLAYER_MANAGEMENT=\
 WEAPON_MANAGEMENT = weapon_creation.c	\
 	add_and_rm_bullet.c					\
 	all_bullet_creation.c				\
-	fire_weapon.c
+	fire_weapon.c						\
+	manage_bullet.c
 $(eval WEAPON_MANAGEMENT=\
 	$(addprefix src/weapon_management/, $(WEAPON_MANAGEMENT)))
 

@@ -56,8 +56,6 @@ int manage_key_pressed(game_t *game, sfKeyCode key_code, player_t *player)
             change_weapon(player, game, player->weapon->weapon + 1);
         else
             change_weapon(player, game, 0);
-    if (key_code == sfKeySpace)
-        printf("yes\n");
     return 0;
 }
 

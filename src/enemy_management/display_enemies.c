@@ -24,6 +24,8 @@ void display_enemies(game_t *game)
     enemy_t **enemy = game->levels[game->current_level]->enemies;
     sfRenderWindow *window = game->window;
 
-    for (int i = 0; enemy[i]; i++)
-        display_enemy(window, enemy[i]);
+    for (int i = 0; enemy[i]; i++) {
+        if (enemy[i]->health > 0)
+            display_enemy(window, enemy[i]);
+    }
 }

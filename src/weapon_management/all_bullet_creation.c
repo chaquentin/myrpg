@@ -47,8 +47,10 @@ int destroy_bullet(bullet_t *bullet)
 {
     if (bullet == NULL)
         return 84;
-    if (bullet->sound != NULL)
+    if (bullet->sound != NULL) {
+        sfSound_stop(bullet->sound);
         sfSound_destroy(bullet->sound);
+    }
     free(bullet);
     return 0;
 }
