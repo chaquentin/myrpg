@@ -94,6 +94,7 @@ int display(game_t *game, player_t *player)
     display_bullets(game->bullets, game);
     display_player(game, player);
     enemy_actions(game, player);
+    
     display_all_npc(game);
     display_health(game, player, 0);
     display_guns(game, player, 0);
@@ -103,6 +104,8 @@ int display(game_t *game, player_t *player)
 
 int game(game_t *game, player_t *player, sfEvent event)
 {
+    stop_music(game->sounds->all_musics[1]);
+    play_music(game->sounds->all_musics[0]);
     while (game->scene == Game) {
         update_clock(game);
         view_update(game, player);
@@ -113,4 +116,5 @@ int game(game_t *game, player_t *player, sfEvent event)
         fill_mouse(game, player);
         display(game, player);
     }
+    return 0;
 }

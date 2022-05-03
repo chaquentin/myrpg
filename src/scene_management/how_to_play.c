@@ -77,6 +77,7 @@ int help(game_t *game, player_t *player, sfEvent event)
         game->scene = Quit;
     else
         init_help_sprite(sprite, box);
+    stop_music(game->sounds->all_musics[1]);
     while (game->scene == Help) {
         get_how_event(game, &event, button, languages_button);
         update_flag_sound(game, sound, &sound_index, &sprite);

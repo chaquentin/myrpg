@@ -2,13 +2,13 @@ NORM:
 'W' = wall ext
 'w' = wall int
 ' ' = floor
-'t' = table
+'e' = down elevator
+'E' = up elevator
 'C' = chair
 'c' = carpet
-'S' = sink
 &
 WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
-W   w      w    w              W
+W   w      w EE w              W
 W   w      w    w              W
 W   w      w    w   wwwwwwwwwwwW
 W   w   w                      W
@@ -37,26 +37,33 @@ Gangster 1200 950
 Hoods 150 100
 Hoods 700 950
 &
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
+W     w  EE  w ee w            W
+W     w      w    w   w        W
+W            w        w        W
+W     wwwwwwwwwwwwwwwww        W
+W                     w   wwwwwW
+W                     w   w    W
+W             w       w   w    W
+W    w                w   w  wwW
+W    w                w        W
+W    w                w        W
+W    w        w       w        W
+W    w                w        W
+W    w                w        W
+W    w      wwww      w        W
+W              w               W
+W              w               W
+WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
 !
-3
-EnemyGun1 1 2
-Bruh 2 3
-Dick 3 4
+10
+Gangster 240 180
+Gangster 660 180
+Hoods 1800 180
+Durag 1860 480
+Gangster 720 420
+Gangster 1200 480
+Gangster 1740 840
+Hoods 720 840
+Hoods 240 780
+Gangster 900 960

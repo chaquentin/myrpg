@@ -42,6 +42,7 @@ int menu(game_t *game, player_t *player, sfEvent event)
         sfRenderWindow_drawSprite(game->window, mexicano->sprite, NULL);
         display_button(button, game);
         sfRenderWindow_display(game->window);
+        play_music(game->sounds->all_musics[1]);
     }
     destroy_sprite(mexicano);
     return destroy_button(button);

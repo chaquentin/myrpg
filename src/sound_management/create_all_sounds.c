@@ -14,7 +14,8 @@ static const char *sounds_file[8] = {"asset/sounds/chinese.ogg",
 "asset/sounds/german.ogg", "asset/sounds/the_best.ogg",
 "asset/sounds/arabe.ogg", "asset/sounds/piou.ogg"};
 
-static const char *musics_file[1] = {};
+static const char *musics_file[3] = {"asset/sounds/game_song.ogg",
+"asset/sounds/menu_song.ogg"};
 
 int my_arrlen(const char *src[])
 {
@@ -34,8 +35,8 @@ sfMusic **create_all_musics(void)
     if (!all_musics)
         return NULL;
     all_musics[length] = NULL;
-    for (int i = 0; all_musics[i]; i++) {
-        all_musics[i] = sfMusic_createFromFile(sounds_file[i]);
+    for (int i = 0; i < length; i++) {
+        all_musics[i] = sfMusic_createFromFile(musics_file[i]);
         if (!all_musics[i]) {
             all_musics[i] = NULL;
             destroy_musics(all_musics);
