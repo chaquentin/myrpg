@@ -16,7 +16,7 @@ static const char *sounds_file[8] = {"asset/sounds/chinese.ogg",
 
 static const char *musics_file[1] = {};
 
-static int my_arrlen(const char *src[])
+int my_arrlen(const char *src[])
 {
     int i = 0;
 

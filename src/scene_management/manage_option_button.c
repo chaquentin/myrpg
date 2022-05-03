@@ -53,6 +53,7 @@ button_t **button, int i)
         }
         button[i]->is_click = 0;
     }
+    return 0;
 }
 
 static int option_button_management(game_t *game, sfEvent *event,

@@ -67,7 +67,7 @@ int option(game_t *game, player_t *player, sfEvent event)
 
     if (!mexicano || !sprite || !button || !option_button || !option)
         game->scene = Quit;
-    sfSprite_setPosition(sprite, (sfVector2f) {450, 50});
+    sfSprite_setPosition(sprite, (sfVector2f) {600, 50});
     sfSprite_setScale(sprite, (sfVector2f) {2, 2});
     while (game->scene == Option) {
         get_option_event(game, &event, button, option_button);

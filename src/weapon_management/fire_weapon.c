@@ -13,12 +13,11 @@
 
 int fire_weapon(game_t *game, player_t *player)
 {
-    bullet_t *bullet = malloc(sizeof(bullet_t));
+    bullet_t *bullet = create_bullet(game, player->pos, player->weapon->damage,
+    sfSprite_getRotation(player->sprite));
 
     if (bullet == NULL)
         return 84;
-    bullet = create_bullet(game, player->pos, player->weapon->damage,
-    sfSprite_getRotation(player->sprite));
     append(game->bullets, bullet);
     return 0;
 }

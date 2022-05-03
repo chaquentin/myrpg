@@ -17,6 +17,10 @@ static void get_game_event(game_t *game, sfEvent *event, player_t *player)
             manage_key_pressed(game, event->key.code, player);
         if (event->type == sfEvtKeyReleased)
             manage_key_released(event->key.code, player);
+        if (event->type == sfEvtMouseButtonPressed)
+            player->is_clicked = sfTrue;
+        if (event->type == sfEvtMouseButtonReleased)
+            player->is_clicked = sfFalse;
     }
     if (player->is_clicked && player->weapon->ammo > 0)
         shoot(game, player, 1);
@@ -87,8 +91,10 @@ int display(game_t *game, player_t *player)
 {
     display_map_sprite(game);
     display_enemies(game);
+    display_bullets(game->bullets, game);
     display_player(game, player);
     enemy_actions(game, player);
+    display_all_npc(game);
     display_health(game, player, 0);
     display_guns(game, player, 0);
     sfRenderWindow_display(game->window);
@@ -97,12 +103,14 @@ int display(game_t *game, player_t *player)
 
 int game(game_t *game, player_t *player, sfEvent event)
 {
-    update_clock(game);
-    view_update(game, player);
-    sfRenderWindow_clear(game->window, sfBlack);
-    get_game_event(game, &event, player);
-    move_player(game, player);
-    fill_mouse(game, player);
-    display(game, player);
-    return 0;
+    while (game->scene == Game) {
+        update_clock(game);
+        view_update(game, player);
+        sfRenderWindow_clear(game->window, sfBlack);
+        npc_event(game, player);
+        get_game_event(game, &event, player);
+        move_player(game, player);
+        fill_mouse(game, player);
+        display(game, player);
+    }
 }

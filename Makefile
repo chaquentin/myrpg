@@ -28,7 +28,8 @@ $(eval SRC=$(addprefix src/, $(SRC)))
 
 PLAYER_MANAGEMENT = player_creation.c	\
 	display_player.c					\
-	move_player.c
+	move_player.c						\
+	manage_collision.c
 $(eval PLAYER_MANAGEMENT=\
 	$(addprefix src/player_management/, $(PLAYER_MANAGEMENT)))
 
@@ -114,6 +115,11 @@ SOUNDS_MANAGEMENT = create_all_sounds.c	\
 $(eval SOUNDS_MANAGEMENT=\
 	$(addprefix src/sound_management/, $(SOUNDS_MANAGEMENT)))
 
+NPC_MANAGEMENT = npc_creation.c			\
+	display_npc.c						\
+	npc_action.c
+$(eval NPC_MANAGEMENT=$(addprefix src/npc_management/, $(NPC_MANAGEMENT)))
+
 OBJ = 	$(SRC:.c=.o) 					\
 		$(CLOTHES_MANAGEMENT:.c=.o)		\
 		$(ENEMY_MANAGEMENT:.c=.o)		\
@@ -128,6 +134,7 @@ OBJ = 	$(SRC:.c=.o) 					\
 		$(SCENE_MANAGEMENT:.c=.o)		\
 		$(DRAWING_FUNCTIONS:.c=.o)		\
 		$(SOUNDS_MANAGEMENT:.c=.o)		\
+		$(NPC_MANAGEMENT:.c=.o)
 
 %.o: %.c
 	@$(CC) -c $< $(CFLAGS) -o $@

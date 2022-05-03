@@ -51,13 +51,13 @@ int manage_key_pressed(game_t *game, sfKeyCode key_code, player_t *player)
         game->scene = Quit;
     if (key_code == sfKeyR)
         reload(game, player, 1);
-    if (key_code == sfKeySpace)
-        player->is_clicked = sfTrue;
     if (key_code == sfKeyE)
         if (player->weapon->weapon < 10)
             change_weapon(player, game, player->weapon->weapon + 1);
         else
             change_weapon(player, game, 0);
+    if (key_code == sfKeySpace)
+        printf("yes\n");
     return 0;
 }
 
@@ -66,7 +66,5 @@ int manage_key_released(sfKeyCode key_code, player_t *player)
     for (int i = 0; i < 4; i++)
         if (key_code == keys[i])
             player->movement[i] = 0;
-    if (key_code == sfKeySpace)
-        player->is_clicked = sfFalse;
     return 0;
 }

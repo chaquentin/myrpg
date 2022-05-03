@@ -41,6 +41,8 @@
     int shoot(game_t *game, player_t *player, int is_click);
     int update_sprite(player_t *player, game_t *game);
     int change_weapon(player_t *player, game_t *game, enum weapon type);
+    int manage_player_colision(game_t *game, player_t *player,
+    sfVector2i movement);
 
     int destroy_player(game_t *game, player_t *player);
     int destroy_weapon(weapon_t *weapon);
@@ -105,6 +107,7 @@
     int my_strlen(const char *str);
     char *tranform_in_str(int nbr);
     char *get_file(const char *path);
+    int my_arrlen(const char *src[]);
 
     void my_free_word_array(char **array);
 
@@ -175,9 +178,10 @@
 
 //==============================NPC=MANAGEMENT===============================//
 
-    npc_t *create_npc(game_t *game, enum player which_npc, sfVector2f pos,
-    char *dialogue_path);
+    npc_t **create_all_npc(game_t *game);
+    int display_all_npc(game_t *game);
+    int npc_event(game_t *game, player_t *player);
 
-    int destroy_npc(npc_t *npc);
+    int destroy_all_npc(npc_t **npc);
 
 #endif

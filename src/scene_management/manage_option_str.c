@@ -9,7 +9,7 @@
 #include "prototype.h"
 #include "structure.h"
 
-static sfVector2f txt_pos[] = {{770, 190}, {770, 430}, {900, 700},
+static sfVector2f txt_pos[] = {{650, 160}, {650, 410}, {900, 700},
 {900, 300}, {900, 520}, {900, 800}};
 
 char *tranform_in_str(int nbr)

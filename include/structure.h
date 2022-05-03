@@ -35,6 +35,8 @@
     typedef struct npc_s {
         sfSprite *sprite;
         sfVector2f pos;
+        sfBool is_player_seen;
+        sfBool is_slected;
         char **all_dialogs;
         int stage;
     } npc_t;
@@ -118,11 +120,11 @@
         sfView *view;
         sfSprite ***all_sprite;
         sfRenderWindow *window;
+        npc_t **all_npc;
         sfTexture *texture;
         sfText *text;
         sfFont *font;
         sfClock *clock;
-        all_bullet_t *all_bullets;
         enum levels current_level;
         enum game_scene scene;
         int framerate_limit;

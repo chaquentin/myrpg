@@ -28,7 +28,7 @@
     enum decor {WoodenFloor, ErrorSprite, OptionGround, HowToPlayGround,
     Chinese, Usa, Spain, Deutsch, Euskara, Arabe};
     static const sfIntRect decor_rect[NBR_DECOR] = {{0, 0, 64, 64},
-    {0, 64, 64, 64}, {1334, 256, 512, 512}, {1334, 768, 576, 512},
+    {0, 64, 64, 64}, {1398, 256, 512, 512}, {1334, 768, 576, 512},
     {0, 256, 64, 64}, {0, 64, 64, 64}, {0, 128, 64, 64}, {0, 192, 64, 64},
     {0, 320, 64, 64}, {0, 384, 64, 64}};
 
@@ -72,8 +72,8 @@
     static const sfIntRect player_rect[NBR_PLAYER] = {{192, 0, 64, 64},
     {256, 0, 64, 64}, {320, 0, 64, 64}, {384, 0, 64, 64}, {192, 64, 64, 64},
     {256, 64, 64, 64}, {320, 64, 64, 64}, {384, 64, 64, 64},
-    {320, 192, 64, 64}, {320, 256, 64, 64}, {320, 322, 64, 64},
-    {320, 388, 64, 64}};
+    {320, 192, 64, 64}, {330, 290, 54, 64}, {320, 322, 64, 64},
+    {320, 408, 64, 64}};
 
     enum shirt {TankRifle, TankGun, BlackRifle, BlackGun,
     FlowerRifle, FlowerGun, FireRifle, FireGun};
