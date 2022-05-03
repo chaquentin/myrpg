@@ -110,7 +110,8 @@ DRAWING_FUNCTIONS = draw_line.c			\
 $(eval DRAWING_FUNCTIONS=$(addprefix src/drawing_functions/, $(DRAWING_FUNCTIONS)))
 
 SOUNDS_MANAGEMENT = create_all_sounds.c	\
-	destroy_sounds.c
+	destroy_sounds.c \
+	play_music.c
 $(eval SOUNDS_MANAGEMENT=\
 	$(addprefix src/sound_management/, $(SOUNDS_MANAGEMENT)))
 

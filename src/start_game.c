@@ -97,6 +97,7 @@ int display(game_t *game, player_t *player)
 
 int game(game_t *game, player_t *player, sfEvent event)
 {
+    stop_music(game->sounds->all_musics[1]);
     update_clock(game);
     view_update(game, player);
     sfRenderWindow_clear(game->window, sfBlack);
@@ -104,5 +105,6 @@ int game(game_t *game, player_t *player, sfEvent event)
     move_player(game, player);
     fill_mouse(game, player);
     display(game, player);
+    play_music(game->sounds->all_musics[0]);
     return 0;
 }

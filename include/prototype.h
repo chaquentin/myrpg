@@ -138,6 +138,9 @@
     int destroy_sounds(sounds_t *sounds);
     int destroy_sounds_buffer(sfSoundBuffer **soud_buffer);
     int destroy_musics(sfMusic **musics);
+    void play_music(sfMusic *music);
+    int destroy_music(sfMusic *music);
+    int stop_music(sfMusic *music);
 
 //=================================BULLETS===================================//
 
