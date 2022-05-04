@@ -17,12 +17,14 @@
     enum game_scene {Quit, Menu, Game, Option, Pause, Win, Help};
 
     enum enemy_types {Gangster, Hoods, Durag};
-    static int shooting_distance[3] = {100, 200, 500};
-    static int shooting_speed[3] = {1, 2, 3};
+    static int shooting_dist[3] = {200, 300, 499};
+    static int shooting_speed[3] = {10, 20, 30};
+    static int shooting_damage[3] = {5, 10, 25};
 
     #define NBR_ACTIONS 3
-    #define MIN_TIME_IDLE 100
-    #define MAX_TIME_IDLE 200
-    #define VIEW_DISTANCE 250
+    #define MIN_TIME_IDLE 250
+    #define MAX_TIME_IDLE 500
+    #define VIEW_DISTANCE 500
+    #define ENEMY_SPEED 50
 
 #endif

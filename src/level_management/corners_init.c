@@ -31,17 +31,17 @@ line_t get_coos(sfVector2i pos, level_t *level, char c)
     line_t line = (line_t) {(sfVector2f) {-1, -1}, (sfVector2f) {-1, -1}};
 
     if (c == 'N' || c == 'W')
-        line.pos1 = (sfVector2f){pos.x, pos.y};
+        line.pos1 = (sfVector2f) {pos.x, pos.y};
     if (c == 'S')
-        line.pos1 = (sfVector2f){pos.x, pos.y + 1};
+        line.pos1 = (sfVector2f) {pos.x, pos.y + 1};
     if (c == 'E')
-        line.pos1 = (sfVector2f){pos.x + 1, pos.y};
+        line.pos1 = (sfVector2f) {pos.x + 1, pos.y};
     if (c == 'N')
-        line.pos2 = (sfVector2f){pos.x + 1, pos.y};
+        line.pos2 = (sfVector2f) {pos.x + 1, pos.y};
     if (c == 'S' || c == 'E')
-        line.pos2 = (sfVector2f){pos.x + 1, pos.y + 1};
+        line.pos2 = (sfVector2f) {pos.x + 1, pos.y + 1};
     if (c == 'W')
-        line.pos2 = (sfVector2f){pos.x, pos.y + 1};
+        line.pos2 = (sfVector2f) {pos.x, pos.y + 1};
     line.pos1.x *= (64 * 0.9375);
     line.pos1.y *= (64 * 0.9375);
     line.pos2.x *= (64 * 0.9375);
@@ -74,15 +74,22 @@ line_t *create_map_walls(level_t *level, game_t *game)
 {
     int nbr_walls = count_walls(level);
     line_t *walls = malloc(sizeof(line_t) * (nbr_walls + 1));
-    int x = 0;
-    int y = 0;
+    sfVector2i p = {0, 0};
     int index = 0;
+    float size = (64 * 0.9375);
 
     walls[nbr_walls] = (line_t) {(sfVector2f) {-1, -1}, (sfVector2f) {-1, -1}};
     for (int i = 0; i < level->size.y * level->size.x; i++) {
-        y = i / level->size.x;
-        x = i % level->size.x;
-        index += (add_wall((sfVector2i) {x, y}, level, walls, index));
+        p.y = i / level->size.x;
+        p.x = i % level->size.x;
+        if (level->map[p.y][p.x] == 'W' || level->map[p.y][p.x] == 'w') {
+            walls[index] = (line_t) {(sfVector2f) {p.x * size, p.y * size},
+            (sfVector2f) {(p.x + 1) * size, (p.y + 1) * size}};
+            walls[index + 1] = (line_t) {(sfVector2f) {p.x * size, (p.y + 1) *
+            size}, (sfVector2f) {(p.x + 1) * size, p.y * size}};
+            index += 2;
+        }
+        index += (add_wall((sfVector2i) {p.x, p.y}, level, walls, index));
     }
     return walls;
 }

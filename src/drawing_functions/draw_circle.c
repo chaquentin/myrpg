@@ -7,11 +7,12 @@
 
 #include <SFML/Graphics.h>
 
-void draw_circle(sfRenderWindow *window, sfVector2f pos, float radius, sfColor color)
-{      
+void draw_circle(sfRenderWindow *window, sfVector2f pos, float radius,
+sfColor color)
+{
     sfCircleShape *circle = sfCircleShape_create();
 
-    sfCircleShape_setOrigin(circle, (sfVector2f){radius, radius});
+    sfCircleShape_setOrigin(circle, (sfVector2f) {radius, radius});
     sfCircleShape_setPosition(circle, pos);
     sfCircleShape_setOutlineColor(circle, color);
     sfCircleShape_setOutlineThickness(circle, 2);

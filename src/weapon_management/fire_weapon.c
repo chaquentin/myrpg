@@ -11,11 +11,24 @@
 #include "structure.h"
 #include "prototype.h"
 
+int fire_weapon_enemy(game_t *game, enemy_t *enemy)
+{
+    bullet_t *bullet = create_bullet(game, enemy->pos,
+    shooting_damage[enemy->type], enemy->angle);
+
+    bullet->fired_from = EnemyType;
+    if (bullet == NULL)
+        return 84;
+    append(game->bullets, bullet);
+    return 0;
+}
+
 int fire_weapon(game_t *game, player_t *player)
 {
     bullet_t *bullet = create_bullet(game, player->pos, player->weapon->damage,
     sfSprite_getRotation(player->sprite));
 
+    bullet->fired_from = PlayerType;
     if (bullet == NULL)
         return 84;
     append(game->bullets, bullet);
@@ -32,5 +45,4 @@ int update_bullets(game_t *game)
         tmp->pos.x += 1000 * sin(tmp->angle * M_PI / 180) * game->delta_time;
         tmp = tmp->next;
     }
-    
 }

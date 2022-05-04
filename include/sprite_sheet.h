@@ -23,7 +23,9 @@
     #define NBR_BUTTON 21
     #define SPRITESHEET_PATH "asset/sprite_sheet.png"
 
-    enum type{Decor, Wall, Player, Shirt, Hat, Pants, Weapon, Enemy, Button};
+    enum type {Decor, Wall, Player, Shirt, Hat, Pants, Weapon, Enemy, Button};
+
+    enum entity {PlayerType, EnemyType};
 
     enum decor {WoodenFloor, ErrorSprite, OptionGround, HowToPlayGround,
     Chinese, Usa, Spain, Deutsch, Euskara, Arabe};

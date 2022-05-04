@@ -31,15 +31,10 @@ enemy_t *enemy_create(sfVector2f idle_around, char *name, game_t *game)
 
     if (enemy == NULL || turn == NULL)
         return NULL;
-    idle_around = (sfVector2f){(idle_around.x + 0.5), (idle_around.y + 0.5)};
     turn->start_angle = 0.0;
     turn->add_angle = (get_randint(0, 200) - 100) / 500.0;
     enemy->type = get_enemy_type(name);
-    enemy->sprite = NULL;
-    if (enemy->type != -1) {
-        enemy->sprite = game->all_sprite[Enemy][1 + enemy->type * 3];
-        sfSprite_setOrigin(enemy->sprite, (sfVector2f) {32, 32});
-    }
+    enemy->sprite = game->all_sprite[Enemy][1 + enemy->type * 3];
     enemy->player_pos = (sfVector2f) {-1, -1};
     enemy->pos = idle_around;
     enemy->idle_around = idle_around;
@@ -50,6 +45,7 @@ enemy_t *enemy_create(sfVector2f idle_around, char *name, game_t *game)
     enemy->current_action = Turn;
     enemy->health = 100;
     enemy->angle = 0.0;
+    enemy->last_shot = 0;
     return enemy;
 }
 
@@ -60,11 +56,15 @@ enemy_t **enemies_create(char *enemies_data, game_t *game)
     enemy_t **enemy_array = malloc(sizeof(enemy_t *) * (nbr_enemies + 1));
     char **enemy = NULL;
 
+    if (enemy_array == NULL || enemies == NULL)
+        return NULL;
+    for (int i = 0; i < NBR_ENEMIES; i++)
+        sfSprite_setOrigin(game->all_sprite[Enemy][i], (sfVector2f) {32, 32});
     enemy_array[nbr_enemies] = NULL;
     for (int i = 0; i < nbr_enemies; i++) {
         enemy = my_str_to_word_array(enemies[i + 1], " ");
-        enemy_array[i] = enemy_create((sfVector2f) {my_atoi(enemy[1]),
-        my_atoi(enemy[2])}, enemy[0], game);
+        enemy_array[i] = enemy_create((sfVector2f) {my_atoi(enemy[1]) + 0.5,
+        my_atoi(enemy[2]) + 0.5}, enemy[0], game);
         my_free_word_array(enemy);
     }
     my_free_word_array(enemies);

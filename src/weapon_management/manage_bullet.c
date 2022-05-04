@@ -17,14 +17,14 @@ static int manage_bullet_enemy_colision(game_t *game, bullet_t *bullet)
     for (int i = 0; enemy[i]; i++) {
         enemy_hitbox = (sfIntRect) {enemy[i]->pos.x - 30, enemy[i]->pos.y - 30,
         54, 54};
-        if (enemy[i]->type == -1 || enemy[i]->alive == sfFalse)
+        if (enemy[i]->type == -1 || enemy[i]->alive == sfFalse
+        || bullet->fired_from == EnemyType)
             continue;
         if (sfIntRect_intersects(&bullet_hitbox, &enemy_hitbox, NULL)) {
             game->levels[game->current_level]->enemies[i]->health -=
             bullet->damage;
             game->levels[game->current_level]->enemies[i]->alive =
-            (game->levels[game->current_level]->enemies[i]->health > 0) ?
-            sfTrue : sfFalse;
+            (game->levels[game->current_level]->enemies[i]->health > 0) ? 1 : 0;
             remove_id(game->bullets, bullet->id);
             return (1);
         }

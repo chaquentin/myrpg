@@ -90,6 +90,8 @@ int display_health(game_t *game, player_t *player, int is_destruct)
 int display(game_t *game, player_t *player)
 {
     display_map_sprite(game);
+    if (game->debug)
+        enemy_debug(game, player);
     display_enemies(game);
     display_bullets(game->bullets, game);
     display_player(game, player);

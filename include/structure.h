@@ -20,6 +20,7 @@
         sfSound *sound;
         sfVector2f pos;
         sfVector2f stop_pos;
+        enum entity fired_from;
         int id;
         int damage;
         float angle;
@@ -97,6 +98,7 @@
         float angle;
         int idled_since;
         int health;
+        int last_shot;
     } enemy_t;
 
     typedef struct line_s {

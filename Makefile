@@ -57,14 +57,16 @@ $(eval CLOTHES_MANAGEMENT=\
 
 MATHS_MANAGEMENT = is_intersection.c 	\
 	get_distance.c						\
-	get_randint.c
+	get_randint.c						\
+	get_angle.c
 $(eval MATHS_MANAGEMENT=$(addprefix src/maths_management/, $(MATHS_MANAGEMENT)))
 
 ENEMY_MANAGEMENT = enemy_init.c 		\
 	display_enemies.c					\
 	enemy_action.c						\
 	enemy_turn.c						\
-	enemy_debug.c
+	enemy_debug.c						\
+	enemy_behaviours.c
 $(eval ENEMY_MANAGEMENT=$(addprefix src/enemy_management/, $(ENEMY_MANAGEMENT)))
 
 LEVEL_MANAGEMENT = create_map.c 		\
@@ -72,7 +74,8 @@ LEVEL_MANAGEMENT = create_map.c 		\
 	room_init.c 						\
 	display_sprite.c					\
 	corners_init.c						\
-	corners_count.c
+	corners_count.c						\
+	open_file.c
 $(eval LEVEL_MANAGEMENT=\
 	$(addprefix src/level_management/, $(LEVEL_MANAGEMENT)))
 
@@ -107,7 +110,6 @@ $(eval VIEW_MANAGEMENT=$(addprefix src/view_management/, $(VIEW_MANAGEMENT)))
 
 DRAWING_FUNCTIONS = draw_line.c			\
 	draw_point.c						\
-	draw_rays.c							\
 	draw_circle.c
 $(eval DRAWING_FUNCTIONS=$(addprefix src/drawing_functions/, $(DRAWING_FUNCTIONS)))
 

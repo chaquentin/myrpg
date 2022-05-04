@@ -68,6 +68,7 @@
     sfTexture *create_map_texture(game_t *game, char **map, level_t *level);
     level_t **create_levels(char *path, game_t *game);
     void display_map_sprite(game_t *game);
+    char *open_file(char *path);
 
     line_t *create_map_walls(level_t *level, game_t *game);
     int count_walls(level_t *level);
@@ -79,14 +80,18 @@
 
 //=================================ENEMIES==================================//
 
-    enemy_t **enemies_create(char *enemies_data, game_t *game);
-    void display_enemies(game_t *game);
-    int enemy_actions(game_t *game, player_t *player);
-    int enemy_turn(game_t *game, enemy_t *enemy);
+    enemy_t **enemies_create(char *, game_t *);
+    void display_enemies(game_t *);
+    int enemy_actions(game_t *, player_t *);
+    int enemy_turn(game_t *, enemy_t *);
 
-    int enemy_debug(game_t *game, player_t *player);
+    int enemy_idle(game_t *, player_t *, int);
+    int enemy_search(game_t *, player_t *, int);
+    int enemy_attack(game_t *, player_t *, int);
 
-    void destroy_enemies(enemy_t **enemies);
+    int enemy_debug(game_t *, player_t *);
+
+    void destroy_enemies(enemy_t **);
 
 //==================================EVENTS===================================//
 
@@ -120,20 +125,16 @@
 
 //=============================DRAWING=FUNCTIONS=============================//
 
-    void draw_line(game_t *game, sfVector2f p1, sfVector2f p2, sfColor color,
-    int thick);
-    void draw_point(sfRenderWindow *window, sfVector2f point, sfColor color,
-    int size);
-    void draw_rays(player_t *player, game_t *game, line_t *walls);
-    void draw_circle(sfRenderWindow *window, sfVector2f pos, float radius, 
-    sfColor color);
+    void draw_line(game_t *, sfVector2f, sfVector2f, sfColor, int);
+    void draw_point(sfRenderWindow *, sfVector2f, sfColor, int);
+    void draw_circle(sfRenderWindow *, sfVector2f, float, sfColor);
 
 //===================================MATH====================================//
 
-    sfVector2f is_intersection(sfVector2f p1, sfVector2f p2,
-    sfVector2f p3, sfVector2f p4);
-    float get_distance(sfVector2f p1, sfVector2f p2);
-    int get_randint(int min, int max);
+    sfVector2f is_intersection(sfVector2f, sfVector2f, sfVector2f, sfVector2f);
+    float get_distance(sfVector2f, sfVector2f);
+    int get_randint(int, int);
+    float get_angle(sfVector2f, sfVector2f);
 
 //==================================SOUNDS===================================//
 
@@ -152,6 +153,7 @@
     int add_first(all_bullet_t *list, bullet_t *bullet);
     int append(all_bullet_t *list, bullet_t *bullet);
     int fire_weapon(game_t *game, player_t *player);
+    int fire_weapon_enemy(game_t *game, enemy_t *enemy);
     int display_bullets(all_bullet_t *list, game_t *game);
     int update_bullets(game_t *game);
     int manage_bullet(game_t *game, player_t *player);
