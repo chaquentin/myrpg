@@ -15,6 +15,7 @@
     #include "enemies.h"
     #include "level.h"
 
+<<<<<<< HEAD
     typedef struct bullet_s {
         sfSprite *sprite;
         sfSound *sound;
@@ -41,6 +42,13 @@
         char **all_dialogs;
         int stage;
     } npc_t;
+=======
+    typedef struct frambuffer_s{
+        unsigned int width;
+        unsigned int height;
+        sfUint8 *pixels;
+    } framebuffer_t;
+>>>>>>> particle
 
     typedef struct text_option_s {
         char *txt[6];
@@ -120,6 +128,7 @@
         all_bullet_t *bullets;
         level_t **levels;
         sounds_t *sounds;
+        framebuffer_t *framebuffer;
         sfView *view;
         sfSprite ***all_sprite;
         sfRenderWindow *window;

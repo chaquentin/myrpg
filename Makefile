@@ -47,7 +47,6 @@ $(eval WINDOW_MANAGEMENT=\
 	$(addprefix src/window_management/, $(WINDOW_MANAGEMENT)))
 
 EVENT_MANAGEMENT = manage_key.c 		\
-	manage_particles.c					\
 	get_global_event.c
 $(eval EVENT_MANAGEMENT=$(addprefix src/manage_event/, $(EVENT_MANAGEMENT)))
 
@@ -124,6 +123,13 @@ NPC_MANAGEMENT = npc_creation.c			\
 	npc_action.c
 $(eval NPC_MANAGEMENT=$(addprefix src/npc_management/, $(NPC_MANAGEMENT)))
 
+FRAMEBUFFER = draw_framebuffer.c\
+	fill_framebuffer.c\
+	framebuffer_init.c\
+	lines_framebuffer.c\
+	put_pixel_framebuffer.c
+$(eval FRAMEBUFFER=$(addprefix src/framebuffer/, $(FRAMEBUFFER)))
+
 OBJ = 	$(SRC:.c=.o) 					\
 		$(CLOTHES_MANAGEMENT:.c=.o)		\
 		$(ENEMY_MANAGEMENT:.c=.o)		\
@@ -136,7 +142,7 @@ OBJ = 	$(SRC:.c=.o) 					\
 		$(WINDOW_MANAGEMENT:.c=.o) 		\
 		$(VIEW_MANAGEMENT:.c=.o)		\
 		$(SCENE_MANAGEMENT:.c=.o)		\
-		$(DRAWING_FUNCTIONS:.c=.o)		\
+		$(FRAMEBUFFER:.c=.o)		\
 		$(SOUNDS_MANAGEMENT:.c=.o)		\
 		$(NPC_MANAGEMENT:.c=.o)
 

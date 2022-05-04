@@ -116,7 +116,11 @@ game_t *create_game(int debug)
     }
     game->current_level = 0;
     game->view = create_view(game, game->debug);
+<<<<<<< HEAD
     sfSprite_setScale(game->all_sprite[Weapon][Bullet],
     (sfVector2f) {0.25, 0.25});
+=======
+    game->framebuffer = framebuffer_create(1920, 1080);
+>>>>>>> particle
     return game;
 }
