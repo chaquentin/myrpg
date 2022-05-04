@@ -107,11 +107,6 @@ VIEW_MANAGEMENT = view_init.c			\
 	view_update.c
 $(eval VIEW_MANAGEMENT=$(addprefix src/view_management/, $(VIEW_MANAGEMENT)))
 
-DRAWING_FUNCTIONS = draw_line.c			\
-	draw_point.c						\
-	draw_circle.c
-$(eval DRAWING_FUNCTIONS=$(addprefix src/drawing_functions/, $(DRAWING_FUNCTIONS)))
-
 SOUNDS_MANAGEMENT = create_all_sounds.c	\
 	destroy_sounds.c \
 	play_music.c

@@ -23,7 +23,7 @@ int enemy_debug(game_t *game, player_t *player)
             color = sfRed;
         else
             color = sfGreen;
-        draw_line(game, walls[i].pos1, walls[i].pos2, color, 2);
+        //draw_line(game, walls[i].pos1, walls[i].pos2, color, 2);
     }
 
     for (int i = 0; enemies[i]; i++) {
@@ -36,7 +36,7 @@ int enemy_debug(game_t *game, player_t *player)
         if (enemies[i]->behaviour == Attacking)
             color = sfRed;
 
-        draw_circle(game->window, enemies[i]->pos, shooting_dist[enemies[i]->type], color);
-        draw_circle(game->window, enemies[i]->pos, VIEW_DISTANCE, color);
+        //draw_circle(game->window, enemies[i]->pos, shooting_dist[enemies[i]->type], color);
+        //draw_circle(game->window, enemies[i]->pos, VIEW_DISTANCE, color);
     }
 }
