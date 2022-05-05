@@ -8,6 +8,9 @@
 #include <stdlib.h>
 #include "prototype.h"
 
+static const int (*all_action[4])(game_t *game, player_t *player) = {NULL,
+matthias_action, NULL, luca_action};
+
 static char **get_dialogue(char *filepath)
 {
     char *buffer = get_file(filepath);
@@ -58,6 +61,7 @@ char *dialogue_path)
     new_npc->all_dialogs = get_dialogue(dialogue_path);
     new_npc->is_player_seen = sfFalse;
     new_npc->is_slected = sfFalse;
+    new_npc->action = all_action[which_npc - Antonin];
     return new_npc;
 }
 

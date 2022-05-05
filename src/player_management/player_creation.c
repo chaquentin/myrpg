@@ -51,8 +51,12 @@ static player_t *init_player(void)
     player->delta_time = 0;
     player->swag = 0;
     player->pos = (sfVector2f) {928, 928};
-    player->player = PlayerGun1;
+    player->player = PlayerRifle1;
     player->sprite = NULL;
+    player->crit_rate = 0;
+    player->damage_reduction = 0;
+    player->level = 1;
+    player->xp = 0;
     return player;
 }
 

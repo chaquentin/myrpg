@@ -8,7 +8,33 @@
 #include "structure.h"
 #include "prototype.h"
 
-static int manage_bullet_enemy_colision(game_t *game, bullet_t *bullet)
+static int manage_bullet_player_collision(game_t *game, player_t *player,
+bullet_t *bullet)
+{
+    sfIntRect bullet_hitbox = {bullet->pos.x, bullet->pos.y, 20, 20};
+    sfIntRect player_hitbox = {player->pos.x - 32, player->pos.y - 32, 64, 64};
+
+    if (bullet->fired_from == PlayerType)
+        return 0;
+    if (sfIntRect_intersects(&bullet_hitbox, &player_hitbox, NULL)) {
+        player->health -= bullet->damage;
+        remove_id(game->bullets, bullet->id);
+        return (1);
+    }
+    return (0);
+}
+
+static int verify_enemy_dead(enemy_t **enemy, player_t *player, int i)
+{
+    if (enemy[i]->alive == sfTrue && enemy[i]->health <= 0) {
+        enemy[i]->alive = sfFalse;
+        player->swag += player->weapon->swag;
+        player->xp += 2 * ((1 + enemy[i]->type) * (1 + enemy[i]->type));
+    }
+}
+
+static int manage_bullet_enemy_colision(game_t *game, bullet_t *bullet,
+player_t *player)
 {
     enemy_t **enemy = game->levels[game->current_level]->enemies;
     sfIntRect bullet_hitbox = {bullet->pos.x, bullet->pos.y, 20, 20};
@@ -23,8 +49,7 @@ static int manage_bullet_enemy_colision(game_t *game, bullet_t *bullet)
         if (sfIntRect_intersects(&bullet_hitbox, &enemy_hitbox, NULL)) {
             game->levels[game->current_level]->enemies[i]->health -=
             bullet->damage;
-            game->levels[game->current_level]->enemies[i]->alive =
-            (game->levels[game->current_level]->enemies[i]->health > 0) ? 1 : 0;
+            verify_enemy_dead(enemy, player, i);
             remove_id(game->bullets, bullet->id);
             return (1);
         }
@@ -60,7 +85,8 @@ int manage_bullet(game_t *game, player_t *player)
 
     while (bullet != NULL) {
         next = bullet->next;
-        if (!manage_bullet_enemy_colision(game, bullet))
+        if (!manage_bullet_enemy_colision(game, bullet, player) &&
+        !manage_bullet_player_collision(game, player, bullet))
             manage_bullet_wall_colision(game, bullet);
         bullet = next;
     }

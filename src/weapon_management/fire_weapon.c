@@ -25,9 +25,13 @@ int fire_weapon_enemy(game_t *game, enemy_t *enemy)
 
 int fire_weapon(game_t *game, player_t *player)
 {
-    bullet_t *bullet = create_bullet(game, player->pos, player->weapon->damage,
-    sfSprite_getRotation(player->sprite));
+    bullet_t *bullet = NULL;
+    int damage = player->weapon->damage;
 
+    if (rand() % 100 < player->crit_rate)
+        damage *= 2;
+    bullet = create_bullet(game, player->pos, damage,
+    sfSprite_getRotation(player->sprite));
     bullet->fired_from = PlayerType;
     if (bullet == NULL)
         return 84;

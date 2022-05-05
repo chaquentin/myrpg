@@ -29,7 +29,8 @@ $(eval SRC=$(addprefix src/, $(SRC)))
 PLAYER_MANAGEMENT = player_creation.c	\
 	display_player.c					\
 	move_player.c						\
-	manage_collision.c
+	manage_collision.c					\
+	display_player_stats.c
 $(eval PLAYER_MANAGEMENT=\
 	$(addprefix src/player_management/, $(PLAYER_MANAGEMENT)))
 
@@ -115,7 +116,10 @@ $(eval SOUNDS_MANAGEMENT=\
 
 NPC_MANAGEMENT = npc_creation.c			\
 	display_npc.c						\
-	npc_action.c
+	npc_action.c						\
+	luca_action.c						\
+	matthias_action.c					\
+	writte_dialogue.c
 $(eval NPC_MANAGEMENT=$(addprefix src/npc_management/, $(NPC_MANAGEMENT)))
 
 FRAMEBUFFER = draw_framebuffer.c\

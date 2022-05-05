@@ -6,8 +6,19 @@
 */
 
 #include <stdlib.h>
+#include <unistd.h>
 #include "prototype.h"
 #include "structure.h"
+
+static int manage_mouse_click(sfEvent *event, player_t *player)
+{
+    if (event->type == sfEvtMouseButtonPressed &&
+    event->mouseButton.button == sfMouseLeft)
+        player->is_clicked = sfTrue;
+    if (event->type == sfEvtMouseButtonReleased &&
+    event->mouseButton.button == sfMouseLeft)
+        player->is_clicked = sfFalse;
+}
 
 static void get_game_event(game_t *game, sfEvent *event, player_t *player)
 {
@@ -17,10 +28,7 @@ static void get_game_event(game_t *game, sfEvent *event, player_t *player)
             manage_key_pressed(game, event->key.code, player);
         if (event->type == sfEvtKeyReleased)
             manage_key_released(event->key.code, player);
-        if (event->type == sfEvtMouseButtonPressed)
-            player->is_clicked = sfTrue;
-        if (event->type == sfEvtMouseButtonReleased)
-            player->is_clicked = sfFalse;
+        manage_mouse_click(event, player);
     }
     if (player->is_clicked && player->weapon->ammo > 0)
         shoot(game, player, 1);
@@ -104,6 +112,42 @@ int display(game_t *game, player_t *player)
     return 0;
 }
 
+int verify_win(game_t *game, player_t *player)
+{
+    enemy_t **all_enemies = game->levels[game->current_level]->enemies;
+    int nbr_alive = 0;
+
+    if (player->health < 1) {
+        game->scene = Quit;
+        write(1, "T'ES NUL\n", 9);
+    }
+    for (int i = 0; all_enemies[i]; i++) {
+        if (all_enemies[i]->health > 0)
+            nbr_alive++;
+    }
+    if (nbr_alive == 0) {
+        game->scene = Quit;
+        write(1, "T'AS GAGNE\n", 11);
+    }
+}
+
+static int update_level_xp(player_t *player)
+{
+    if (player->xp > 10 * player->level) {
+        player->xp -= 10 * player->level;
+        player->level++;
+        player->speed += 30;
+    }
+}
+
+static int manage_player(game_t *game, player_t *player)
+{
+    update_level_xp(player);
+    move_player(game, player);
+    fill_mouse(game, player);
+    return 0;
+}
+
 int game(game_t *game, player_t *player, sfEvent event)
 {
     stop_music(game->sounds->all_musics[1]);
@@ -114,10 +158,10 @@ int game(game_t *game, player_t *player, sfEvent event)
         sfRenderWindow_clear(game->window, sfBlack);
         npc_event(game, player);
         manage_bullet(game, player);
+        manage_player(game, player);
         get_game_event(game, &event, player);
-        move_player(game, player);
-        fill_mouse(game, player);
         display(game, player);
+        verify_win(game, player);
     }
     return 0;
 }

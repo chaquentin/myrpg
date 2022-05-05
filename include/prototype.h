@@ -20,6 +20,7 @@
     int help(game_t *game, player_t *player, sfEvent event);
     int scene_button_management(game_t *game, sfEvent *event,
     button_t **scene_button);
+    int update_clock(game_t *game);
 
     void destroy_game(game_t *game);
 
@@ -43,6 +44,7 @@
     int change_weapon(player_t *player, game_t *game, enum weapon type);
     int manage_player_colision(game_t *game, player_t *player,
     sfVector2i movement);
+    int display_player_stats(game_t *game, player_t *player);
 
     int destroy_player(game_t *game, player_t *player);
     int destroy_weapon(weapon_t *weapon);
@@ -187,6 +189,9 @@
     npc_t **create_all_npc(game_t *game);
     int display_all_npc(game_t *game);
     int npc_event(game_t *game, player_t *player);
+    int luca_action(game_t *game, player_t *player);
+    int matthias_action(game_t *game, player_t *player);
+    int write_dialogue(game_t *game, char *dialogue);
 
     int destroy_all_npc(npc_t **npc);
 

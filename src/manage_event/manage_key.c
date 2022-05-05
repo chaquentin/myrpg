@@ -42,6 +42,16 @@ int shoot(game_t *game, player_t *player, int is_click)
     }
 }
 
+static int manage_npc_action(game_t *game, player_t *player)
+{
+    for (int i = 0; i < 4; i++) {
+        if (game->all_npc[i]->is_player_seen == sfTrue &&
+        game->all_npc[i]->action != NULL) {
+            game->all_npc[i]->action(game, player);
+        }
+    }
+}
+
 int manage_key_pressed(game_t *game, sfKeyCode key_code, player_t *player)
 {
     for (int i = 0; i < 4; i++)
@@ -51,11 +61,10 @@ int manage_key_pressed(game_t *game, sfKeyCode key_code, player_t *player)
         game->scene = Quit;
     if (key_code == sfKeyR)
         reload(game, player, 1);
-    if (key_code == sfKeyE)
-        if (player->weapon->weapon < 10)
-            change_weapon(player, game, player->weapon->weapon + 1);
-        else
-            change_weapon(player, game, 0);
+    if (key_code == sfKeySpace)
+        manage_npc_action(game, player);
+    if (key_code == sfKeyI)
+        display_player_stats(game, player);
     return 0;
 }
 

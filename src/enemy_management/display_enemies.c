@@ -19,13 +19,12 @@ void display_enemy(sfRenderWindow *window, enemy_t *enemy)
     }
 }
 
-void display_enemies(game_t *game)
+void display_enemies(game_t *game, player_t *player)
 {
     enemy_t **enemy = game->levels[game->current_level]->enemies;
     sfRenderWindow *window = game->window;
 
     for (int i = 0; enemy[i]; i++) {
-        if (enemy[i]->health > 0)
-            display_enemy(window, enemy[i]);
+        display_enemy(window, enemy[i]);
     }
 }

@@ -44,6 +44,7 @@ int change_weapon(player_t *player, game_t *game, enum weapon type)
     player->weapon->fire_rate = gun_damage[type][2];
     player->weapon->reload_time = gun_damage[type][3];
     player->weapon->sprite = game->all_sprite[Weapon][type];
+    player->weapon->swag = 1;
     update_sprite(player, game);
 }
 
@@ -53,9 +54,9 @@ weapon_t *create_start_weapon(game_t *game)
 
     if (!weapon)
         return NULL;
-    weapon->weapon = Glock;
+    weapon->weapon = AWP;
     weapon->sprite = game->all_sprite[Weapon][weapon->weapon];
-    weapon->is_gun = sfTrue;
+    weapon->is_gun = sfFalse;
     weapon->sound = sfSound_create();
     sfSound_setBuffer(weapon->sound, game->sounds->all_buffer[6]);
     weapon->damage = (int)gun_damage[weapon->weapon][0];
@@ -63,5 +64,6 @@ weapon_t *create_start_weapon(game_t *game)
     weapon->ammo_max = weapon->ammo;
     weapon->fire_rate = gun_damage[weapon->weapon][2];
     weapon->reload_time = gun_damage[weapon->weapon][3];
+    weapon->swag = 1;
     return weapon;
 }

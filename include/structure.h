@@ -19,7 +19,6 @@
         sfSprite *sprite;
         sfSound *sound;
         sfVector2f pos;
-        sfVector2f stop_pos;
         enum entity fired_from;
         int id;
         int damage;
@@ -32,15 +31,6 @@
         struct bullet_s *last;
         int size;
     } all_bullet_t;
-
-    typedef struct npc_s {
-        sfSprite *sprite;
-        sfVector2f pos;
-        sfBool is_player_seen;
-        sfBool is_slected;
-        char **all_dialogs;
-        int stage;
-    } npc_t;
 
     typedef struct frambuffer_s {
         unsigned int width;
@@ -122,6 +112,8 @@
         char **map;
     } level_t;
 
+    typedef struct npc_s npc_t;
+
     typedef struct game_s {
         all_bullet_t *bullets;
         level_t **levels;
@@ -152,6 +144,7 @@
         int damage;
         float reload_time;
         float fire_rate;
+        int swag;
     } weapon_t;
 
     typedef struct clothes_s {
@@ -172,11 +165,25 @@
         sfVector2f pos;
         sfBool is_clicked;
         enum player player;
+        int level;
+        int xp;
         int swag;
         int health;
         int speed;
+        int damage_reduction;
+        int crit_rate;
         int *movement;
         int delta_time;
     } player_t;
+
+    typedef struct npc_s {
+        sfSprite *sprite;
+        sfVector2f pos;
+        sfBool is_player_seen;
+        sfBool is_slected;
+        char **all_dialogs;
+        int (*action)(game_t *game, player_t *player);
+        int stage;
+    } npc_t;
 
 #endif
