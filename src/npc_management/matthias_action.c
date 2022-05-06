@@ -22,12 +22,28 @@ int *window_open)
 int matthias_action(game_t *game, player_t *player)
 {
     int window_open = 1;
+    int current_weapon = 12;
     sfEvent event;
+    sfVector2f pos = {0, 0};
+    pos = sfView_getCenter(game->view);
+    pos.x -= 3*32;
+    pos.y -= 3*32;
+
+    //for (int i = 12; i != 23; i++)
+    //    sfSprite_scale(game->all_sprite[Weapon][i], (sfVector2f){3, 3});
 
     write_dialogue(game, game->all_npc[Matthias - Antonin]->all_dialogs[0]);
     while (window_open) {
+        update_clock(game);
+        pos.x -= 100 * game->delta_time;
         get_matthias_event(game, player, &event, &window_open);
-        sfRenderWindow_clear(game->window, sfBlue);
+        if (current_weapon > 22)
+            current_weapon = 12;
+        sfRenderWindow_clear(game->window, sfBlack);
+        sfSprite_setPosition(game->all_sprite[Weapon][current_weapon], pos);
+        sfRenderWindow_drawSprite(game->window, game->all_sprite[Weapon][20], NULL);
+        current_weapon++;
+        printf("%f\n", 100 * game->delta_time);
         sfRenderWindow_display(game->window);
     }
     return (0);
