@@ -121,6 +121,8 @@
     typedef struct level_s {
         enemy_t **enemies;
         line_t *walls;
+        sfVector2f up;
+        sfVector2f down;
         sfSprite *sprite;
         sfTexture *texture;
         sfVector2i size;
