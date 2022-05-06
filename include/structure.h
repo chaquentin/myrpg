@@ -168,7 +168,7 @@
         int level;
         int xp;
         int swag;
-        int health;
+        float health;
         int speed;
         int damage_reduction;
         int crit_rate;

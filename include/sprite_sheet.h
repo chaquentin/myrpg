@@ -18,8 +18,8 @@
     #define NBR_SHIRT 8
     #define NBR_HAT 3
     #define NBR_PANTS 16
-    #define NBR_ENEMIES 9
-    #define NBR_WEAPON 12
+    #define NBR_ENEMIES 13
+    #define NBR_WEAPON 23
     #define NBR_BUTTON 21
     #define SPRITESHEET_PATH "asset/sprite_sheet.png"
 
@@ -103,19 +103,26 @@
 
     enum enemies {EnemyGun1, EnemyGun2, EnemyGun3,
     EnemyGlock1, EnemyGlock2, EnemyGlock3,
-    EnemyShotgun1, EnemyShotgun2, EnemyShotgun3};
+    EnemyShotgun1, EnemyShotgun2, EnemyShotgun3,
+    Ousman1, Ousman2, Ousman3, Ousman4};
     static const sfIntRect enemies_rect[NBR_ENEMIES] = {{448, 0, 64, 64},
     {512, 0, 64, 64}, {576, 0, 64, 64}, {448, 64, 64, 64}, {512, 64, 64, 64},
     {576, 64, 64, 64}, {448, 128, 64, 64}, {512, 128, 64, 64},
-    {576, 128, 64, 64}};
+    {576, 128, 64, 64}, {384, 192, 64, 64}, {448, 192, 64, 64},
+    {512, 192, 64, 64}, {576, 192, 64, 64}};
 
     enum weapon {Glock, M9, MicroGun, Revolver, Re45, Uzi, Sniper, M4, AWP,
-    FA456, Scar, Bullet};
+    FA456, Scar, Bullet, GlockShop, M9Shop, MicroGunShop, RevolverShop,
+    Re45Shop, UziShop, SniperShop, M4Shop, AWPShop, FA456Shop, ScarShop};
     static const sfIntRect weapon_rect[NBR_WEAPON] = {{192, 128, 64, 64},
     {192, 192, 64, 64}, {192, 256, 64, 64}, {192, 320, 64, 64},
     {192, 384, 64, 64}, {192, 448, 64, 64}, {256, 128, 64, 64},
     {256, 192, 64, 64}, {256, 256, 64, 64}, {256, 320, 64, 64},
-    {256, 384, 64, 64}, {320, 128, 64, 64}};
+    {256, 384, 64, 64}, {320, 128, 64, 64},
+    {192, 512, 64, 64}, {192, 576, 64, 64}, {192, 640, 64, 64},
+    {192, 704, 64, 64}, {192, 768, 64, 64}, {192, 832, 64, 64},
+    {256, 448, 64, 64}, {256, 512, 64, 64}, {256, 576, 64, 64},
+    {256, 640, 64, 64}, {256, 704, 64, 64}};
     static const float gun_damage[11][4] = {{9, 24, 1.4, 1.3},
     {32, 7, 1.3, 1.4}, {16, 5, 1.0, 1.1}, {75, 6, 1.6, 3.7},
     {27, 15, 0.3, 0.8}, {28, 30, 0.4, 2}, {88, 10, 2.13, 3.37},

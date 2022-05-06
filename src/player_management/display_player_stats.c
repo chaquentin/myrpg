@@ -12,7 +12,7 @@
 static const char *stats[8] = {"Level", "Experience", "Health",
 "Critical rate", "Swag", "Damage redution", "Speed", NULL};
 static const sfVector2f positions[] = {{500, 100}, {500, 200}, {500, 300},
-{500, 400}, {500, 500}, {500, 600}, {-1, -1}};
+{500, 400}, {500, 500}, {500, 600}, {500, 700}, {-1, -1}};
 
 static int display_int(game_t *game, int to_display, sfVector2f pos)
 {
@@ -38,9 +38,18 @@ int *window_open)
 
 static int display_stat(game_t *game, player_t *player)
 {
+    sfVector2f pos = {100, 100};
+
+    sfRenderWindow_clear(game->window, sfBlack);
+    sfRenderWindow_setView(game->window, game->view);
+    for (int i = 0; stats[i]; i++, pos.y += 100) {
+        sfText_setString(game->text, stats[i]);
+        sfText_setPosition(game->text, pos);
+        sfRenderWindow_drawText(game->window, game->text, NULL);
+    }
     display_int(game, player->level, positions[0]);
     display_int(game, player->xp, positions[1]);
-    display_int(game, player->health, positions[2]);
+    display_int(game, (int)player->health, positions[2]);
     display_int(game, player->crit_rate, positions[3]);
     display_int(game, player->swag, positions[4]);
     display_int(game, player->damage_reduction, positions[5]);
@@ -52,22 +61,16 @@ int display_player_stats(game_t *game, player_t *player)
 {
     int is_open = 1;
     sfEvent event;
-    sfVector2f pos = {100, 100};
 
     sfView_reset(game->view, (sfFloatRect){0, 0, 1920, 1080});
-    sfRenderWindow_clear(game->window, sfBlack);
-    sfRenderWindow_setView(game->window, game->view);
-    for (int i = 0; stats[i]; i++, pos.y += 100) {
-        sfText_setString(game->text, stats[i]);
-        sfText_setPosition(game->text, pos);
-        sfRenderWindow_drawText(game->window, game->text, NULL);
-    }
     display_stat(game, player);
     sfRenderWindow_display(game->window);
     while (is_open) {
         get_display_event(game, &event, &is_open);
         update_clock(game);
     }
+    for (int i = 0; i < 4; i++)
+        player->movement[i] = 0;
     sfView_setSize(game->view, (sfVector2f) {960, 540});
     return 0;
 }

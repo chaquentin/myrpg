@@ -47,7 +47,7 @@ static player_t *init_player(void)
     player->weapon = NULL;
     player->movement = NULL;
     player->speed = 200;
-    player->health = 100;
+    player->health = 100.0;
     player->delta_time = 0;
     player->swag = 0;
     player->pos = (sfVector2f) {928, 928};

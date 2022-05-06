@@ -75,14 +75,14 @@ int display_guns(game_t *game, player_t *player, int is_destruct)
 int display_health(game_t *game, player_t *player, int is_destruct)
 {
     static char *nbr_life = NULL;
-    static int old_nbr_life = 0;
+    static float old_nbr_life = 0;
     sfVector2f nbr_life_pos = sfRenderWindow_mapPixelToCoords(game->window,
     (sfVector2i) {10, 10}, game->view);
 
     if (old_nbr_life != player->health) {
         free(nbr_life);
         old_nbr_life = player->health;
-        nbr_life = tranform_in_str(player->health);
+        nbr_life = tranform_in_str((int)player->health);
     }
     if (is_destruct) {
         free(nbr_life);
@@ -117,7 +117,7 @@ int verify_win(game_t *game, player_t *player)
     enemy_t **all_enemies = game->levels[game->current_level]->enemies;
     int nbr_alive = 0;
 
-    if (player->health < 1) {
+    if (player->health < 1.0) {
         game->scene = Quit;
         write(1, "T'ES NUL\n", 9);
     }
@@ -137,6 +137,8 @@ static int update_level_xp(player_t *player)
         player->xp -= 10 * player->level;
         player->level++;
         player->speed += 30;
+        player->damage_reduction += 5;
+        player->crit_rate += 10;
     }
 }
 

@@ -17,7 +17,8 @@ bullet_t *bullet)
     if (bullet->fired_from == PlayerType)
         return 0;
     if (sfIntRect_intersects(&bullet_hitbox, &player_hitbox, NULL)) {
-        player->health -= bullet->damage;
+        player->health -= (bullet->damage) *
+        ((100 - player->damage_reduction) / 100.0);
         remove_id(game->bullets, bullet->id);
         return (1);
     }
