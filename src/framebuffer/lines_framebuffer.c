@@ -52,22 +52,24 @@ void dline(framebuffer_t *buf, sfVector2f pos[2], int w, sfColor c)
 sfVector2f iline(framebuffer_t *buf, sfVector2f p1, int arg[3], sfColor c)
 {
     sfVector2f p2;
-    double rad = (arg[0] / 180.0) * 3.141592554;
+    double rad = (arg[0] / 180.0) * M_PI;
     double cosinus = cos(rad);
     double sinus = sin(rad);
 
     p2.x = p1.x + (arg[1] * cosinus);
     p2.y = p1.y + (arg[1] * sinus);
-    dline(buf, (sfVector2f[2]) {p1, p2}, arg[2], c);
+    //dline(buf, (sfVector2f[2]) {p1, p2}, arg[2], c);
     return p2;
 }
 
 void dcircle(framebuffer_t *buf, sfVector2f pos, sfColor col, int r[2])
 {
     double angle = 0.00;
+    sfVector2f pos2 = {0, 0};
 
     for (int i = 0; i < 360; i++, angle += 1) {
-        iline(buf, pos, (int[3]) {angle, r[0], r[1]}, col);
+        pos2 = iline(buf, pos, (int[3]) {angle, r[0], r[1]}, col);
+        put_pixel(buf, pos2.x, pos2.y, col);
     }
     return;
 }

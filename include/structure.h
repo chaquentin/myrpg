@@ -15,6 +15,22 @@
     #include "enemies.h"
     #include "level.h"
 
+    typedef struct particle_s particle_t;
+
+    typedef struct particle_s {
+        particle_t *next;
+        particle_t *prev;
+        sfVector2f pos;
+        sfColor color;
+        float duration_max;
+        float duration;
+    } particle_t;
+
+    typedef struct particle_control_s {
+        particle_t *first;
+        particle_t *last;
+    } particle_control_t;
+
     typedef struct bullet_s {
         sfSprite *sprite;
         sfSound *sound;
@@ -115,6 +131,7 @@
     typedef struct npc_s npc_t;
 
     typedef struct game_s {
+        particle_control_t *particle;
         all_bullet_t *bullets;
         level_t **levels;
         sounds_t *sounds;

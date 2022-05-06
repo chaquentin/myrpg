@@ -122,11 +122,13 @@ NPC_MANAGEMENT = npc_creation.c			\
 	writte_dialogue.c
 $(eval NPC_MANAGEMENT=$(addprefix src/npc_management/, $(NPC_MANAGEMENT)))
 
-FRAMEBUFFER = draw_framebuffer.c\
-	fill_framebuffer.c\
-	framebuffer_init.c\
-	lines_framebuffer.c\
-	put_pixel_framebuffer.c
+FRAMEBUFFER = draw_framebuffer.c		\
+	fill_framebuffer.c					\
+	framebuffer_init.c					\
+	lines_framebuffer.c					\
+	put_pixel_framebuffer.c				\
+	particle.c							\
+	particle_types.c
 $(eval FRAMEBUFFER=$(addprefix src/framebuffer/, $(FRAMEBUFFER)))
 
 OBJ = 	$(SRC:.c=.o) 					\

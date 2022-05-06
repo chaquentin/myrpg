@@ -14,7 +14,10 @@
     Jump_1, Jump_2, Jump_3};
     enum behaviours {Idle, Searching, Attacking};
     enum actions {Sound, Jump, Turn};
+
     enum game_scene {Quit, Menu, Game, Option, Pause, Win, Help};
+
+    enum particle_type {Blood, Steps};
 
     enum enemy_types {Gangster, Hoods, Durag};
     static int shooting_dist[3] = {200, 300, 499};
