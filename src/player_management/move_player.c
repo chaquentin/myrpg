@@ -62,6 +62,8 @@ void move_player(game_t *game, player_t *player)
     movement.x += player->movement[1];
     movement.y -= player->movement[2];
     movement.y += player->movement[3];
+    if (movement.x != 0 || movement.y != 0)
+        particle(game, Steps, player->pos);
     player->pos.x += movement.x * player->speed * game->delta_time;
     manage_player_colision(game, player, movement);
     player->pos.y += movement.y * player->speed * game->delta_time;

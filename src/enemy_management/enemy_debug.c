@@ -23,9 +23,8 @@ int enemy_debug(game_t *game, player_t *player)
             color = sfRed;
         else
             color = sfGreen;
-        //draw_line(game, walls[i].pos1, walls[i].pos2, color, 2);
+        dline(game->framebuffer, (sfVector2f[2]) {walls[i].pos1, walls[i].pos2}, 2, color);
     }
-
     for (int i = 0; enemies[i]; i++) {
         if (enemies[i]->type == -1)
             continue;
@@ -35,8 +34,7 @@ int enemy_debug(game_t *game, player_t *player)
             color = sfYellow;
         if (enemies[i]->behaviour == Attacking)
             color = sfRed;
-
-        //draw_circle(game->window, enemies[i]->pos, shooting_dist[enemies[i]->type], color);
-        //draw_circle(game->window, enemies[i]->pos, VIEW_DISTANCE, color);
+        dcircle(game->framebuffer, enemies[i]->pos, color, (int[2]) {shooting_dist[enemies[i]->type], 5});
+        dcircle(game->framebuffer, enemies[i]->pos, color, (int[2]) {shooting_dist[enemies[i]->type], 5});
     }
 }

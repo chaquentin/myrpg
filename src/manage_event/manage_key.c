@@ -63,6 +63,6 @@ int manage_key_released(sfKeyCode key_code, player_t *player)
 {
     for (int i = 0; i < 4; i++)
         if (key_code == keys[i])
-            player->movement[i] = 0;
+            player->movement[i] = 0;        
     return 0;
 }

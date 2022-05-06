@@ -7,6 +7,7 @@
 
 #include "structure.h"
 #include "prototype.h"
+#include "enemies.h"
 
 static int manage_bullet_enemy_colision(game_t *game, bullet_t *bullet)
 {
@@ -26,6 +27,7 @@ static int manage_bullet_enemy_colision(game_t *game, bullet_t *bullet)
             game->levels[game->current_level]->enemies[i]->alive =
             (game->levels[game->current_level]->enemies[i]->health > 0) ? 1 : 0;
             remove_id(game->bullets, bullet->id);
+            particle(game, Blood, enemy[i]->pos);
             return (1);
         }
     }

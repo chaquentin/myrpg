@@ -123,12 +123,6 @@
 
     void destroy_view(game_t *game);
 
-//=============================DRAWING=FUNCTIONS=============================//
-
-    void draw_line(game_t *, sfVector2f, sfVector2f, sfColor, int);
-    void draw_point(sfRenderWindow *, sfVector2f, sfColor, int);
-    void draw_circle(sfRenderWindow *, sfVector2f, float, sfColor);
-
 //===================================MATH====================================//
 
     sfVector2f is_intersection(sfVector2f, sfVector2f, sfVector2f, sfVector2f);
@@ -196,10 +190,16 @@
     void framebuffer_destroy(framebuffer_t *framebuffer);
     void draw_framebuffer(game_t *game);
     framebuffer_t *fill_buffer(framebuffer_t *framebuffer, sfColor color);
+    int decay_buffer(framebuffer_t *framebuffer, int a);
     void put_pixel(framebuffer_t *framebuffer, int x, int y, sfColor color);
     void dsquare(framebuffer_t *buf, sfVector2f pos, int size, sfColor col);
     void dline(framebuffer_t *buf, sfVector2f pos[2], int w, sfColor c);
     sfVector2f iline(framebuffer_t *buf, sfVector2f p1, int arg[3], sfColor c);
     void dcircle(framebuffer_t *buf, sfVector2f pos, sfColor col, int r[2]);
+
+    int particle_append(particle_control_t *particle, sfVector2f pos, sfColor color, float duration_max);
+    int particle_update(game_t *game);
+    int particle(game_t *game, enum particle_type type, sfVector2f pos);
+    particle_control_t *particle_init(void);
 
 #endif
