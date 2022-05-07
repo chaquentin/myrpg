@@ -59,10 +59,10 @@ int add_wall(sfVector2i pos, level_t *level, line_t *walls, int index)
     char direction[4] = {n, s, e, w};
     char write_direction[4] = {'N', 'S', 'E', 'W'};
 
-    if (level->map[pos.y][pos.x] != 'W' && level->map[pos.y][pos.x] != 'w')
+    if (is_in("WwEe", level->map[pos.y][pos.x]) != 1)
         return 0;
     for (int i = 0; i < 4; i++) {
-        if (direction[i] != 'W' && direction[i] != 'w') {
+        if (is_in("WwEe", direction[i]) != 1) {
             walls[index + count] = get_coos(pos, level, write_direction[i]);
             count++;
         }
@@ -73,6 +73,7 @@ int add_wall(sfVector2i pos, level_t *level, line_t *walls, int index)
 line_t *create_map_walls(level_t *level, game_t *game)
 {
     int nbr_walls = count_walls(level);
+    printf("%d\n", nbr_walls);
     line_t *walls = malloc(sizeof(line_t) * (nbr_walls + 1));
     sfVector2i p = {0, 0};
     int index = 0;
@@ -82,7 +83,7 @@ line_t *create_map_walls(level_t *level, game_t *game)
     for (int i = 0; i < level->size.y * level->size.x; i++) {
         p.y = i / level->size.x;
         p.x = i % level->size.x;
-        if (level->map[p.y][p.x] == 'W' || level->map[p.y][p.x] == 'w') {
+        if (is_in("WwEe", level->map[p.y][p.x]) == 1) {
             walls[index] = (line_t) {(sfVector2f) {p.x * size, p.y * size},
             (sfVector2f) {(p.x + 1) * size, (p.y + 1) * size}};
             walls[index + 1] = (line_t) {(sfVector2f) {p.x * size, (p.y + 1) *
