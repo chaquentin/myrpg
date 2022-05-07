@@ -7,6 +7,7 @@
 
 #include <SFML/Graphics.h>
 #include "structure.h"
+#include "prototype.h"
 
 int count_adjacent_walls(level_t *level, sfVector2i pos)
 {
@@ -16,11 +17,11 @@ int count_adjacent_walls(level_t *level, sfVector2i pos)
     char e = (pos.x < level->size.x - 1) ? level->map[pos.y][pos.x + 1] : '0';
     char w = (pos.x > 0) ? level->map[pos.y][pos.x - 1] : '0';
 
-    if (level->map[pos.y][pos.x] == 'W' || level->map[pos.y][pos.x] == 'w') {
-        count -= (n == 'W' || n == 'w');
-        count -= (s == 'W' || s == 'w');
-        count -= (e == 'W' || e == 'w');
-        count -= (w == 'W' || w == 'w');
+    if (is_in("WwEe", level->map[pos.y][pos.x])) {
+        count -= (is_in("WwEe", n));
+        count -= (is_in("WwEe", s));
+        count -= (is_in("WwEe", e));
+        count -= (is_in("WwEe", w));
         return (count);
     }
     return 0;
@@ -31,8 +32,7 @@ int count_real_walls(level_t *level)
     int nbr = 0;
 
     for (int i = 0; i < 32 * 18; i++)
-        nbr += (level->map[i / 32][i % 32] == 'W'
-        || level->map[i / 32][i % 32] == 'w');
+        nbr += is_in("WwEe", level->map[i / 32][i % 32]);
     return (nbr);
 }
 

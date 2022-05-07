@@ -22,6 +22,8 @@ level_t *create_level(enum levels level_name, char *str, game_t *game)
 
     if (!level || !parts)
         return NULL;
+    level->up = (sfVector2f) {-1, -1};
+    level->down = (sfVector2f) {-1, -1};
     level->size.x = 32;
     level->size.y = 18;
     level->enemies = enemies_create(parts[1], game);
