@@ -100,7 +100,8 @@ STRING_MANAGEMENT = $(WORD_ARRAY) 		\
 	my_strlen.c 						\
 	my_putnbr.c 						\
 	my_strdup.c 						\
-	my_strcmp.c
+	my_strcmp.c							\
+	is_in.c
 $(eval STRING_MANAGEMENT=\
 	$(addprefix src/string_management/, $(STRING_MANAGEMENT)))
 
@@ -128,7 +129,8 @@ FRAMEBUFFER = draw_framebuffer.c		\
 	lines_framebuffer.c					\
 	put_pixel_framebuffer.c				\
 	particle.c							\
-	particle_types.c
+	particle_types.c					\
+	draw_debug.c
 $(eval FRAMEBUFFER=$(addprefix src/framebuffer/, $(FRAMEBUFFER)))
 
 OBJ = 	$(SRC:.c=.o) 					\
