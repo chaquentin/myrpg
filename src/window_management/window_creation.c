@@ -9,40 +9,6 @@
 #include "structure.h"
 #include "prototype.h"
 
-static int destroy_game_verif(game_t *game)
-{
-    if (game->window)
-        sfRenderWindow_destroy(game->window);
-    if (game->texture)
-        sfTexture_destroy(game->texture);
-    if (game->all_sprite)
-        destroy_all_sprites(game->all_sprite);
-    if (game->clock)
-        sfClock_destroy(game->clock);
-    if (game->view)
-        sfView_destroy(game->view);
-    if (game->text)
-        sfText_destroy(game->text);
-    if (game->font)
-        sfFont_destroy(game->font);
-    if (game->particle)
-        free(game->particle);
-    return 0;
-}
-
-int destroy_game(game_t *game)
-{
-    if (!game)
-        return 84;
-    destroy_game_verif(game);
-    framebuffer_destroy(game);
-    destroy_all_npc(game->all_npc);
-    destroy_levels(game->levels);
-    destroy_sounds(game->sounds);
-    destroy_all_bullet(game->bullets);
-    free(game);
-}
-
 sfSprite ***create_all_sprites(sfTexture *texture)
 {
     sfSprite ***all_sprite = malloc(sizeof(sfSprite **) * (NBR_CAT + 1));
@@ -92,6 +58,25 @@ static int init_game_parameters(game_t *game, int debug)
     game->text = sfText_create();
     game->font = sfFont_createFromFile("asset/Team 401.ttf");
     game->bullets = init_list();
+    game->current_level = 0;
+    return 0;
+}
+
+int set_default_parameters(game_t *game)
+{
+    sfSprite_setScale(game->all_sprite[Weapon][Bullet],
+    (sfVector2f) {0.25, 0.25});
+    sfSprite_setScale(game->all_sprite[Decor][Heart], (sfVector2f) {0.7, 0.7});
+    game->all_npc = create_all_npc(game);
+    game->levels = create_levels(LEVEL_PATH, game);
+    game->view = create_view(game, game->debug);
+    game->framebuffer = framebuffer_create(1920, 1080);
+    game->particle = particle_init();
+    if (!game->all_npc || !game->levels ||
+    !game->framebuffer || !game->particle) {
+        destroy_game(game);
+        return 84;
+    }
     return 0;
 }
 
@@ -115,22 +100,5 @@ game_t *create_game(int debug)
         destroy_game(game);
         return NULL;
     }
-    game->all_npc = create_all_npc(game);
-    if (!game->all_npc) {
-        destroy_game(game);
-        return NULL;
-    }
-    game->levels = create_levels(LEVEL_PATH, game);
-    if (!game->levels) {
-        destroy_game(game);
-        return NULL;
-    }
-    game->current_level = 0;
-    game->view = create_view(game, game->debug);
-    sfSprite_setScale(game->all_sprite[Weapon][Bullet],
-    (sfVector2f) {0.25, 0.25});
-    sfSprite_setScale(game->all_sprite[Decor][Heart], (sfVector2f) {0.7, 0.7});
-    game->framebuffer = framebuffer_create(1920, 1080);
-    game->particle = particle_init();
-    return game;
+    return (set_default_parameters(game)) ? NULL : game;
 }

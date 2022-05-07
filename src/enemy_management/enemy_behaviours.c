@@ -52,7 +52,8 @@ int enemy_attack(game_t *game, player_t *player, int index)
 
     enemy->angle = get_angle(enemy->pos, enemy->player_pos);
 
-    if (enemy->last_shot >= shooting_speed[enemy->type] * (0.1 / game->delta_time)) {
+    if (enemy->last_shot >= shooting_speed[enemy->type] *
+    (0.1 / game->delta_time)) {
         enemy->last_shot = 0;
         fire_weapon_enemy(game, enemy);
     } else

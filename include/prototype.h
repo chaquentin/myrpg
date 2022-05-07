@@ -23,6 +23,8 @@
     int update_clock(game_t *game);
     int display_game(game_t *game, player_t *player);
     int change_level(game_t *game, player_t *player);
+    int display_guns(game_t *game, player_t *player, int is_destruct);
+    int display_money(game_t *game, player_t *player, int is_destruct);
 
     int destroy_game(game_t *game);
 
@@ -213,7 +215,7 @@
     int particle(game_t *game, enum particle_type type, sfVector2f pos);
     particle_control_t *particle_init(void);
 
-    void draw_line(game_t *, sfVector2f, sfVector2f, sfColor, int);
+    void draw_line(game_t *, sfVector2f, sfVector2f, sfColor);
     void draw_circle(sfRenderWindow *, sfVector2f, float, sfColor);
 
 #endif

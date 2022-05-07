@@ -23,7 +23,7 @@ int win(game_t *game, player_t *player, sfEvent event)
 }
 
 static const int (*game_function[])(game_t *, player_t *, sfEvent) = {&menu,
-&game, &option, &pause, &win, &help};
+    &game, &option, &pause, &win, &help};
 
 int manage_scene(game_t *game)
 {

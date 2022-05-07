@@ -6,7 +6,6 @@
 */
 
 #include <SFML/Graphics.h>
-#include <stdio.h>
 #include <stdlib.h>
 #include "structure.h"
 #include "prototype.h"
@@ -14,7 +13,7 @@
 particle_control_t *particle_init(void)
 {
     particle_control_t *particle_control = malloc(sizeof(particle_control_t));
-    
+
     if (particle_control == NULL)
         return (NULL);
     particle_control->first = NULL;
@@ -34,7 +33,7 @@ int particle_destroy(particle_control_t *control, particle_t *particle)
             control->first = particle->next;
             free(particle);
             return (0);
-        } 
+        }
         if (tmp->next == particle->next) {
             prev->next = particle->next;
             free(particle);
@@ -96,8 +95,8 @@ int particle_update(game_t *game)
     while (particle != NULL) {
         particle->duration += game->delta_time;
         for (int i = 0; i < 100 * game->delta_time; i++) {
-            pos = iline(framebuffer, particle->pos, (int[3]) {get_randint(0, 360),
-            get_randint(0, 20), 0}, particle->color);
+            pos = iline(framebuffer, particle->pos, (int[3]) {get_randint(0,
+            360), get_randint(0, 20), 0}, particle->color);
             dsquare(framebuffer, pos, get_randint(0, 5), particle->color);
         }
         if (particle->duration >= particle->duration_max) {

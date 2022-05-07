@@ -22,7 +22,7 @@ int enemy_debug(game_t *game, player_t *player)
         if (walls[i].pos1.x != walls[i].pos2.x
         && walls[i].pos1.y != walls[i].pos2.y)
             color = sfRed;
-        draw_line(game, walls[i].pos1, walls[i].pos2, color, 2);
+        draw_line(game, walls[i].pos1, walls[i].pos2, color);
     }
     for (int i = 0; enemies[i]; i++) {
         if (enemies[i]->type == -1 || enemies[i]->alive == sfFalse)

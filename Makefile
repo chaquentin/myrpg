@@ -24,7 +24,8 @@ TEXT += $(ALL%)
 
 SRC = rpg.c								\
 	start_game.c						\
-	game_display.c
+	game_display.c						\
+	display_text.c
 $(eval SRC=$(addprefix src/, $(SRC)))
 
 PLAYER_MANAGEMENT = player_creation.c	\
@@ -40,12 +41,14 @@ WEAPON_MANAGEMENT = weapon_creation.c	\
 	add_and_rm_bullet.c					\
 	all_bullet_creation.c				\
 	fire_weapon.c						\
-	manage_bullet.c
+	manage_bullet.c						\
+	destroy_bullet.c
 $(eval WEAPON_MANAGEMENT=\
 	$(addprefix src/weapon_management/, $(WEAPON_MANAGEMENT)))
 
 WINDOW_MANAGEMENT = window_creation.c 	\
-	create_all_sprites.c
+	create_all_sprites.c				\
+	destroy_window.c
 $(eval WINDOW_MANAGEMENT=\
 	$(addprefix src/window_management/, $(WINDOW_MANAGEMENT)))
 

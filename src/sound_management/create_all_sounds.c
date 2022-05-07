@@ -12,10 +12,10 @@
 static const char *sounds_file[8] = {"asset/sounds/chinese.ogg",
 "asset/sounds/english.ogg", "asset/sounds/spanish.ogg",
 "asset/sounds/german.ogg", "asset/sounds/the_best.ogg",
-"asset/sounds/arabe.ogg", "asset/sounds/piou.ogg"};
+"asset/sounds/arabe.ogg", "asset/sounds/piou.ogg", NULL};
 
 static const char *musics_file[3] = {"asset/sounds/game_song.ogg",
-"asset/sounds/menu_song.ogg"};
+"asset/sounds/menu_song.ogg", NULL};
 
 int my_arrlen(const char *src[])
 {
