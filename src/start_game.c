@@ -100,6 +100,7 @@ int display(game_t *game, player_t *player)
     display_map_sprite(game);
     if (game->debug)
         enemy_debug(game, player);
+    draw_framebuffer(game);
     display_enemies(game);
     display_bullets(game->bullets, game);
     display_player(game, player);
@@ -107,7 +108,6 @@ int display(game_t *game, player_t *player)
     display_all_npc(game);
     display_health(game, player, 0);
     display_guns(game, player, 0);
-    draw_framebuffer(game);
     sfRenderWindow_display(game->window);
     return 0;
 }
@@ -157,6 +157,7 @@ int game(game_t *game, player_t *player, sfEvent event)
     while (game->scene == Game) {
         update_clock(game);
         view_update(game, player);
+        particle_update(game);
         sfRenderWindow_clear(game->window, sfBlack);
         npc_event(game, player);
         manage_bullet(game, player);

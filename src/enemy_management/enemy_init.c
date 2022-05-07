@@ -7,6 +7,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 #include "enemies.h"
 #include "level.h"
 #include "structure.h"
@@ -21,6 +22,9 @@ enum enemy_types get_enemy_type(char *str)
         return Hoods;
     if (my_strcmp(str, "Durag") == 0)
         return Durag;
+    write(1, "Unknown enemy type: ", 21);
+    write(1, str, my_strlen(str));
+    write(1, "\n", 1);
     return -1;
 }
 
@@ -34,7 +38,8 @@ enemy_t *enemy_create(sfVector2f idle_around, char *name, game_t *game)
     turn->start_angle = 0.0;
     turn->add_angle = (get_randint(0, 200) - 100) / 500.0;
     enemy->type = get_enemy_type(name);
-    enemy->sprite = game->all_sprite[Enemy][1 + enemy->type * 3];
+    if (enemy->type != -1)
+        enemy->sprite = game->all_sprite[Enemy][1 + enemy->type * 3];
     enemy->player_pos = (sfVector2f) {-1, -1};
     enemy->pos = idle_around;
     enemy->idle_around = idle_around;

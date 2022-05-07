@@ -13,6 +13,6 @@
     Floor_30, Floor_31, Floor_32, Floor_33, Floor_34, Floor_35, Roof_40};
 
     #define LEVEL_PATH "src/level_management/levels.txt"
-    #define NBR_LEVELS 2
+    #define NBR_LEVELS 4
 
 #endif

@@ -57,9 +57,9 @@ char *open_file(char *path)
     write(1, "opening levels file: ", 22);
     buf = get_file(path);
     if (buf == NULL) {
-        write(1, "FAILED\n", 6);
+        write(1, "FAILED\n", 8);
         return NULL;
     }
-    write(1, "SUCCESS\n", 8);
+    write(1, "SUCCESS\n", 9);
     return buf;
 }

@@ -119,5 +119,6 @@ game_t *create_game(int debug)
     sfSprite_setScale(game->all_sprite[Weapon][Bullet],
     (sfVector2f) {0.25, 0.25});
     game->framebuffer = framebuffer_create(1920, 1080);
+    game->particle = particle_init();
     return game;
 }

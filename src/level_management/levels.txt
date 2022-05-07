@@ -4,8 +4,6 @@ NORM:
 ' ' = floor
 'e' = down elevator
 'E' = up elevator
-'C' = chair
-'c' = carpet
 &
 WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
 W   w      w EE w              W
@@ -67,3 +65,61 @@ Gangster 1740 840
 Hoods 720 840
 Hoods 240 780
 Gangster 900 960
+&
+WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
+W      ee    w         w  EE   W
+W            w         w       W
+Wwwwwwwwww   w   w     w       W
+W        w   w   wwww  w       W
+W        w   w   w     w       W
+W    w   w   w   w     w  www  W
+W    w       w   w     w       W
+W    w       w   w     w       W
+Ww  wwwwwwwwww   w     w       W
+W    w   w       w     w       W
+W    w   w       w     w       W
+W    w   w       w  wwww       W
+W        w       w     w       W
+W        w       w     w       W
+W                w             W
+W                w             W
+WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
+!
+13
+Hoods 120 120
+Hoods 450 400
+Gangster 650 500
+Durag 100 650
+Durag 450 650
+Gangster 900 700
+Gangster 1150 200
+Durag 1200 400
+Gangster 1300 650
+Hoods 1250 900
+Gangster 1650 500
+Durag 1600 150
+Durag 1700 150
+&
+WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
+W  ee  w                       W
+W      w                       W
+W      w                       W
+W      w                       W
+W      w                       W
+W      w                       W
+W      w                       W
+W      w                       W
+W      wwww                    W
+W      w                       W
+W      w                       W
+W      w  w                    W
+W  ww  w  w                    W
+W         w                    W
+W         w                    W
+W         w                    W
+WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
+!
+3
+Durag 110 800
+Durag 360 800
+OUSMANESEISME 0 0
