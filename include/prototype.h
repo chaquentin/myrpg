@@ -194,6 +194,7 @@
     int write_dialogue(game_t *game, char *dialogue);
     void draw_rounded_rectangle(game_t *game, sfIntRect d, float r,
     sfColor color);
+    void display_button_luca(game_t *game, player_t *player);
 
     int destroy_all_npc(npc_t **npc);
 

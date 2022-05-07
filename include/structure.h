@@ -15,6 +15,13 @@
     #include "enemies.h"
     #include "level.h"
 
+    typedef struct icon_clothes_s {
+        sfSprite *sprite;
+        int price;
+        int swag;
+        int owned;
+    } icon_clothes_t;
+
     typedef struct particle_s particle_t;
 
     typedef struct particle_s {
@@ -142,6 +149,7 @@
         sfSprite ***all_sprite;
         sfRenderWindow *window;
         npc_t **all_npc;
+        icon_clothes_t **all_clothes;
         sfTexture *texture;
         sfText *text;
         sfFont *font;
