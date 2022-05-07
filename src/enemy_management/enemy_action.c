@@ -66,7 +66,7 @@ enum behaviours get_behaviour(game_t *game, player_t *player, int index)
         && pos.x != -1)
             behaviour = Attacking;
     }
-    if (get_distance(enemy->pos, enemy->player_pos) < 10) {
+    if (get_distance(enemy->pos, enemy->player_pos) < 75) {
         behaviour = Idle;
         enemy->player_pos = (sfVector2f) {-1, -1};
     }

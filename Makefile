@@ -66,7 +66,8 @@ ENEMY_MANAGEMENT = enemy_init.c 		\
 	enemy_action.c						\
 	enemy_turn.c						\
 	enemy_debug.c						\
-	enemy_behaviours.c
+	enemy_behaviours.c					\
+	manage_collision_enemy.c
 $(eval ENEMY_MANAGEMENT=$(addprefix src/enemy_management/, $(ENEMY_MANAGEMENT)))
 
 LEVEL_MANAGEMENT = create_map.c 		\

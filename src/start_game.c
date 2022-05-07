@@ -104,10 +104,10 @@ int display(game_t *game, player_t *player)
     display_enemies(game);
     display_bullets(game->bullets, game);
     display_player(game, player);
-    enemy_actions(game, player);
     display_all_npc(game);
     display_health(game, player, 0);
     display_guns(game, player, 0);
+    enemy_actions(game, player);
     sfRenderWindow_display(game->window);
     return 0;
 }
@@ -163,6 +163,7 @@ int game(game_t *game, player_t *player, sfEvent event)
         manage_bullet(game, player);
         manage_player(game, player);
         get_game_event(game, &event, player);
+        
         display(game, player);
         verify_win(game, player);
     }

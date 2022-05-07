@@ -86,6 +86,7 @@
     void display_enemies(game_t *);
     int enemy_actions(game_t *, player_t *);
     int enemy_turn(game_t *, enemy_t *);
+    int manage_enemy_colision(game_t *, enemy_t *, sfVector2f);
 
     int enemy_idle(game_t *, player_t *, int);
     int enemy_search(game_t *, player_t *, int);

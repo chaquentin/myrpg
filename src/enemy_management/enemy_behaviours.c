@@ -37,12 +37,14 @@ int enemy_idle(game_t *game, player_t *player, int index)
 int enemy_search(game_t *game, player_t *player, int index)
 {
     enemy_t *enemy = game->levels[game->current_level]->enemies[index];
+    sfVector2f pos = {0, 0};
 
     enemy->angle = get_angle(enemy->pos, enemy->player_pos);
-    enemy->pos.x = enemy->pos.x + (cos(enemy->angle) * ENEMY_SPEED
+    pos.x = enemy->pos.x + (cos(enemy->angle) * ENEMY_SPEED
     * game->delta_time);
-    enemy->pos.y = enemy->pos.y + (sin(enemy->angle) * ENEMY_SPEED
+    pos.y = enemy->pos.y + (sin(enemy->angle) * ENEMY_SPEED
     * game->delta_time);
+    manage_enemy_colision(game, enemy, pos);
     return 0;
 }
 

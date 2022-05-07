@@ -61,19 +61,17 @@ int add_wall(sfVector2i pos, level_t *level, line_t *walls, int index)
 
     if (is_in("WwEe", level->map[pos.y][pos.x]) != 1)
         return 0;
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < 4; i++)
         if (is_in("WwEe", direction[i]) != 1) {
             walls[index + count] = get_coos(pos, level, write_direction[i]);
             count++;
         }
-    }
     return count;
 }
 
 line_t *create_map_walls(level_t *level, game_t *game)
 {
     int nbr_walls = count_walls(level);
-    printf("%d\n", nbr_walls);
     line_t *walls = malloc(sizeof(line_t) * (nbr_walls + 1));
     sfVector2i p = {0, 0};
     int index = 0;
