@@ -22,6 +22,7 @@
     button_t **scene_button);
     int update_clock(game_t *game);
     int display_game(game_t *game, player_t *player);
+    int change_level(game_t *game, player_t *player);
 
     int destroy_game(game_t *game);
 

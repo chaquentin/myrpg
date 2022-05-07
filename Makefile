@@ -77,7 +77,8 @@ LEVEL_MANAGEMENT = create_map.c 		\
 	display_sprite.c					\
 	corners_init.c						\
 	corners_count.c						\
-	open_file.c
+	open_file.c							\
+	change_level.c
 $(eval LEVEL_MANAGEMENT=\
 	$(addprefix src/level_management/, $(LEVEL_MANAGEMENT)))
 

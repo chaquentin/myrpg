@@ -125,7 +125,7 @@ game_t *create_game(int debug)
         destroy_game(game);
         return NULL;
     }
-    game->current_level = 2;
+    game->current_level = 0;
     game->view = create_view(game, game->debug);
     sfSprite_setScale(game->all_sprite[Weapon][Bullet],
     (sfVector2f) {0.25, 0.25});

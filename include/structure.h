@@ -184,6 +184,7 @@
         sfVector2f pos;
         sfBool is_clicked;
         enum player player;
+        int can_change_level;
         int level;
         int xp;
         int swag;

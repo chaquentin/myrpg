@@ -62,10 +62,6 @@ int verify_win(game_t *game, player_t *player)
         if (all_enemies[i]->health > 0)
             nbr_alive++;
     }
-    if (nbr_alive == 0) {
-        game->scene = Quit;
-        write(1, "T'AS GAGNE\n", 11);
-    }
 }
 
 int game(game_t *game, player_t *player, sfEvent event)
@@ -73,6 +69,7 @@ int game(game_t *game, player_t *player, sfEvent event)
     stop_music(game->sounds->all_musics[1]);
     play_music(game->sounds->all_musics[0]);
     while (game->scene == Game) {
+        change_level(game, player);
         update_clock(game);
         get_game_event(game, &event, player);
         view_update(game, player);

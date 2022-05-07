@@ -9,6 +9,20 @@
 #include "prototype.h"
 #include "structure.h"
 
+int display_elevator(game_t *game, player_t *player)
+{
+    const char elvator_txt[] = "Press space to change level";
+    sfVector2f txt_pos = sfRenderWindow_mapPixelToCoords(game->window,
+    (sfVector2i) {700, 800}, game->view);
+
+    sfText_setString(game->text, elvator_txt);
+    sfText_setPosition(game->text, txt_pos);
+    sfText_setCharacterSize(game->text, 10);
+    if (player->can_change_level)
+        sfRenderWindow_drawText(game->window, game->text, NULL);
+    return 0;
+}
+
 int display_guns(game_t *game, player_t *player, int is_destruct)
 {
     static char *nbr_bullets = NULL;
@@ -90,6 +104,7 @@ int display_game(game_t *game, player_t *player)
     display_all_npc(game);
     display_health(game, player, 0);
     display_guns(game, player, 0);
+    display_elevator(game, player);
     sfRenderWindow_display(game->window);
     return 0;
 }
