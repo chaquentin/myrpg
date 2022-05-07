@@ -120,7 +120,8 @@ NPC_MANAGEMENT = npc_creation.c			\
 	npc_action.c						\
 	luca_action.c						\
 	matthias_action.c					\
-	writte_dialogue.c
+	writte_dialogue.c					\
+	manage_button_luca.c
 $(eval NPC_MANAGEMENT=$(addprefix src/npc_management/, $(NPC_MANAGEMENT)))
 
 FRAMEBUFFER = draw_framebuffer.c		\
