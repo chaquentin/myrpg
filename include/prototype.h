@@ -187,6 +187,7 @@
     int luca_action(game_t *game, player_t *player);
     int matthias_action(game_t *game, player_t *player);
     int write_dialogue(game_t *game, char *dialogue);
+    void display_button_luca(game_t *game, player_t *player);
 
     int destroy_all_npc(npc_t **npc);
 
