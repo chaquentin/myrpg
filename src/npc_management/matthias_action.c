@@ -26,9 +26,12 @@ int matthias_action(game_t *game, player_t *player)
 
     write_dialogue(game, game->all_npc[Matthias - Antonin]->all_dialogs[0]);
     while (window_open) {
+        update_clock(game);
         get_matthias_event(game, player, &event, &window_open);
         sfRenderWindow_clear(game->window, sfBlue);
         sfRenderWindow_display(game->window);
     }
+    for (int i = 0; i < 4; i++)
+        player->movement[i] = 0;
     return (0);
 }
