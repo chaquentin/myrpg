@@ -12,15 +12,15 @@
 
     #define PI 3.1415926535
     #define NBR_CAT 9
-    #define NBR_DECOR 10
+    #define NBR_DECOR 19
     #define NBR_WALL 32
     #define NBR_PLAYER 12
-    #define NBR_SHIRT 8
-    #define NBR_HAT 3
-    #define NBR_PANTS 16
+    #define NBR_SHIRT 15
+    #define NBR_HAT 6
+    #define NBR_PANTS 18
     #define NBR_ENEMIES 13
     #define NBR_WEAPON 23
-    #define NBR_BUTTON 21
+    #define NBR_BUTTON 27
     #define SPRITESHEET_PATH "asset/sprite_sheet.png"
 
     enum type {Decor, Wall, Player, Shirt, Hat, Pants, Weapon, Enemy, Button};
@@ -28,16 +28,21 @@
     enum entity {PlayerType, EnemyType};
 
     enum decor {WoodenFloor, ErrorSprite, OptionGround, HowToPlayGround,
-    Chinese, Usa, Spain, Deutsch, Euskara, Arabe};
+    Chinese, Usa, Spain, Deutsch, Euskara, Arabe, Heart, RedLifeBar,
+    GreenLifeBar, Coke, Canabis, Crake, ClothesShop, Elevator, ElevatorDoor};
     static const sfIntRect decor_rect[NBR_DECOR] = {{0, 0, 64, 64},
-    {0, 64, 64, 64}, {1398, 256, 512, 512}, {1334, 768, 576, 512},
+    {0, 1216, 64, 64}, {1398, 256, 512, 512}, {1334, 768, 576, 512},
     {0, 256, 64, 64}, {0, 64, 64, 64}, {0, 128, 64, 64}, {0, 192, 64, 64},
-    {0, 320, 64, 64}, {0, 384, 64, 64}};
+    {0, 320, 64, 64}, {0, 384, 64, 64}, {384, 128, 64, 64},
+    {384, 256, 128, 64}, {512, 256, 128, 64}, {384, 320, 64, 64},
+    {384, 384, 64, 64}, {384, 448, 64, 64}, {1152, 384, 192, 384},
+    {832, 768, 512, 512}, {64, 1024, 128, 64}};
 
     enum button {Play1, Play2, Playe3, Exit1, Exit2, Exit3,
     Settings1, Settings2, Settings3, How1, How2, How3,
     Wheel1, Wheel2, Wheel3, LArrow1, LArrow2, LArrow3,
-    RArrow1, RArrow2, RArrow3};
+    RArrow1, RArrow2, RArrow3, Resume1, Resume2, Resume3,
+    Menu1, Menu2, Menu3};
     static const sfIntRect button_rect[NBR_BUTTON] = {
         {1344, 0, 128, 64}, {1472, 0, 128, 64}, {1600, 0, 128, 64},
         {1344, 64, 128, 64}, {1472, 64, 128, 64}, {1600, 64, 128, 64},
@@ -45,7 +50,9 @@
         {1344, 192, 128, 64}, {1472, 192, 128, 64}, {1600, 192, 128, 64},
         {1728, 0, 64, 64}, {1792, 0, 64, 64}, {1856, 0, 64, 64},
         {1728, 192, 64, 64}, {1792, 192, 64, 64}, {1856, 192, 64, 64},
-        {1728, 128, 64, 64}, {1792, 128, 64, 64}, {1856, 128, 64, 64}};
+        {1728, 128, 64, 64}, {1792, 128, 64, 64}, {1856, 128, 64, 64},
+        {960, 256, 128, 64}, {1088, 256, 128, 64}, {1216, 256, 128, 64},
+        {960, 320, 128, 64}, {1088, 320, 128, 64}, {1216, 320, 128, 64}};
 
     enum wall {ExtWall, ExtWallN, ExtWallS, ExtWallNS, ExtWallE, ExtWallNE,
     ExtWallSE, ExtWallNSE, ExtWallW, ExtWallNW, ExtWallSW, ExtWallNSW,
@@ -78,27 +85,34 @@
     {320, 408, 64, 64}};
 
     enum shirt {TankRifle, TankGun, BlackRifle, BlackGun,
-    FlowerRifle, FlowerGun, FireRifle, FireGun};
+    FlowerRifle, FlowerGun, FireRifle, FireGun, PinkGun, PinkRifle,
+    TankShop, BlackShop, FlowerShop, FireShop};
     static const sfIntRect shirt_rect[NBR_SHIRT] = {{640, 0, 64, 64},
     {704, 0, 64, 64}, {640, 64, 64, 64}, {704, 64, 64, 64}, {640, 128, 64, 64},
-    {740, 128, 64, 64}, {640, 192, 64, 64}, {704, 192, 64, 64}};
-    static int shirt_swag[4] = {1, 5, 15, 25};
+    {740, 128, 64, 64}, {640, 192, 64, 64}, {704, 192, 64, 64},
+    {640, 256, 64, 64}, {704, 256, 64, 64},
+    {448, 320, 64, 64}, {448, 384, 64, 64}, {448, 448, 64, 64},
+    {448, 512, 64, 64}, {448, 576, 64, 64}};
+    static int shirt_swag[5] = {1, 5, 15, 25, -40};
 
-    enum hat {BlackCap, BlackDourag, FireCap};
+    enum hat {BlackCap, BlackDourag, FireCap, BlackCapShop, BlackDouragShop,
+    FireCapShop};
     static const sfIntRect hat_rect[NBR_HAT] = {{768, 0, 64, 64},
-    {768, 64, 64, 64}, {768, 128, 64, 64}};
+    {768, 64, 64, 64}, {768, 128, 64, 64}, {448, 640, 64, 64},
+    {448, 704, 64, 64}, {448, 768, 64, 64}};
     static int hat_swag[3] = {3, 15, 20};
 
     enum pants {BlueGun1, BlueGun2, BlueGun3, BlueGun4,
     BlueRifle1, BlueRifle2, BlueRifle3, BlueRifle4,
     BlackGun1, BlackGun2, BlackGun3, BlackGun4,
-    BlackRifle1, BlackRifle2, BlackRifle3, BlackRifle4};
+    BlackRifle1, BlackRifle2, BlackRifle3, BlackRifle4,
+    BluePantsShop, BlackPantsShop};
     static const sfIntRect pants_rect[NBR_PANTS] = {{832, 0, 64, 64},
     {896, 0, 64, 64}, {960, 0, 64, 64}, {1024, 0, 64, 64}, {1088, 0, 64, 64},
     {1152, 0, 64, 64}, {1216, 0, 64, 64}, {1280, 0, 64, 64}, {832, 64, 64, 64},
     {896, 64, 64, 64}, {960, 64, 64, 64}, {1024, 64, 64, 64},
     {1088, 64, 64, 64}, {1152, 64, 64, 64}, {1216, 64, 64, 64},
-    {1280, 64, 64, 64}};
+    {1280, 64, 64, 64}, {448, 640, 64, 64}, {448, 704, 64, 64}};
     static int pants_swag[2] = {1, 2};
 
     enum enemies {EnemyGun1, EnemyGun2, EnemyGun3,

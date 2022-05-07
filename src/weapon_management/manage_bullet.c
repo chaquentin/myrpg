@@ -7,6 +7,7 @@
 
 #include "structure.h"
 #include "prototype.h"
+#include "enemies.h"
 
 static int manage_bullet_player_collision(game_t *game, player_t *player,
 bullet_t *bullet)
@@ -52,6 +53,7 @@ player_t *player)
             bullet->damage;
             verify_enemy_dead(enemy, player, i);
             remove_id(game->bullets, bullet->id);
+            particle(game, Blood, enemy[i]->pos);
             return (1);
         }
     }

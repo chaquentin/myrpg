@@ -100,7 +100,8 @@ STRING_MANAGEMENT = $(WORD_ARRAY) 		\
 	my_strlen.c 						\
 	my_putnbr.c 						\
 	my_strdup.c 						\
-	my_strcmp.c
+	my_strcmp.c							\
+	is_in.c
 $(eval STRING_MANAGEMENT=\
 	$(addprefix src/string_management/, $(STRING_MANAGEMENT)))
 
@@ -119,14 +120,18 @@ NPC_MANAGEMENT = npc_creation.c			\
 	npc_action.c						\
 	luca_action.c						\
 	matthias_action.c					\
-	writte_dialogue.c
+	writte_dialogue.c					\
+	manage_button_luca.c
 $(eval NPC_MANAGEMENT=$(addprefix src/npc_management/, $(NPC_MANAGEMENT)))
 
-FRAMEBUFFER = draw_framebuffer.c\
-	fill_framebuffer.c\
-	framebuffer_init.c\
-	lines_framebuffer.c\
-	put_pixel_framebuffer.c
+FRAMEBUFFER = draw_framebuffer.c		\
+	fill_framebuffer.c					\
+	framebuffer_init.c					\
+	lines_framebuffer.c					\
+	put_pixel_framebuffer.c				\
+	particle.c							\
+	particle_types.c					\
+	draw_debug.c
 $(eval FRAMEBUFFER=$(addprefix src/framebuffer/, $(FRAMEBUFFER)))
 
 OBJ = 	$(SRC:.c=.o) 					\
