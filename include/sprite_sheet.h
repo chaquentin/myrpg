@@ -12,7 +12,7 @@
 
     #define PI 3.1415926535
     #define NBR_CAT 9
-    #define NBR_DECOR 18
+    #define NBR_DECOR 19
     #define NBR_WALL 32
     #define NBR_PLAYER 12
     #define NBR_SHIRT 15
@@ -29,14 +29,14 @@
 
     enum decor {WoodenFloor, ErrorSprite, OptionGround, HowToPlayGround,
     Chinese, Usa, Spain, Deutsch, Euskara, Arabe, Heart, RedLifeBar,
-    GreenLifeBar, Coke, Canabis, Crake, ClothesShop, Elevator};
+    GreenLifeBar, Coke, Canabis, Crake, ClothesShop, Elevator, ElevatorDoor};
     static const sfIntRect decor_rect[NBR_DECOR] = {{0, 0, 64, 64},
-    {0, 64, 64, 64}, {1398, 256, 512, 512}, {1334, 768, 576, 512},
+    {0, 1216, 64, 64}, {1398, 256, 512, 512}, {1334, 768, 576, 512},
     {0, 256, 64, 64}, {0, 64, 64, 64}, {0, 128, 64, 64}, {0, 192, 64, 64},
     {0, 320, 64, 64}, {0, 384, 64, 64}, {384, 128, 64, 64},
     {384, 256, 128, 64}, {512, 256, 128, 64}, {384, 320, 64, 64},
     {384, 384, 64, 64}, {384, 448, 64, 64}, {1152, 384, 192, 384},
-    {832, 768, 512, 512}};
+    {832, 768, 512, 512}, {64, 1024, 128, 64}};
 
     enum button {Play1, Play2, Playe3, Exit1, Exit2, Exit3,
     Settings1, Settings2, Settings3, How1, How2, How3,

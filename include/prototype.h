@@ -23,7 +23,7 @@
     int update_clock(game_t *game);
     int display_game(game_t *game, player_t *player);
 
-    void destroy_game(game_t *game);
+    int destroy_game(game_t *game);
 
 //===================================BUTTON===================================//
 
@@ -117,6 +117,7 @@
     char *tranform_in_str(int nbr);
     char *get_file(const char *path);
     int my_arrlen(const char *src[]);
+    int is_in(char *str, char c);
 
     void my_free_word_array(char **array);
 
@@ -206,9 +207,12 @@
     sfVector2f iline(framebuffer_t *buf, sfVector2f p1, int arg[3], sfColor c);
     void dcircle(framebuffer_t *buf, sfVector2f pos, sfColor col, int r[2]);
 
-    int particle_append(particle_control_t *particle, sfVector2f pos, sfColor color, float duration_max);
+    int particle_append(particle_control_t *, sfVector2f, sfColor, float);
     int particle_update(game_t *game);
     int particle(game_t *game, enum particle_type type, sfVector2f pos);
     particle_control_t *particle_init(void);
+
+    void draw_line(game_t *, sfVector2f, sfVector2f, sfColor, int);
+    void draw_circle(sfRenderWindow *, sfVector2f, float, sfColor);
 
 #endif

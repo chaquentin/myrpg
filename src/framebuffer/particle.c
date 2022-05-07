@@ -95,9 +95,11 @@ int particle_update(game_t *game)
         return 84;
     while (particle != NULL) {
         particle->duration += game->delta_time;
-        pos = iline(framebuffer, particle->pos, (int[3]) {get_randint(0, 360),
-        get_randint(0, 20), 0}, particle->color);
-        dsquare(framebuffer, pos, get_randint(0, 5), particle->color);
+        for (int i = 0; i < 100 * game->delta_time; i++) {
+            pos = iline(framebuffer, particle->pos, (int[3]) {get_randint(0, 360),
+            get_randint(0, 20), 0}, particle->color);
+            dsquare(framebuffer, pos, get_randint(0, 5), particle->color);
+        }
         if (particle->duration >= particle->duration_max) {
             next = particle->next;
             particle_destroy(particle_control, particle);
