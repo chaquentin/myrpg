@@ -22,15 +22,17 @@ TEXT += "    ▀▀"$(R+BGY)"                                 "$(BG%+Y)"▀▀  
 TEXT += "        ▀▀▀▀"$(R+BGY)"                     "$(BG%+Y)"▀▀▀▀        \n"
 TEXT += $(ALL%)
 
-SRC = rpg.c \
-	start_game.c
+SRC = rpg.c								\
+	start_game.c						\
+	game_display.c
 $(eval SRC=$(addprefix src/, $(SRC)))
 
 PLAYER_MANAGEMENT = player_creation.c	\
 	display_player.c					\
 	move_player.c						\
 	manage_collision.c					\
-	display_player_stats.c
+	display_player_stats.c				\
+	manage_player_stat.c
 $(eval PLAYER_MANAGEMENT=\
 	$(addprefix src/player_management/, $(PLAYER_MANAGEMENT)))
 
@@ -119,7 +121,8 @@ NPC_MANAGEMENT = npc_creation.c			\
 	npc_action.c						\
 	luca_action.c						\
 	matthias_action.c					\
-	writte_dialogue.c
+	writte_dialogue.c					\
+	draw_rounded_rect.c
 $(eval NPC_MANAGEMENT=$(addprefix src/npc_management/, $(NPC_MANAGEMENT)))
 
 FRAMEBUFFER = draw_framebuffer.c		\

@@ -9,7 +9,7 @@
 #include "structure.h"
 #include "prototype.h"
 
-void destroy_game(game_t *game)
+static int destroy_game_verif(game_t *game)
 {
     if (game->window)
         sfRenderWindow_destroy(game->window);
@@ -25,6 +25,17 @@ void destroy_game(game_t *game)
         sfText_destroy(game->text);
     if (game->font)
         sfFont_destroy(game->font);
+    if (game->particle)
+        free(game->particle);
+    return 0;
+}
+
+int destroy_game(game_t *game)
+{
+    if (!game)
+        return 84;
+    destroy_game_verif(game);
+    framebuffer_destroy(game);
     destroy_all_npc(game->all_npc);
     destroy_levels(game->levels);
     destroy_sounds(game->sounds);
@@ -114,10 +125,11 @@ game_t *create_game(int debug)
         destroy_game(game);
         return NULL;
     }
-    game->current_level = 0;
+    game->current_level = 2;
     game->view = create_view(game, game->debug);
     sfSprite_setScale(game->all_sprite[Weapon][Bullet],
     (sfVector2f) {0.25, 0.25});
+    sfSprite_setScale(game->all_sprite[Decor][Heart], (sfVector2f) {0.7, 0.7});
     game->framebuffer = framebuffer_create(1920, 1080);
     game->particle = particle_init();
     return game;

@@ -20,8 +20,10 @@ int update_sprite(player_t *player, game_t *game)
         player->clothes->pants += (player->clothes->pants % 8 < 4) ? 4 : 0;
     }
     player->sprite = game->all_sprite[Player][player->player];
-    player->clothes->shirt_sprite = game->all_sprite[Shirt][player->clothes->top];
-    player->clothes->pants_sprite = game->all_sprite[Pants][player->clothes->pants];
+    player->clothes->shirt_sprite = game->all_sprite[Shirt]
+    [player->clothes->top];
+    player->clothes->pants_sprite = game->all_sprite[Pants]
+    [player->clothes->pants];
     return 0;
 }
 

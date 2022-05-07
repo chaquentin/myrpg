@@ -21,6 +21,7 @@
     int scene_button_management(game_t *game, sfEvent *event,
     button_t **scene_button);
     int update_clock(game_t *game);
+    int display_game(game_t *game, player_t *player);
 
     void destroy_game(game_t *game);
 
@@ -45,6 +46,7 @@
     int manage_player_colision(game_t *game, player_t *player,
     sfVector2i movement);
     int display_player_stats(game_t *game, player_t *player);
+    int manage_player(game_t *game, player_t *player);
 
     int destroy_player(game_t *game, player_t *player);
     int destroy_weapon(weapon_t *weapon);
@@ -186,13 +188,15 @@
     int luca_action(game_t *game, player_t *player);
     int matthias_action(game_t *game, player_t *player);
     int write_dialogue(game_t *game, char *dialogue);
+    void draw_rounded_rectangle(game_t *game, sfIntRect d, float r,
+    sfColor color);
 
     int destroy_all_npc(npc_t **npc);
 
 //================================FRAMEBUFFER================================//
 
     framebuffer_t *framebuffer_create(unsigned int width, unsigned int height);
-    void framebuffer_destroy(framebuffer_t *framebuffer);
+    int framebuffer_destroy(game_t *game);
     void draw_framebuffer(game_t *game);
     framebuffer_t *fill_buffer(framebuffer_t *framebuffer, sfColor color);
     int decay_buffer(framebuffer_t *framebuffer, int a);

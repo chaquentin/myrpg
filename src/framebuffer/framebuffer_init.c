@@ -21,8 +21,12 @@ framebuffer_t *framebuffer_create(unsigned int width, unsigned int height)
     return pixels;
 }
 
-void framebuffer_destroy(framebuffer_t *framebuffer)
+int framebuffer_destroy(game_t *game)
 {
-    free(framebuffer->pixels);
-    free(framebuffer);
+    if (!game->framebuffer)
+        return 84;
+    if (game->framebuffer->pixels)
+        free(game->framebuffer->pixels);
+    free(game->framebuffer);
+    return 0;
 }
