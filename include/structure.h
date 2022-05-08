@@ -98,6 +98,11 @@
         int is_click;
     } button_t;
 
+    typedef struct clothes_shop_s {
+        icon_clothes_t **all_clothes;
+        button_t **all_shop_button;
+    } clothes_shop_t;
+
     typedef struct enemy_turn_s {
         float start_angle;
         float add_angle;
@@ -145,11 +150,11 @@
         level_t **levels;
         sounds_t *sounds;
         framebuffer_t *framebuffer;
+        clothes_shop_t *clothes_shop;
         sfView *view;
         sfSprite ***all_sprite;
         sfRenderWindow *window;
         npc_t **all_npc;
-        icon_clothes_t **all_clothes;
         sfTexture *texture;
         sfText *text;
         sfFont *font;

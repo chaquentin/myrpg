@@ -68,6 +68,7 @@ int game(game_t *game, player_t *player, sfEvent event)
 {
     stop_music(game->sounds->all_musics[1]);
     play_music(game->sounds->all_musics[0]);
+    sfView_setSize(game->view, (sfVector2f) {960, 540});
     while (game->scene == Game) {
         change_level(game, player);
         update_clock(game);

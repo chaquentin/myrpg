@@ -72,6 +72,9 @@ int set_default_parameters(game_t *game)
     game->view = create_view(game, game->debug);
     game->framebuffer = framebuffer_create(1920, 1080);
     game->particle = particle_init();
+    game->clothes_shop = malloc(sizeof(clothes_shop_t));
+    game->clothes_shop->all_clothes = create_all_icon_clothes(game);
+    game->clothes_shop->all_shop_button = create_button_clothes_shop(game);
     if (!game->all_npc || !game->levels ||
     !game->framebuffer || !game->particle) {
         destroy_game(game);

@@ -25,19 +25,22 @@ button_t **create_pause_button(game_t *game)
     
     pause_button[0] = create_button(Resume1, game, Game);
     pause_button[0]->pos = sfRenderWindow_mapPixelToCoords(game->window,
-    (sfVector2i){990, 200}, game->view);
+    (sfVector2i){800, 100}, game->view);
     pause_button[1] = create_button(Menu1, game, Menu);
     pause_button[1]->pos = sfRenderWindow_mapPixelToCoords(game->window,
-    (sfVector2i){990, 300}, game->view);
+    (sfVector2i){800, 400}, game->view);
     pause_button[2] = create_button(Exit1, game, Quit);
     pause_button[2]->pos = sfRenderWindow_mapPixelToCoords(game->window,
-    (sfVector2i){990, 400}, game->view);
+    (sfVector2i){800, 700}, game->view);
     pause_button[3] = NULL;
     return pause_button;
 }
 
 void display_pause_button(button_t **pause_button, game_t *game)
 {
-    for (int i = 0; i < 3; i++)
+    for (int i = 0; i < 3; i++) {
+        sfSprite_setScale(pause_button[i]->sprite, (sfVector2f){2, 2});
+        sfSprite_setPosition(pause_button[i]->sprite, pause_button[i]->pos);
         sfRenderWindow_drawSprite(game->window, pause_button[i]->sprite, NULL);
+    }
 }

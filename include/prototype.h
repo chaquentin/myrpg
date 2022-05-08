@@ -26,6 +26,7 @@
     int display_guns(game_t *game, player_t *player, int is_destruct);
     int display_money(game_t *game, player_t *player, int is_destruct);
     void usage(void);
+    int manage_click(button_t *object, sfVector2f mouse_pos, game_t *game);
 
     int destroy_game(game_t *game);
 
@@ -51,6 +52,7 @@
     sfVector2i movement);
     int display_player_stats(game_t *game, player_t *player);
     int manage_player(game_t *game, player_t *player);
+    int quentin_action(game_t *game, player_t *player);
 
     int destroy_player(game_t *game, player_t *player);
     int destroy_weapon(weapon_t *weapon);
@@ -199,9 +201,17 @@
     int luca_action(game_t *game, player_t *player);
     int matthias_action(game_t *game, player_t *player);
     int write_dialogue(game_t *game, char *dialogue);
+    void display_button_luca(game_t *game, player_t *player);
     void draw_rounded_rectangle(game_t *game, sfIntRect d, float r,
     sfColor color);
+    icon_clothes_t **create_all_icon_clothes(game_t *game);
+    int destroy_all_icon_clothes(icon_clothes_t **all_clothes);
+    button_t **create_button_clothes_shop(game_t *game);
     void display_button_luca(game_t *game, player_t *player);
+    void is_buy_clothes(game_t *game, player_t *player);
+    void is_select_clothes(game_t *game, player_t *player);
+    void choose_clothes(game_t *game, player_t *player, int i);
+    int manage_view_mouse(game_t *game, sfEvent *event, button_t **all_button);
 
     int destroy_all_npc(npc_t **npc);
 

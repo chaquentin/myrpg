@@ -9,7 +9,7 @@
 #include "prototype.h"
 
 static const int (*all_action[4])(game_t *game, player_t *player) = {NULL,
-matthias_action, NULL, luca_action};
+matthias_action, quentin_action, luca_action};
 
 static char **get_dialogue(char *filepath)
 {
