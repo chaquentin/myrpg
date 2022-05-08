@@ -24,6 +24,7 @@ int pause(game_t *game, player_t *player, sfEvent event)
         sfView_reset(game->view, (sfFloatRect) {0, 0, 1920, 1080});
         sfRenderWindow_setView(game->window, game->view);
     }
+    destroy_button(all_pause_button);
     return 0;
 }
 
@@ -75,6 +76,7 @@ int manage_scene(game_t *game)
     while (game->scene != Quit) {
         error_code = game_function[game->scene - 1](game, player, event);
     }
+
     destroy_player(game, player);
     return 0;
 }
