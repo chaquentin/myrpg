@@ -51,7 +51,7 @@ int update_clock(game_t *game)
 
 int verify_win(game_t *game, player_t *player)
 {
-    enemy_t **all_enemies = game->levels[game->current_level]->enemies;
+    enemy_t **all_enemies = game->levels[0]->enemies;
     int nbr_alive = 0;
 
     if (player->health < 1.0) {
@@ -62,6 +62,9 @@ int verify_win(game_t *game, player_t *player)
         if (all_enemies[i]->health > 0)
             nbr_alive++;
     }
+    if (nbr_alive == 0)
+        game->scene = Win;
+    return (0);
 }
 
 int manage_drug_malus(game_t *game, inventory_t *inventory,
