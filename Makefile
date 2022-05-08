@@ -25,7 +25,8 @@ TEXT += $(ALL%)
 SRC = rpg.c								\
 	start_game.c						\
 	game_display.c						\
-	display_text.c
+	display_text.c						\
+	usage.c
 $(eval SRC=$(addprefix src/, $(SRC)))
 
 PLAYER_MANAGEMENT = player_creation.c	\

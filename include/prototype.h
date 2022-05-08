@@ -25,6 +25,7 @@
     int change_level(game_t *game, player_t *player);
     int display_guns(game_t *game, player_t *player, int is_destruct);
     int display_money(game_t *game, player_t *player, int is_destruct);
+    void usage(void);
 
     int destroy_game(game_t *game);
 
