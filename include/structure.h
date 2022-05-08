@@ -15,6 +15,12 @@
     #include "enemies.h"
     #include "level.h"
 
+    typedef struct elevator_s {
+        sfVector2f pos;
+        sfSprite *sprite;
+        sfSprite *elevator;
+    } elevator_t;
+
     typedef struct particle_s particle_t;
 
     typedef struct particle_s {
