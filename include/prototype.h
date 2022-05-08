@@ -25,8 +25,12 @@
     int change_level(game_t *game, player_t *player);
     int display_guns(game_t *game, player_t *player, int is_destruct);
     int display_money(game_t *game, player_t *player, int is_destruct);
+    int manage_drug_adiction(game_t *game, inventory_t *inventory,
+    player_t *player);
+    int use_drug(game_t *game, player_t *player, button_t **button);
     void usage(void);
     int manage_click(button_t *object, sfVector2f mouse_pos, game_t *game);
+    int display_stat(game_t *game, player_t *player);
 
     int destroy_game(game_t *game);
 
@@ -235,5 +239,10 @@
 
     void draw_line(game_t *, sfVector2f, sfVector2f, sfColor);
     void draw_circle(sfRenderWindow *, sfVector2f, float, sfColor);
+
+//=================================ANIMATION=================================//
+
+    int elevator_change(game_t *game, int direction);
+
 
 #endif
