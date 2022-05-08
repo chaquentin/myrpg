@@ -8,6 +8,28 @@
 #include <stdio.h>
 #include "prototype.h"
 
+void is_select_clothes(game_t *game, player_t *player)
+{
+    for (int i = 0; i < 10; i++) {
+        if (game->clothes_shop->all_shop_button[i + 10]->is_click == 1 &&
+            game->clothes_shop->all_clothes[i]->owned == 1) {
+            choose_clothes(game, player, i);
+        }
+    }
+}
+
+void is_buy_clothes(game_t *game, player_t *player)
+{
+    for (int i = 0; i < 10; i++) {
+        if (game->clothes_shop->all_shop_button[i]->is_click == 1 &&
+            game->clothes_shop->all_clothes[i]->owned == 0 &&
+            game->clothes_shop->all_clothes[i]->price <= player->money) {
+            game->clothes_shop->all_clothes[i]->owned = 1;
+            player->money -= game->clothes_shop->all_clothes[i]->price;
+        }
+    }
+}
+
 static void set_pos_button(game_t *game)
 {
     for (int i = 0; i < 10; i++) {

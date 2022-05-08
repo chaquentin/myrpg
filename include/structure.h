@@ -151,7 +151,6 @@
         sounds_t *sounds;
         framebuffer_t *framebuffer;
         clothes_shop_t *clothes_shop;
-        
         sfView *view;
         sfSprite ***all_sprite;
         sfRenderWindow *window;

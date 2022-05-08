@@ -131,7 +131,8 @@ NPC_MANAGEMENT = npc_creation.c			\
 	draw_rounded_rect.c					\
 	create_clothes_shop.c				\
 	create_button_clothes_shop.c		\
-	quentin_action.c
+	quentin_action.c					\
+	detect_clothes.c
 $(eval NPC_MANAGEMENT=$(addprefix src/npc_management/, $(NPC_MANAGEMENT)))
 
 FRAMEBUFFER = draw_framebuffer.c		\
