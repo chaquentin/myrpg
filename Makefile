@@ -98,7 +98,8 @@ SCENE_MANAGEMENT = create_button.c	\
 	how_to_play.c					\
 	create_help.c					\
 	manage_option_str.c				\
-	manage_option_button.c
+	manage_option_button.c			\
+	manage_pause_button.c
 $(eval SCENE_MANAGEMENT=\
 	$(addprefix src/scene_management/, $(SCENE_MANAGEMENT)))
 

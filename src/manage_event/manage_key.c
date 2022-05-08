@@ -60,7 +60,7 @@ int manage_key_pressed(game_t *game, sfKeyCode key_code, player_t *player)
         if (key_code == keys[i])
             player->movement[i] = 1;
     if (key_code == sfKeyEscape)
-        game->scene = Quit;
+        game->scene = Pause;
     if (key_code == sfKeyR)
         reload(game, player, 1);
     if (key_code == sfKeySpace)

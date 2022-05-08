@@ -185,6 +185,12 @@
     int get_option_event(game_t *game, sfEvent *event,
     button_t **scene_button, button_t **option_button);
 
+//==================================PAUSE====================================//
+
+    void display_pause_button(button_t **pause_button, game_t *game);
+    button_t **create_pause_button(game_t *game);
+    void get_pause_event(game_t *game, sfEvent *event, button_t **all_button);
+
 //==============================NPC=MANAGEMENT===============================//
 
     npc_t **create_all_npc(game_t *game);
