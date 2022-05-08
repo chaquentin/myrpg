@@ -30,6 +30,22 @@ static int destroy_game_verification(game_t *game)
     return 0;
 }
 
+static int destroy_shop(game_t *game)
+{
+    if (!game->clothes_shop)
+        return 84;
+    if (game->clothes_shop->all_clothes) {
+        for (int i = 0; game->clothes_shop->all_clothes[i]; i++)
+            free(game->clothes_shop->all_clothes[i]);
+    free(game->clothes_shop->all_clothes);
+    }
+    if (game->clothes_shop->all_shop_button)
+        destroy_button(game->clothes_shop->all_shop_button);
+    if (game->clothes_shop)
+        free(game->clothes_shop);
+
+}
+
 int destroy_game(game_t *game)
 {
     if (!game)
@@ -40,5 +56,6 @@ int destroy_game(game_t *game)
     destroy_levels(game->levels);
     destroy_sounds(game->sounds);
     destroy_all_bullet(game->bullets);
+    destroy_shop(game);
     free(game);
 }

@@ -25,6 +25,7 @@ int manage_scene(game_t *game)
     while (game->scene != Quit) {
         error_code = game_function[game->scene - 1](game, player, event);
     }
+
     destroy_player(game, player);
     return 0;
 }
