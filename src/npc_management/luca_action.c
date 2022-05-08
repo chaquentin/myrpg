@@ -49,10 +49,15 @@ static void display_all_clothes(game_t *game, player_t *player)
 static int get_luca_event(game_t *game, player_t *player, sfEvent *event,
 int *window_open)
 {
+    manage_view_mouse(game, event, game->clothes_shop->all_shop_button);
     while (sfRenderWindow_pollEvent(game->window, event)) {
         if (event->type == sfEvtKeyPressed &&
         event->key.code == sfKeyEscape)
             *window_open = 0;
+        if (event->type == sfEvtMouseButtonReleased) {
+            is_buy_clothes(game, player);
+            is_select_clothes(game, player);
+        }
     }
     return (0);
 }

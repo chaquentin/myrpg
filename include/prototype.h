@@ -201,6 +201,9 @@
     int destroy_all_icon_clothes(icon_clothes_t **all_clothes);
     button_t **create_button_clothes_shop(game_t *game);
     void display_button_luca(game_t *game, player_t *player);
+    void is_buy_clothes(game_t *game, player_t *player);
+    void is_select_clothes(game_t *game, player_t *player);
+    void choose_clothes(game_t *game, player_t *player, int i);
 
     int destroy_all_npc(npc_t **npc);
 
