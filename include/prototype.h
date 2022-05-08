@@ -200,7 +200,7 @@
     int npc_event(game_t *game, player_t *player);
     int luca_action(game_t *game, player_t *player);
     int matthias_action(game_t *game, player_t *player);
-    int write_dialogue(game_t *game, char *dialogue);
+    int write_dialogue(game_t *game, char *dialogue, player_t *player);
     void display_button_luca(game_t *game, player_t *player);
     void draw_rounded_rectangle(game_t *game, sfIntRect d, float r,
     sfColor color);

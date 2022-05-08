@@ -12,31 +12,33 @@ static int get_dialogue_event(game_t *game, sfEvent *event,
 int *window_open)
 {
     while (sfRenderWindow_pollEvent(game->window, event)) {
-        if (event->type == sfEvtKeyPressed &&
-        (event->key.code == sfKeyEscape || event->key.code == sfKeySpace))
-            *window_open = 0;
+        if (event->type == sfEvtKeyPressed && event->key.code == sfKeyEscape)
+            *window_open = 1;
+        if (event->type == sfEvtKeyPressed && event->key.code == sfKeySpace)
+            *window_open = 2;
     }
     return (0);
 }
 
-int write_dialogue(game_t *game, char *dialogue)
+int write_dialogue(game_t *game, char *dialogue, player_t *player)
 {
-    int window_open = 1;
+    int window_open = 0;
     sfEvent event;
     sfVector2f text_pos = sfRenderWindow_mapPixelToCoords(game->window,
-    (sfVector2i) {600, 800}, game->view);
+    (sfVector2i) {500, 750}, game->view);
 
-    draw_rounded_rectangle(game, (sfIntRect) {text_pos.x - 200,
-    text_pos.y - 100, 750, 200}, 10, sfColor_fromRGB(255, 255, 255));
-    draw_rounded_rectangle(game, (sfIntRect) {text_pos.x - 190,
-    text_pos.y - 90, 730, 180}, 10, sfColor_fromRGB(0, 0, 0));
+    display_game(game, player);
+    draw_rounded_rectangle(game, (sfIntRect) {text_pos.x - 100,
+    text_pos.y - 50, 750, 170}, 10, sfColor_fromRGB(255, 255, 255));
+    draw_rounded_rectangle(game, (sfIntRect) {text_pos.x - 90,
+    text_pos.y - 40, 730, 150}, 10, sfColor_fromRGB(0, 0, 0));
     sfText_setString(game->text, dialogue);
     sfText_setCharacterSize(game->text, 15);
     sfText_setPosition(game->text, text_pos);
     sfRenderWindow_drawText(game->window, game->text, NULL);
     sfRenderWindow_display(game->window);
-    while (window_open)
+    while (!window_open)
         get_dialogue_event(game, &event, &window_open);
     update_clock(game);
-    return (0);
+    return (window_open);
 }
