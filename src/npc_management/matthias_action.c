@@ -33,12 +33,14 @@ int show_weapon(game_t *game, sfVector2f pos, int k, float clock)
         [k], NULL);
     }
     sfRenderWindow_display(game->window);
+    return (0);
 }
 
 int stop_player(player_t *player)
 {
     for (int i = 0; i < 4; i++)
         player->movement[i] = 0;
+    return (0);
 }
 
 sfVector2f my_sfView_getCenter(sfView *view, game_t *game)
