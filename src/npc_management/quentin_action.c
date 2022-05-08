@@ -142,5 +142,6 @@ int quentin_action(game_t *game, player_t *player)
     for (int i = 0; i < 4; i++)
         player->movement[i] = 0;
     free(sprite);
+    destroy_buttons(buy_buttons);
     return 0;
 }
