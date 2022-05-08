@@ -44,7 +44,8 @@ int shoot(game_t *game, player_t *player, int is_click)
 
 static int manage_space_pressed(game_t *game, player_t *player)
 {
-    game->current_level += player->can_change_level;
+    if (player->can_change_level != 0)
+        game->current_level += elevator_change(game, player->can_change_level);
     player->can_change_level = 0;
     for (int i = 0; i < 4; i++) {
         if (game->all_npc[i]->is_player_seen == sfTrue &&
@@ -67,6 +68,7 @@ int manage_key_pressed(game_t *game, sfKeyCode key_code, player_t *player)
         manage_space_pressed(game, player);
     if (key_code == sfKeyI)
         display_player_stats(game, player);
+
     return 0;
 }
 
