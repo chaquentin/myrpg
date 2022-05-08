@@ -97,6 +97,6 @@ player_t *create_player(game_t *game)
         destroy_player(game, player);
         return NULL;
     }
-    player->money = 0;
+    player->money = 1000;
     return player;
 }

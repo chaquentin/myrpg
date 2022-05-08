@@ -5,6 +5,7 @@
 ** manage_key
 */
 
+#include <unistd.h>
 #include "prototype.h"
 #include "structure.h"
 
@@ -44,6 +45,11 @@ int shoot(game_t *game, player_t *player, int is_click)
 
 static int manage_space_pressed(game_t *game, player_t *player)
 {
+    int swag = 0;
+
+    for (int i = 0; i < 10; i++)
+        if (game->clothes_shop->all_clothes[i]->owned == 1)
+            swag += game->clothes_shop->all_clothes[i]->swag;
     if (player->can_change_level != 0)
         game->current_level += elevator_change(game, player->can_change_level);
     player->can_change_level = 0;
@@ -52,6 +58,10 @@ static int manage_space_pressed(game_t *game, player_t *player)
         game->all_npc[i]->action != NULL) {
             game->all_npc[i]->action(game, player);
         }
+    }
+    if (swag + player->swag < 50 && game->current_level == 3) {
+        write(1, "Segmentation Fault : not enough swag\n", 37);
+        game->scene = Quit;
     }
 }
 

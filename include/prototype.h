@@ -32,6 +32,8 @@
     int manage_click(button_t *object, sfVector2f mouse_pos, game_t *game);
     int display_stat(game_t *game, player_t *player);
     int verify_money(player_t *player, game_t *game);
+    int win(game_t *game, player_t *player, sfEvent event);
+    int do_pause(game_t *game, player_t *player, sfEvent event);
 
     int destroy_game(game_t *game);
 
