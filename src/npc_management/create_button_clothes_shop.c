@@ -15,12 +15,12 @@ button_t **create_button_clothes_shop(game_t *game)
     for (int i = 0; i < 10; i++) {
         all_button[i] = create_button(Buy1, game, Game);
         all_button[i]->pos = sfRenderWindow_mapPixelToCoords(game->window,
-        (sfVector2i){1010, 150 + i * 50}, game->view);
+        (sfVector2i) {1010, 150 + i * 50}, game->view);
     }
     for (int i = 10; i < 20; i++) {
         all_button[i] = create_button(Select1, game, Game);
         all_button[i]->pos = sfRenderWindow_mapPixelToCoords(game->window,
-        (sfVector2i){1085, 150 + i * 50}, game->view);
+        (sfVector2i) {1085, 150 + i * 50}, game->view);
     }
     all_button[20] = NULL;
     return all_button;

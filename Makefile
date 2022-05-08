@@ -26,7 +26,8 @@ SRC = rpg.c								\
 	start_game.c						\
 	game_display.c						\
 	display_text.c						\
-	usage.c
+	usage.c								\
+	manage_pot.c
 $(eval SRC=$(addprefix src/, $(SRC)))
 
 PLAYER_MANAGEMENT = player_creation.c	\
@@ -34,7 +35,8 @@ PLAYER_MANAGEMENT = player_creation.c	\
 	move_player.c						\
 	manage_collision.c					\
 	display_player_stats.c				\
-	manage_player_stat.c
+	manage_player_stat.c				\
+	display_inventory.c
 $(eval PLAYER_MANAGEMENT=\
 	$(addprefix src/player_management/, $(PLAYER_MANAGEMENT)))
 

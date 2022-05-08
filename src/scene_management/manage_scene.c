@@ -21,7 +21,7 @@ int pause(game_t *game, player_t *player, sfEvent event)
         sfRenderWindow_display(game->window);
     }
     if (game->scene == Menu) {
-        sfView_reset(game->view, (sfFloatRect){0, 0, 1920, 1080});
+        sfView_reset(game->view, (sfFloatRect) {0, 0, 1920, 1080});
         sfRenderWindow_setView(game->window, game->view);
     }
     return 0;

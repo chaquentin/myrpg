@@ -8,8 +8,8 @@
 #include <stdlib.h>
 #include "prototype.h"
 
-static const int (*all_action[4])(game_t *game, player_t *player) = {antonin_action,
-matthias_action, quentin_action, luca_action};
+static const int (*all_action[4])(game_t *game, player_t *player) =
+{antonin_action, matthias_action, quentin_action, luca_action};
 
 static char **get_dialogue(char *filepath)
 {

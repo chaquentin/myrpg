@@ -46,11 +46,10 @@ int stop_player(player_t *player)
 sfVector2f my_sfView_getCenter(sfView *view, game_t *game)
 {
     sfVector2f pos = sfView_getCenter(game->view);
-    pos.x -= 3*32;
-    pos.y -= 3*32;
+    pos.x -= 3 * 32;
+    pos.y -= 3 * 32;
     return (pos);
 }
-
 
 int matthias_action(game_t *game, player_t *player)
 {
@@ -76,7 +75,7 @@ int matthias_action(game_t *game, player_t *player)
         show_weapon(game, pos, k, clock);
     }
     for (int i = 12; i != 23; i++)
-        sfSprite_scale(game->all_sprite[Weapon][i], (sfVector2f){0.33, 0.33});
+        sfSprite_scale(game->all_sprite[Weapon][i], (sfVector2f) {0.33, 0.33});
     change_weapon(player, game, k - 12);
     return (0);
 }

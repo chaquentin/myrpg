@@ -74,7 +74,7 @@ static int add_inventory(player_t *player, int id)
 static int buy_drug(game_t *game, player_t *player, button_t **all_button)
 {
     const int price[3] = {50, 10, 20};
- 
+
     for (int i = 0; all_button[i]; i++) {
         if (all_button[i]->is_click && player->money >= price[i] &&
         player->inventory->nbr_object < 3) {
