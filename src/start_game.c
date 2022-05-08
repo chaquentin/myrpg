@@ -64,6 +64,53 @@ int verify_win(game_t *game, player_t *player)
     }
 }
 
+int manage_drug_malus(game_t *game, inventory_t *inventory,
+player_t *player)
+{
+    if (inventory->drug_object >= 0 && inventory->drug_object <= 2)
+        inventory->drug_time += game->delta_time;
+    if (inventory->drug_time > 10.0 && inventory->drug_object == 0) {
+        player->speed /= 500.0;
+        inventory->drug_object = 2;
+        inventory->drug_time = 0.0;
+    }
+    if (inventory->drug_time > 10.0 && inventory->drug_object == 1) {
+        player->damage_reduction -= 50;
+        player->speed *= 4.0;
+        inventory->drug_object = -1;
+    }
+    if (inventory->drug_time > 5.0 && inventory->drug_object == 2) {
+        player->speed *= 250.0;
+        inventory->drug_object = -1;
+    }
+    return 0;
+}
+
+int manage_drug_adiction(game_t *game, inventory_t *inventory,
+player_t *player)
+{
+    inventory->crack_time += game->delta_time;
+    if (inventory->crack_time > 1.0) {
+        inventory->crack_time = 0.0;
+        player->health -= inventory->crake_addiction;
+    }
+    if (inventory->drug_object == 13) {
+        inventory->drug_object = 0;
+        player->speed *= 2;
+    }
+    if (inventory->drug_object == 14) {
+        player->damage_reduction += 50;
+        player->speed /= 4.0;
+        inventory->drug_object = 1;
+    }
+    if (inventory->drug_object == 15) {
+        player->health = 100;
+        inventory->crake_addiction += 1;
+        inventory->drug_object = -1;
+    }
+    return manage_drug_adiction(game, inventory, player);
+}
+
 int game(game_t *game, player_t *player, sfEvent event)
 {
     stop_music(game->sounds->all_musics[1]);
@@ -75,6 +122,7 @@ int game(game_t *game, player_t *player, sfEvent event)
         view_update(game, player);
         particle_update(game);
         sfRenderWindow_clear(game->window, sfBlack);
+        manage_drug_adiction(game, player->inventory, player);
         npc_event(game, player);
         manage_bullet(game, player);
         manage_player(game, player);

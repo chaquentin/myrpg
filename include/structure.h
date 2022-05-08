@@ -191,10 +191,22 @@
         int swag;
     } clothes_t;
 
+    typedef struct inventory_s {
+        int nbr_object;
+        enum decor fst_object;
+        enum decor snd_object;
+        enum decor trd_object;
+        float drug_time;
+        enum decor drug_object;
+        int crake_addiction;
+        float crack_time;
+    } inventory_t;
+
     typedef struct player_s {
         weapon_t *weapon;
         clothes_t *clothes;
         sfSprite *sprite;
+        inventory_t *inventory;
         sfVector2f pos;
         sfBool is_clicked;
         enum player player;
@@ -204,7 +216,7 @@
         int xp;
         int swag;
         float health;
-        int speed;
+        float speed;
         int damage_reduction;
         int crit_rate;
         int *movement;

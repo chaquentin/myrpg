@@ -9,23 +9,23 @@
 #include "prototype.h"
 #include "structure.h"
 
-static int display_shop(game_t *game, sfSprite **sprite, button_t **buy_button)
+static int display_shop(game_t *game, sfSprite **sprite, button_t **buy_button,
+player_t *player)
 {
     sfVector2f pos = sfRenderWindow_mapPixelToCoords(game->window,
     (sfVector2i) {700, 30}, game->view);
 
-    sfSprite_setPosition(sprite[0], pos);
-    sfRenderWindow_drawSprite(game->window, sprite[0], NULL);
-    for (int i = 1; i < 4; i++) {
-        pos = sfRenderWindow_mapPixelToCoords(game->window,
-        (sfVector2i) {800, 100 + (i - 1) * 150}, game->view);
+    for (int i = 0; i < 4; i++) {
         sfSprite_setPosition(sprite[i], pos);
         sfRenderWindow_drawSprite(game->window, sprite[i], NULL);
+        pos = sfRenderWindow_mapPixelToCoords(game->window,
+        (sfVector2i) {800, 100 + i * 250}, game->view);
     }
     for (int i = 0; i < 3; i++) {
         sfSprite_setPosition(buy_button[i]->sprite, buy_button[i]->pos);
         sfRenderWindow_drawSprite(game->window, buy_button[i]->sprite, NULL);
     }
+    display_money(game, player, 0);
     return 0;
 }
 
@@ -40,6 +40,32 @@ int manage_view_mouse(game_t *game, sfEvent *event, button_t **all_button)
     }
 }
 
+static int add_inventory(player_t *player, int id)
+{
+    if (player->inventory->fst_object == -1) {
+        player->inventory->fst_object = Coke + id;
+    } else if (player->inventory->snd_object == -1) {
+        player->inventory->snd_object = Coke + id;
+    } else {
+        player->inventory->trd_object = Coke + id;
+    }
+    player->inventory->nbr_object++;
+    return 0;
+}
+
+static int buy_drug(game_t *game, player_t *player, button_t **all_button)
+{
+    const int price[3] = {50, 10, 20};
+ 
+    for (int i = 0; all_button[i]; i++) {
+        if (all_button[i]->is_click && player->money >= price[i] &&
+        player->inventory->nbr_object < 3) {
+            add_inventory(player, i);
+            player->money -= price[i];
+        }
+    }
+}
+
 static int get_quentin_event(game_t *game, player_t *player, sfEvent *event,
 button_t **buy_buttons)
 {
@@ -50,6 +76,8 @@ button_t **buy_buttons)
         if (event->type == sfEvtKeyPressed &&
         event->key.code == sfKeyEscape)
             ret_value = 0;
+        if (event->type == sfEvtMouseButtonReleased)
+            buy_drug(game, player, buy_buttons);
     }
     return (ret_value);
 }
@@ -90,7 +118,7 @@ int quentin_action(game_t *game, player_t *player)
         update_clock(game);
         window_open = get_quentin_event(game, player, &event, buy_buttons);
         sfRenderWindow_clear(game->window, sfBlack);
-        display_shop(game, sprite, buy_buttons);
+        display_shop(game, sprite, buy_buttons, player);
         sfRenderWindow_display(game->window);
     }
     for (int i = 0; i < 4; i++)

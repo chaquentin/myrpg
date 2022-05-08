@@ -32,6 +32,8 @@ int destroy_player(game_t *game, player_t *player)
         free(player->clothes);
     if (player->movement != NULL)
         free(player->movement);
+    if (player->inventory)
+        free(player->inventory);
     free(player);
     return (0);
 }
@@ -60,6 +62,24 @@ static player_t *init_player(void)
     return player;
 }
 
+static inventory_t *create_inventory(game_t *game)
+{
+    inventory_t *inventory = NULL;
+
+    inventory = malloc(sizeof(inventory_t));
+    if (!inventory)
+        return NULL;
+    inventory->nbr_object = 0;
+    inventory->fst_object = -1;
+    inventory->snd_object = -1;
+    inventory->trd_object = -1;
+    inventory->drug_object = -1;
+    inventory->drug_time = 0.0;
+    inventory->crack_time = 0.0;
+    inventory->crake_addiction = 0;
+    return inventory;
+}
+
 player_t *create_player(game_t *game)
 {
     player_t *player = init_player();
@@ -70,11 +90,13 @@ player_t *create_player(game_t *game)
     player->movement = malloc_int();
     player->weapon = create_start_weapon(game);
     player->clothes = create_start_clothes(game);
+    player->inventory = create_inventory(game);
     player->is_clicked = sfFalse;
-    if (!player->movement || !player->weapon || !player->clothes) {
+    if (!player->movement || !player->weapon || !player->clothes
+    || !player->inventory) {
         destroy_player(game, player);
         return NULL;
     }
-    player->money = 0;
+    player->money = 1000;
     return player;
 }
