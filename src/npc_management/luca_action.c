@@ -8,6 +8,44 @@
 #include <stdio.h>
 #include "prototype.h"
 
+static void display_shop(game_t *game, player_t *player)
+{
+    sfVector2f pos = sfSprite_getPosition(player->sprite);
+
+    sfSprite_setOrigin(game->all_sprite[Decor][ClothesShop], (sfVector2f){96, 192});
+    sfSprite_setScale(game->all_sprite[Decor][ClothesShop], (sfVector2f){1.3, 1.3});
+    sfSprite_setPosition(game->all_sprite[Decor][ClothesShop], pos);
+    sfRenderWindow_drawSprite(game->window, game->all_sprite[Decor][ClothesShop], NULL);
+}
+
+static void dipslay_clothe(sfSprite *clothe, game_t *game, sfVector2f pos)
+{
+    sfSprite_setOrigin(clothe, (sfVector2f){32, 32});
+    sfSprite_setScale(clothe, (sfVector2f){0.65, 0.65});
+    sfSprite_setPosition(clothe, pos);
+    sfRenderWindow_drawSprite(game->window, clothe, NULL);
+}
+
+static void display_all_clothes(game_t *game, player_t *player)
+{
+    sfVector2f pos = sfSprite_getPosition(player->sprite);
+
+    pos.y -= 220;
+    pos.x -= 80;
+    for (int i = 10; i < 15; i++) {
+        dipslay_clothe(game->all_sprite[Shirt][i], game, pos);
+        pos.y += 48;
+    }
+    for (int i = 3; i < 6; i++) {
+        dipslay_clothe(game->all_sprite[Hat][i], game, pos);
+        pos.y += 48;
+    }
+    for (int i = 16; i < 18; i++) {
+        dipslay_clothe(game->all_sprite[Pants][i], game, pos);
+        pos.y += 48;
+    }
+}
+ 
 static int get_luca_event(game_t *game, player_t *player, sfEvent *event,
 int *window_open)
 {
@@ -25,8 +63,12 @@ int luca_action(game_t *game, player_t *player)
     sfEvent event;
 
     while (window_open) {
+        update_clock(game);  
         get_luca_event(game, player, &event, &window_open);
-        sfRenderWindow_clear(game->window, sfBlue);
+        sfRenderWindow_clear(game->window, sfBlack);
+        display_shop(game, player);
+        display_all_clothes(game, player);
+        display_button_luca(game, player);
         sfRenderWindow_display(game->window);
     }
     return (0);

@@ -195,6 +195,9 @@
     void display_button_luca(game_t *game, player_t *player);
     void draw_rounded_rectangle(game_t *game, sfIntRect d, float r,
     sfColor color);
+    icon_clothes_t **create_all_icon_clothes(game_t *game);
+    int destroy_all_icon_clothes(icon_clothes_t **all_clothes);
+    button_t **create_button_clothes_shop(game_t *game);
 
     int destroy_all_npc(npc_t **npc);
 

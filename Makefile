@@ -127,8 +127,10 @@ NPC_MANAGEMENT = npc_creation.c			\
 	luca_action.c						\
 	matthias_action.c					\
 	writte_dialogue.c					\
-	manage_button_luca.c
-	draw_rounded_rect.c
+	manage_button_luca.c				\
+	draw_rounded_rect.c					\
+	create_clothes_shop.c				\
+	create_button_clothes_shop.c		
 $(eval NPC_MANAGEMENT=$(addprefix src/npc_management/, $(NPC_MANAGEMENT)))
 
 FRAMEBUFFER = draw_framebuffer.c		\
@@ -153,7 +155,7 @@ OBJ = 	$(SRC:.c=.o) 					\
 		$(WINDOW_MANAGEMENT:.c=.o) 		\
 		$(VIEW_MANAGEMENT:.c=.o)		\
 		$(SCENE_MANAGEMENT:.c=.o)		\
-		$(FRAMEBUFFER:.c=.o)		\
+		$(FRAMEBUFFER:.c=.o)			\
 		$(SOUNDS_MANAGEMENT:.c=.o)		\
 		$(NPC_MANAGEMENT:.c=.o)
 
