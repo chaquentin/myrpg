@@ -67,7 +67,7 @@ int display_option(game_t *game, button_t **scene_button,
 button_t **option_button, text_option_t *option_txt)
 {
     for (int i = 0; i < 6; i++) {
-        sfText_setCharacterSize(game->text, 50);
+        sfText_setCharacterSize(game->text, 100);
         sfText_setString(game->text, option_txt->txt[i]);
         sfText_setPosition(game->text, txt_pos[i]);
         sfRenderWindow_drawText(game->window, game->text, NULL);

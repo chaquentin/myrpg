@@ -16,7 +16,7 @@ static int dispay_price_and_description(game_t *game)
     "Weed 10 dollars\nIncrease your damage reduction",
     "Crake 20 dollars\nRestore your life"};
 
-    sfText_setCharacterSize(game->text, 10);
+    sfText_setCharacterSize(game->text, 30);
     for (int i = 0; i < 3; i++) {
         pos = sfRenderWindow_mapPixelToCoords(game->window,
         (sfVector2i) {1000, 120 + i * 250}, game->view);

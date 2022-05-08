@@ -56,7 +56,7 @@ static int init_game_parameters(game_t *game, int debug)
     game->clock = sfClock_create();
     game->sounds = create_all_sounds();
     game->text = sfText_create();
-    game->font = sfFont_createFromFile("asset/Team 401.ttf");
+    game->font = sfFont_createFromFile("asset/hey_comic.ttf");
     game->bullets = init_list();
     game->current_level = 0;
     return 0;
@@ -97,7 +97,7 @@ game_t *create_game(int debug)
         return NULL;
     }
     sfText_setFont(game->text, game->font);
-    sfText_setCharacterSize(game->text, 50);
+    sfText_setCharacterSize(game->text, 100);
     game->all_sprite = create_all_sprites(game->texture);
     if (!game->all_sprite) {
         destroy_game(game);

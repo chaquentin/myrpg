@@ -33,7 +33,7 @@ int write_dialogue(game_t *game, char *dialogue, player_t *player)
     draw_rounded_rectangle(game, (sfIntRect) {text_pos.x - 90,
     text_pos.y - 40, 730, 150}, 10, sfColor_fromRGB(0, 0, 0));
     sfText_setString(game->text, dialogue);
-    sfText_setCharacterSize(game->text, 15);
+    sfText_setCharacterSize(game->text, 30);
     sfText_setPosition(game->text, text_pos);
     sfRenderWindow_drawText(game->window, game->text, NULL);
     sfRenderWindow_display(game->window);

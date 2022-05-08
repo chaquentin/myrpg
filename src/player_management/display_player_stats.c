@@ -93,7 +93,7 @@ static int dispaly_invent(game_t *game, player_t *player)
 
     sfText_setString(game->text, text);
     sfText_setPosition(game->text, pos);
-    sfText_setCharacterSize(game->text, 50);
+    sfText_setCharacterSize(game->text, 100);
     sfRenderWindow_drawText(game->window, game->text, NULL);
     pos.y += 160;
     display_bag(game, player->inventory[0].fst_object, pos);
@@ -110,7 +110,7 @@ static int display_stat(game_t *game, player_t *player)
 
     sfRenderWindow_clear(game->window, sfBlack);
     sfRenderWindow_setView(game->window, game->view);
-    sfText_setCharacterSize(game->text, 20);
+    sfText_setCharacterSize(game->text, 50);
     for (int i = 0; stats[i]; i++, pos.y += 100) {
         sfText_setString(game->text, stats[i]);
         sfText_setPosition(game->text, pos);

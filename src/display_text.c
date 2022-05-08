@@ -24,7 +24,7 @@ int display_guns(game_t *game, player_t *player, int is_destruct)
         free(nbr_bullets);
         return 0;
     }
-    sfText_setCharacterSize(game->text, 20);
+    sfText_setCharacterSize(game->text, 50);
     sfText_setString(game->text, nbr_bullets);
     sfText_setPosition(game->text, nbr_life_pos);
     sfRenderWindow_drawText(game->window, game->text, NULL);
@@ -65,7 +65,7 @@ int display_money(game_t *game, player_t *player, int is_destruct)
         free(nbr_money);
         return 0;
     }
-    sfText_setCharacterSize(game->text, 20);
+    sfText_setCharacterSize(game->text, 50);
     sfText_setString(game->text, nbr_money);
     sfText_setPosition(game->text, nbr_money_pos);
     sfRenderWindow_drawText(game->window, game->text, NULL);

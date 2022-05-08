@@ -212,7 +212,7 @@
     void is_select_clothes(game_t *game, player_t *player);
     void choose_clothes(game_t *game, player_t *player, int i);
     int manage_view_mouse(game_t *game, sfEvent *event, button_t **all_button);
-
+    int antonin_action(game_t *game, player_t *player);
     int destroy_all_npc(npc_t **npc);
 
 //================================FRAMEBUFFER================================//

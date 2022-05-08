@@ -17,7 +17,7 @@ int display_elevator(game_t *game, player_t *player)
 
     sfText_setString(game->text, elvator_txt);
     sfText_setPosition(game->text, txt_pos);
-    sfText_setCharacterSize(game->text, 10);
+    sfText_setCharacterSize(game->text, 30);
     if (player->can_change_level)
         sfRenderWindow_drawText(game->window, game->text, NULL);
     return 0;
@@ -61,7 +61,7 @@ int display_health(game_t *game, player_t *player, int is_destruct)
         return 0;
     }
     display_health_bar(game, player);
-    sfText_setCharacterSize(game->text, 20);
+    sfText_setCharacterSize(game->text, 50);
     sfText_setString(game->text, nbr_life);
     sfText_setPosition(game->text, nbr_life_pos);
     sfRenderWindow_drawText(game->window, game->text, NULL);
