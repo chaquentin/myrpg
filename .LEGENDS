@@ -1,0 +1,47 @@
+/============WELCOME TO BLOODS RUNNERS============\
+
+Le jeu est un RPG en 2 dimensions dans les quatiers de Brooklyn.
+Vous incarnez un jeune gangster des Bloods Runners. Un jeune gang qui compte en son effectif
+au moins 3 personnes.
+Votre petite amie à était capturée par le gang rival. Votre but est de la sauver de sterribles mains de leur boss.
+
+/============COMMANDES============\
+
+z: bouger vers le haut
+s: bouger vers le bas
+q: bouger vers la gauche
+d: bouger vers la droite
+r: recharger
+e: inventaire et stats
+clic gauche: tirer
+echap: pause et quitter
+
+/============FONCTIONNALITES============\
+
+/===SHOP===\
+
+Arme:
+    Lancer une roue pour récupérer une nouvelle arme aléatoirement (obligatoire de la récupérer)
+    Prix: $50
+
+Vêtements:
+    Acheter et équiper de nouveaux vêtements pour avoir plus de swag
+
+Dealeur:
+    Acheter de quoi vous aider et vous satisfaire un temps
+
+/===OBJECTIF===\
+
+A l'entrée Antonin, vous annocera votre objectif de la partie
+
+/===VICTOIRE===\
+
+Térasser tous les ennemies que vous croisez.
+
+/===DEFAITE===\
+
+Si votre barre de vie descend en dessous de 0 ou que votre swag n'est pas assez élevé.
+
+/===HOW TO PLAY===\
+
+On vous laisse le plaisir d'écouter le how to play dans plusieurs langues différentes faites par des professionels.
