@@ -51,7 +51,7 @@ int update_clock(game_t *game)
 
 int verify_win(game_t *game, player_t *player)
 {
-    enemy_t **all_enemies = game->levels[0]->enemies;
+    enemy_t **all_enemies = game->levels[3]->enemies;
     int nbr_alive = 0;
 
     if (player->health < 1.0) {
