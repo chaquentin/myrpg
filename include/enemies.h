@@ -19,10 +19,11 @@
 
     enum particle_type {Blood, Steps};
 
-    enum enemy_types {Gangster, Hoods, Durag};
-    static int shooting_dist[3] = {200, 300, 499};
-    static int shooting_speed[3] = {10, 20, 30};
-    static int shooting_damage[3] = {5, 10, 25};
+    enum enemy_types {Gangster, Hoods, Durag, OusmaneSeisme};
+    static int shooting_dist[4] = {200, 300, 499, 750};
+    static int shooting_speed[4] = {10, 20, 30, 3};
+    static int shooting_damage[4] = {5, 10, 25, 25};
+    static int life_enemy[4] = {100, 100, 100, 1000};
 
     #define NBR_ACTIONS 3
     #define MIN_TIME_IDLE 250
