@@ -20,7 +20,7 @@
     #define NBR_PANTS 18
     #define NBR_ENEMIES 13
     #define NBR_WEAPON 23
-    #define NBR_BUTTON 27
+    #define NBR_BUTTON 33
     #define SPRITESHEET_PATH "asset/sprite_sheet.png"
 
     enum type {Decor, Wall, Player, Shirt, Hat, Pants, Weapon, Enemy, Button};
@@ -35,14 +35,14 @@
     {0, 256, 64, 64}, {0, 64, 64, 64}, {0, 128, 64, 64}, {0, 192, 64, 64},
     {0, 320, 64, 64}, {0, 384, 64, 64}, {384, 128, 64, 64},
     {384, 256, 128, 64}, {512, 256, 128, 64}, {384, 320, 64, 64},
-    {384, 384, 64, 64}, {384, 448, 64, 64}, {1152, 384, 192, 384},
+    {448, 320, 64, 64}, {512, 320, 64, 64}, {1152, 384, 192, 384},
     {832, 768, 512, 512}, {64, 1024, 128, 64}};
 
     enum button {Play1, Play2, Playe3, Exit1, Exit2, Exit3,
     Settings1, Settings2, Settings3, How1, How2, How3,
     Wheel1, Wheel2, Wheel3, LArrow1, LArrow2, LArrow3,
     RArrow1, RArrow2, RArrow3, Resume1, Resume2, Resume3,
-    Menu1, Menu2, Menu3};
+    Menu1, Menu2, Menu3, Buy1, Buy2, Buy3, Select1, Select2, Select3};
     static const sfIntRect button_rect[NBR_BUTTON] = {
         {1344, 0, 128, 64}, {1472, 0, 128, 64}, {1600, 0, 128, 64},
         {1344, 64, 128, 64}, {1472, 64, 128, 64}, {1600, 64, 128, 64},
@@ -52,7 +52,9 @@
         {1728, 192, 64, 64}, {1792, 192, 64, 64}, {1856, 192, 64, 64},
         {1728, 128, 64, 64}, {1792, 128, 64, 64}, {1856, 128, 64, 64},
         {960, 256, 128, 64}, {1088, 256, 128, 64}, {1216, 256, 128, 64},
-        {960, 320, 128, 64}, {1088, 320, 128, 64}, {1216, 320, 128, 64}};
+        {960, 320, 128, 64}, {1088, 320, 128, 64}, {1216, 320, 128, 64},
+        {1728, 0, 64, 64}, {1792, 0, 64, 64}, {1856, 0, 64, 64},
+        {1728, 64, 64, 64}, {1792, 64, 64, 64}, {1856, 64, 64, 64}};
 
     enum wall {ExtWall, ExtWallN, ExtWallS, ExtWallNS, ExtWallE, ExtWallNE,
     ExtWallSE, ExtWallNSE, ExtWallW, ExtWallNW, ExtWallSW, ExtWallNSW,

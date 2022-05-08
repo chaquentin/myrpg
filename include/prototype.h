@@ -25,6 +25,7 @@
     int change_level(game_t *game, player_t *player);
     int display_guns(game_t *game, player_t *player, int is_destruct);
     int display_money(game_t *game, player_t *player, int is_destruct);
+    int manage_click(button_t *object, sfVector2f mouse_pos, game_t *game);
 
     int destroy_game(game_t *game);
 
@@ -50,6 +51,7 @@
     sfVector2i movement);
     int display_player_stats(game_t *game, player_t *player);
     int manage_player(game_t *game, player_t *player);
+    int quentin_action(game_t *game, player_t *player);
 
     int destroy_player(game_t *game, player_t *player);
     int destroy_weapon(weapon_t *weapon);

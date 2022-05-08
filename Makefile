@@ -127,7 +127,8 @@ NPC_MANAGEMENT = npc_creation.c			\
 	luca_action.c						\
 	matthias_action.c					\
 	writte_dialogue.c					\
-	draw_rounded_rect.c
+	draw_rounded_rect.c					\
+	quentin_action.c
 $(eval NPC_MANAGEMENT=$(addprefix src/npc_management/, $(NPC_MANAGEMENT)))
 
 FRAMEBUFFER = draw_framebuffer.c		\

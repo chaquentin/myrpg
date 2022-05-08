@@ -36,7 +36,7 @@ int display_money(game_t *game, player_t *player, int is_destruct)
     static char *nbr_money = NULL;
     static int old_nbr_money = 0;
     sfVector2f nbr_money_pos = sfRenderWindow_mapPixelToCoords(game->window,
-    (sfVector2i) {1700, 40}, game->view);
+    (sfVector2i) {1400, 40}, game->view);
 
     if (old_nbr_money != player->money) {
         free(nbr_money);
