@@ -17,6 +17,13 @@ static int get_win_event(game_t *game, sfEvent *event, int *window_open)
     }
 }
 
+static int end_window(game_t *game, sprite_t *win_sprite)
+{
+    destroy_sprite(win_sprite);
+    game->scene = Quit;
+    return 0;
+}
+
 int win(game_t *game, player_t *player, sfEvent event)
 {
     int window_open = 1;
@@ -24,7 +31,7 @@ int win(game_t *game, player_t *player, sfEvent event)
     sprite_t *win_sprite = create_sprite("asset/win.jpg");
 
     sfSprite_setScale(win_sprite->sprite, (sfVector2f) {3.1, 3.1});
-    sfView_reset(game->view, (sfFloatRect){0, 0, 1920, 1080});
+    sfView_reset(game->view, (sfFloatRect) {0, 0, 1920, 1080});
     sfRenderWindow_setView(game->window, game->view);
     while (window_open) {
         get_win_event(game, &event_win, &window_open);
@@ -37,7 +44,5 @@ int win(game_t *game, player_t *player, sfEvent event)
         sfRenderWindow_drawText(game->window, game->text, NULL);
         sfRenderWindow_display(game->window);
     }
-    destroy_sprite(win_sprite);
-    game->scene = Quit;
-    return 0;
+    return end_window(game, win_sprite);
 }
