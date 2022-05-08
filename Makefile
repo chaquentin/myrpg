@@ -150,6 +150,9 @@ FRAMEBUFFER = draw_framebuffer.c		\
 	draw_debug.c
 $(eval FRAMEBUFFER=$(addprefix src/framebuffer/, $(FRAMEBUFFER)))
 
+ANIMATION = elevator_change.c
+$(eval ANIMATION=$(addprefix src/animation/, $(ANIMATION)))
+
 OBJ = 	$(SRC:.c=.o) 					\
 		$(CLOTHES_MANAGEMENT:.c=.o)		\
 		$(ENEMY_MANAGEMENT:.c=.o)		\
@@ -164,7 +167,8 @@ OBJ = 	$(SRC:.c=.o) 					\
 		$(SCENE_MANAGEMENT:.c=.o)		\
 		$(FRAMEBUFFER:.c=.o)			\
 		$(SOUNDS_MANAGEMENT:.c=.o)		\
-		$(NPC_MANAGEMENT:.c=.o)
+		$(NPC_MANAGEMENT:.c=.o)			\
+		$(ANIMATION:.c=.o)
 
 %.o: %.c
 	@$(CC) -c $< $(CFLAGS) -o $@
@@ -190,8 +194,8 @@ fclean: clean
 re: fclean all
 
 rcl: re
-	./$(NAME)
 	@$(RM) $(OBJ)
+	./$(NAME)
 
 debug: CFLAGS += -g3
 debug: re

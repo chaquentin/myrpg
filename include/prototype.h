@@ -240,4 +240,9 @@
     void draw_line(game_t *, sfVector2f, sfVector2f, sfColor);
     void draw_circle(sfRenderWindow *, sfVector2f, float, sfColor);
 
+//=================================ANIMATION=================================//
+
+    int elevator_change(game_t *game, int direction);
+
+
 #endif
