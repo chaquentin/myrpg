@@ -57,11 +57,11 @@ sfVector2i movement)
     is_x = (is_x == 0) ? 1 : 0;
     for (int i = 0; i < 4; i++) {
         if (verify_player_collision(player, game->all_npc[i]->pos,
-        (sfVector2f) {64, 54}) && is_x) {
+        (sfVector2f) {64, 54}) && is_x && game->current_level == 0) {
             player->pos.x -= movement.x * player->speed * game->delta_time;
             return 0;
         } else if (verify_player_collision(player, game->all_npc[i]->pos,
-        (sfVector2f) {64, 54}) && !is_x) {
+        (sfVector2f) {64, 54}) && !is_x && game->current_level == 0) {
             player->pos.y -= movement.y * player->speed * game->delta_time;
             return 0;
         }

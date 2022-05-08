@@ -56,6 +56,13 @@ int enemy_attack(game_t *game, player_t *player, int index)
     (0.1 / game->delta_time)) {
         enemy->last_shot = 0;
         fire_weapon_enemy(game, enemy);
+        if (enemy->type == OusmaneSeisme) {
+            enemy->angle += 3;
+            fire_weapon_enemy(game, enemy);
+            enemy->angle -= 6;
+            fire_weapon_enemy(game, enemy);
+            enemy->angle += 3;
+        }
     } else
         enemy->last_shot++;
     return 0;

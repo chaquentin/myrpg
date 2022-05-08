@@ -13,7 +13,7 @@ static int display_npc(game_t *game, npc_t *npc)
     sfVector2f text_pos = sfRenderWindow_mapPixelToCoords(game->window,
     (sfVector2i) {600, 800}, game->view);
 
-    if (!npc)
+    if (!npc || game->current_level != 0)
         return 84;
     sfSprite_setPosition(npc->sprite, npc->pos);
     sfRenderWindow_drawSprite(game->window, npc->sprite, NULL);

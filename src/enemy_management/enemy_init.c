@@ -22,6 +22,8 @@ enum enemy_types get_enemy_type(char *str)
         return Hoods;
     if (my_strcmp(str, "Durag") == 0)
         return Durag;
+    if (my_strcmp(str, "OusmaneSeisme") == 0)
+        return OusmaneSeisme;
     write(1, "Unknown enemy type: ", 21);
     write(1, str, my_strlen(str));
     write(1, "\n", 1);
@@ -31,7 +33,7 @@ enum enemy_types get_enemy_type(char *str)
 static enemy_t *set_enemy_default_param(enemy_t *enemy)
 {
     enemy->current_action = Turn;
-    enemy->health = 100;
+    enemy->health = life_enemy[enemy->type];
     enemy->angle = 0.0;
     enemy->last_shot = 0;
     enemy->behaviour = Idle;
