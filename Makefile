@@ -25,7 +25,8 @@ TEXT += $(ALL%)
 SRC = rpg.c								\
 	start_game.c						\
 	game_display.c						\
-	display_text.c
+	display_text.c						\
+	usage.c
 $(eval SRC=$(addprefix src/, $(SRC)))
 
 PLAYER_MANAGEMENT = player_creation.c	\
@@ -97,7 +98,8 @@ SCENE_MANAGEMENT = create_button.c	\
 	how_to_play.c					\
 	create_help.c					\
 	manage_option_str.c				\
-	manage_option_button.c
+	manage_option_button.c			\
+	manage_pause_button.c
 $(eval SCENE_MANAGEMENT=\
 	$(addprefix src/scene_management/, $(SCENE_MANAGEMENT)))
 
@@ -127,7 +129,13 @@ NPC_MANAGEMENT = npc_creation.c			\
 	luca_action.c						\
 	matthias_action.c					\
 	writte_dialogue.c					\
-	draw_rounded_rect.c
+	manage_button_luca.c				\
+	draw_rounded_rect.c					\
+	create_clothes_shop.c				\
+	create_button_clothes_shop.c		\
+	quentin_action.c					\
+	detect_clothes.c					\
+	antonin_action.c
 $(eval NPC_MANAGEMENT=$(addprefix src/npc_management/, $(NPC_MANAGEMENT)))
 
 FRAMEBUFFER = draw_framebuffer.c		\

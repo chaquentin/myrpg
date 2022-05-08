@@ -25,6 +25,8 @@
     int change_level(game_t *game, player_t *player);
     int display_guns(game_t *game, player_t *player, int is_destruct);
     int display_money(game_t *game, player_t *player, int is_destruct);
+    void usage(void);
+    int manage_click(button_t *object, sfVector2f mouse_pos, game_t *game);
 
     int destroy_game(game_t *game);
 
@@ -50,6 +52,7 @@
     sfVector2i movement);
     int display_player_stats(game_t *game, player_t *player);
     int manage_player(game_t *game, player_t *player);
+    int quentin_action(game_t *game, player_t *player);
 
     int destroy_player(game_t *game, player_t *player);
     int destroy_weapon(weapon_t *weapon);
@@ -184,6 +187,12 @@
     int get_option_event(game_t *game, sfEvent *event,
     button_t **scene_button, button_t **option_button);
 
+//==================================PAUSE====================================//
+
+    void display_pause_button(button_t **pause_button, game_t *game);
+    button_t **create_pause_button(game_t *game);
+    void get_pause_event(game_t *game, sfEvent *event, button_t **all_button);
+
 //==============================NPC=MANAGEMENT===============================//
 
     npc_t **create_all_npc(game_t *game);
@@ -191,10 +200,19 @@
     int npc_event(game_t *game, player_t *player);
     int luca_action(game_t *game, player_t *player);
     int matthias_action(game_t *game, player_t *player);
-    int write_dialogue(game_t *game, char *dialogue);
+    int write_dialogue(game_t *game, char *dialogue, player_t *player);
+    void display_button_luca(game_t *game, player_t *player);
     void draw_rounded_rectangle(game_t *game, sfIntRect d, float r,
     sfColor color);
-
+    icon_clothes_t **create_all_icon_clothes(game_t *game);
+    int destroy_all_icon_clothes(icon_clothes_t **all_clothes);
+    button_t **create_button_clothes_shop(game_t *game);
+    void display_button_luca(game_t *game, player_t *player);
+    void is_buy_clothes(game_t *game, player_t *player);
+    void is_select_clothes(game_t *game, player_t *player);
+    void choose_clothes(game_t *game, player_t *player, int i);
+    int manage_view_mouse(game_t *game, sfEvent *event, button_t **all_button);
+    int antonin_action(game_t *game, player_t *player);
     int destroy_all_npc(npc_t **npc);
 
 //================================FRAMEBUFFER================================//

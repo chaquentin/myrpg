@@ -18,7 +18,7 @@ static int display_npc(game_t *game, npc_t *npc)
     sfSprite_setPosition(npc->sprite, npc->pos);
     sfRenderWindow_drawSprite(game->window, npc->sprite, NULL);
     if (npc->is_player_seen) {
-        sfText_setCharacterSize(game->text, 15);
+        sfText_setCharacterSize(game->text, 30);
         sfText_setString(game->text, press_space);
         sfText_setPosition(game->text, text_pos);
         sfRenderWindow_drawText(game->window, game->text, NULL);

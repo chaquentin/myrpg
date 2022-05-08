@@ -21,6 +21,13 @@
         sfSprite *elevator;
     } elevator_t;
 
+    typedef struct icon_clothes_s {
+        sfSprite *sprite;
+        int price;
+        int swag;
+        int owned;
+    } icon_clothes_t;
+
     typedef struct particle_s particle_t;
 
     typedef struct particle_s {
@@ -97,6 +104,11 @@
         int is_click;
     } button_t;
 
+    typedef struct clothes_shop_s {
+        icon_clothes_t **all_clothes;
+        button_t **all_shop_button;
+    } clothes_shop_t;
+
     typedef struct enemy_turn_s {
         float start_angle;
         float add_angle;
@@ -144,6 +156,7 @@
         level_t **levels;
         sounds_t *sounds;
         framebuffer_t *framebuffer;
+        clothes_shop_t *clothes_shop;
         sfView *view;
         sfSprite ***all_sprite;
         sfRenderWindow *window;
@@ -183,10 +196,22 @@
         int swag;
     } clothes_t;
 
+    typedef struct inventory_s {
+        int nbr_object;
+        enum decor fst_object;
+        enum decor snd_object;
+        enum decor trd_object;
+        float drug_time;
+        enum decor drug_object;
+        int crake_addiction;
+        float crack_time;
+    } inventory_t;
+
     typedef struct player_s {
         weapon_t *weapon;
         clothes_t *clothes;
         sfSprite *sprite;
+        inventory_t *inventory;
         sfVector2f pos;
         sfBool is_clicked;
         enum player player;
@@ -196,7 +221,7 @@
         int xp;
         int swag;
         float health;
-        int speed;
+        float speed;
         int damage_reduction;
         int crit_rate;
         int *movement;

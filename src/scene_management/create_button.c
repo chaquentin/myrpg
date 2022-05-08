@@ -47,7 +47,9 @@ enum game_scene next_scene)
     button->sprite = game->all_sprite[Button][type];
     button->next_scene = next_scene;
     button->pos = (sfVector2f) {0, 0};
-    if (type == LArrow1 || type == RArrow1)
+    if (type == Buy1 || type == Select1)
+        button->size = (sfVector2f) {64, 64};
+    else if (type == LArrow1 || type == RArrow1)
         button->size = (sfVector2f) {192, 192};
     else
         button->size = (sfVector2f) {384, 192};

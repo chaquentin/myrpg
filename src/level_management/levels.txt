@@ -40,7 +40,7 @@ W     w  EE  w ee w            W
 W     w      w    w            W
 W            w        w        W
 W            w        w        W
-w     wwwwwwwwwwwwwwwww        w
+W     wwwwwwwwwwwwwwwww        w
 W                     w   wwwwwW
 W                     w   w    W
 W             w       w   w    W
@@ -58,21 +58,21 @@ WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
 Gangster 240 180
 Gangster 660 180
 Hoods 1800 180
-Durag 1860 480
+Durag 1800 480
 Gangster 720 420
 Gangster 1200 480
 Gangster 1740 840
-Hoods 720 840
+Hoods 680 840
 Hoods 240 780
-Gangster 900 960
+Gangster 800 960
 &
 WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
 W      ee    w         w  EE   W
 W            w         w       W
-Wwwwwwwwww   w   w     w       W
-W        w   w   wwww  w       W
+W            w   w     w       W
+Wwwwwwwwww   w   wwww  w       W
 W        w   w   w     w       W
-W    w   w   w   w     w  www  W
+W        w   w   w     w  www  W
 W    w       w   w     w       W
 W    w       w   w     w       W
 Ww  wwwwwwwwww   w     w       W
@@ -101,25 +101,27 @@ Durag 1600 150
 Durag 1700 150
 &
 WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
-W    w                    ee   W
-W      w                       W
-W      w                       W
-W      w                       W
-W      w                       W
-W      w                       W
-W      w                       W
-W      w                       W
-W      wwww                    W
-W      w                       W
-W      w                       W
-W      w  w                    W
-W  ww  w  w                    W
-W         w                    W
-W         w                    W
-W         w                    W
+W       w              w  ee   W
+W       w              w       W
+W      ww              ww      W
+W      w                w      W
+W      w                w      W
+W      w                w      W
+W      w                w      W
+W      w                w      W
+W      wwww          wwww      W
+W      w                w      W
+W      w                w      W
+W      w  w          w  w      W
+W  ww  w  w          w  w  ww  W
+W         w          w         W
+W         w          w         W
+W         w          w         W
 WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
 !
-3
+5
 Durag 110 800
 Durag 360 800
+Durag 1550 800
+Durag 1800 800
 OUSMANESEISME 0 0

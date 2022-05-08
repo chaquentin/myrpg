@@ -11,9 +11,14 @@
 
 int main(int ac, char **av)
 {
-    game_t *game = create_game((ac >= 2 && !my_strcmp(av[1], "-d")));
+    game_t *game = NULL;
     int error = 0;
 
+    if (ac >= 2 && my_strcmp(av[1], "-h") == 0) {
+        usage();
+        return 0;
+    }
+    game = create_game((ac >= 2 && !my_strcmp(av[1], "-d")));
     srand((long) &error);
     if (!game)
         return 84;

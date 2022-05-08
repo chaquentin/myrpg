@@ -64,9 +64,10 @@ int manage_released(game_t *game, button_t **all_button)
 void get_event(game_t *game, sfEvent *event, button_t **all_button)
 {
     manage_mouse(game, event, all_button);
-    while (sfRenderWindow_pollEvent(game->window, event))
+    while (sfRenderWindow_pollEvent(game->window, event)) {
         if (event->type == sfEvtClosed || sfKeyboard_isKeyPressed(sfKeyEscape))
             game->scene = Quit;
         else if (event->type == sfEvtMouseButtonReleased)
             manage_released(game, all_button);
+    }
 }

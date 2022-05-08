@@ -8,8 +8,8 @@
 #include <stdlib.h>
 #include "prototype.h"
 
-static const int (*all_action[4])(game_t *game, player_t *player) = {NULL,
-matthias_action, NULL, luca_action};
+static const int (*all_action[4])(game_t *game, player_t *player) = {antonin_action,
+matthias_action, quentin_action, luca_action};
 
 static char **get_dialogue(char *filepath)
 {
@@ -75,7 +75,7 @@ npc_t **create_all_npc(game_t *game)
     "asset/npc_dialogue/mathias.txt");
     all_npc[2] = create_npc(game, Quentin, (sfVector2f) {600, 40},
     "asset/npc_dialogue/quentin.txt");
-    all_npc[3] = create_npc(game, Antonin, (sfVector2f) {0, 0},
+    all_npc[3] = create_npc(game, Antonin, (sfVector2f) {850, 780},
     "asset/npc_dialogue/antonin.txt");
     for (int i = 0; i < 4; i++)
         if (!all_npc[i]) {

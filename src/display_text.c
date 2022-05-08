@@ -24,30 +24,48 @@ int display_guns(game_t *game, player_t *player, int is_destruct)
         free(nbr_bullets);
         return 0;
     }
-    sfText_setCharacterSize(game->text, 20);
+    sfText_setCharacterSize(game->text, 50);
     sfText_setString(game->text, nbr_bullets);
     sfText_setPosition(game->text, nbr_life_pos);
     sfRenderWindow_drawText(game->window, game->text, NULL);
     return 0;
 }
 
+static char *my_itoa(int nbr)
+{
+    int i = 0;
+    char *transformed = NULL;
+
+    if (nbr == 0)
+        return my_strdup("0");
+    for (int nb = nbr; nb > 0; nb /= 10)
+        i++;
+    transformed = malloc(sizeof(char) * (i + 1));
+    transformed[i] = '\0';
+    for (; nbr > 0; nbr /= 10) {
+        transformed[i - 1] = nbr % 10 + '0';
+        i--;
+    }
+    return transformed;
+}
+
 int display_money(game_t *game, player_t *player, int is_destruct)
 {
     static char *nbr_money = NULL;
-    static int old_nbr_money = 0;
+    static int old_nbr_money = -1;
     sfVector2f nbr_money_pos = sfRenderWindow_mapPixelToCoords(game->window,
     (sfVector2i) {1700, 40}, game->view);
 
     if (old_nbr_money != player->money) {
         free(nbr_money);
         old_nbr_money = player->money;
-        nbr_money = tranform_in_str(player->money);
+        nbr_money = my_itoa(player->money);
     }
     if (is_destruct) {
         free(nbr_money);
         return 0;
     }
-    sfText_setCharacterSize(game->text, 20);
+    sfText_setCharacterSize(game->text, 50);
     sfText_setString(game->text, nbr_money);
     sfText_setPosition(game->text, nbr_money_pos);
     sfRenderWindow_drawText(game->window, game->text, NULL);
