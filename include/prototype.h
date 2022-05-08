@@ -21,8 +21,12 @@
     int scene_button_management(game_t *game, sfEvent *event,
     button_t **scene_button);
     int update_clock(game_t *game);
+    int display_game(game_t *game, player_t *player);
+    int change_level(game_t *game, player_t *player);
+    int display_guns(game_t *game, player_t *player, int is_destruct);
+    int display_money(game_t *game, player_t *player, int is_destruct);
 
-    void destroy_game(game_t *game);
+    int destroy_game(game_t *game);
 
 //===================================BUTTON===================================//
 
@@ -45,6 +49,7 @@
     int manage_player_colision(game_t *game, player_t *player,
     sfVector2i movement);
     int display_player_stats(game_t *game, player_t *player);
+    int manage_player(game_t *game, player_t *player);
 
     int destroy_player(game_t *game, player_t *player);
     int destroy_weapon(weapon_t *weapon);
@@ -188,13 +193,15 @@
     int matthias_action(game_t *game, player_t *player);
     int write_dialogue(game_t *game, char *dialogue);
     void display_button_luca(game_t *game, player_t *player);
+    void draw_rounded_rectangle(game_t *game, sfIntRect d, float r,
+    sfColor color);
 
     int destroy_all_npc(npc_t **npc);
 
 //================================FRAMEBUFFER================================//
 
     framebuffer_t *framebuffer_create(unsigned int width, unsigned int height);
-    void framebuffer_destroy(framebuffer_t *framebuffer);
+    int framebuffer_destroy(game_t *game);
     void draw_framebuffer(game_t *game);
     framebuffer_t *fill_buffer(framebuffer_t *framebuffer, sfColor color);
     int decay_buffer(framebuffer_t *framebuffer, int a);
@@ -209,7 +216,7 @@
     int particle(game_t *game, enum particle_type type, sfVector2f pos);
     particle_control_t *particle_init(void);
 
-    void draw_line(game_t *, sfVector2f, sfVector2f, sfColor, int);
+    void draw_line(game_t *, sfVector2f, sfVector2f, sfColor);
     void draw_circle(sfRenderWindow *, sfVector2f, float, sfColor);
 
 #endif

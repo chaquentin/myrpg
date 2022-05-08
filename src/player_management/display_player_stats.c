@@ -62,7 +62,7 @@ int display_player_stats(game_t *game, player_t *player)
     int is_open = 1;
     sfEvent event;
 
-    sfView_reset(game->view, (sfFloatRect){0, 0, 1920, 1080});
+    sfView_reset(game->view, (sfFloatRect) {0, 0, 1920, 1080});
     display_stat(game, player);
     sfRenderWindow_display(game->window);
     while (is_open) {

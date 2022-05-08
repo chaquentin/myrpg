@@ -42,8 +42,10 @@ int shoot(game_t *game, player_t *player, int is_click)
     }
 }
 
-static int manage_npc_action(game_t *game, player_t *player)
+static int manage_space_pressed(game_t *game, player_t *player)
 {
+    game->current_level += player->can_change_level;
+    player->can_change_level = 0;
     for (int i = 0; i < 4; i++) {
         if (game->all_npc[i]->is_player_seen == sfTrue &&
         game->all_npc[i]->action != NULL) {
@@ -62,7 +64,7 @@ int manage_key_pressed(game_t *game, sfKeyCode key_code, player_t *player)
     if (key_code == sfKeyR)
         reload(game, player, 1);
     if (key_code == sfKeySpace)
-        manage_npc_action(game, player);
+        manage_space_pressed(game, player);
     if (key_code == sfKeyI)
         display_player_stats(game, player);
     return 0;
@@ -72,6 +74,6 @@ int manage_key_released(sfKeyCode key_code, player_t *player)
 {
     for (int i = 0; i < 4; i++)
         if (key_code == keys[i])
-            player->movement[i] = 0;        
+            player->movement[i] = 0;
     return 0;
 }

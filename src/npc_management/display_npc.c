@@ -12,7 +12,6 @@ static int display_npc(game_t *game, npc_t *npc)
     char press_space[24] = "Press space to interact";
     sfVector2f text_pos = sfRenderWindow_mapPixelToCoords(game->window,
     (sfVector2i) {600, 800}, game->view);
-    
 
     if (!npc)
         return 84;

@@ -28,6 +28,18 @@ enum enemy_types get_enemy_type(char *str)
     return -1;
 }
 
+static enemy_t *set_enemy_default_param(enemy_t *enemy)
+{
+    enemy->current_action = Turn;
+    enemy->health = 100;
+    enemy->angle = 0.0;
+    enemy->last_shot = 0;
+    enemy->behaviour = Idle;
+    enemy->alive = sfTrue;
+    enemy->idled_since = 0;
+    return enemy;
+}
+
 enemy_t *enemy_create(sfVector2f idle_around, char *name, game_t *game)
 {
     enemy_t *enemy = malloc(sizeof(enemy_t));
@@ -43,14 +55,8 @@ enemy_t *enemy_create(sfVector2f idle_around, char *name, game_t *game)
     enemy->player_pos = (sfVector2f) {-1, -1};
     enemy->pos = idle_around;
     enemy->idle_around = idle_around;
-    enemy->alive = sfTrue;
-    enemy->idled_since = 0;
-    enemy->behaviour = Idle;
     enemy->next_action = turn;
-    enemy->current_action = Turn;
-    enemy->health = 100;
-    enemy->angle = 0.0;
-    enemy->last_shot = 0;
+    enemy = set_enemy_default_param(enemy);
     return enemy;
 }
 

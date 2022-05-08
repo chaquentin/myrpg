@@ -22,15 +22,18 @@ TEXT += "    ▀▀"$(R+BGY)"                                 "$(BG%+Y)"▀▀  
 TEXT += "        ▀▀▀▀"$(R+BGY)"                     "$(BG%+Y)"▀▀▀▀        \n"
 TEXT += $(ALL%)
 
-SRC = rpg.c \
-	start_game.c
+SRC = rpg.c								\
+	start_game.c						\
+	game_display.c						\
+	display_text.c
 $(eval SRC=$(addprefix src/, $(SRC)))
 
 PLAYER_MANAGEMENT = player_creation.c	\
 	display_player.c					\
 	move_player.c						\
 	manage_collision.c					\
-	display_player_stats.c
+	display_player_stats.c				\
+	manage_player_stat.c
 $(eval PLAYER_MANAGEMENT=\
 	$(addprefix src/player_management/, $(PLAYER_MANAGEMENT)))
 
@@ -38,12 +41,14 @@ WEAPON_MANAGEMENT = weapon_creation.c	\
 	add_and_rm_bullet.c					\
 	all_bullet_creation.c				\
 	fire_weapon.c						\
-	manage_bullet.c
+	manage_bullet.c						\
+	destroy_bullet.c
 $(eval WEAPON_MANAGEMENT=\
 	$(addprefix src/weapon_management/, $(WEAPON_MANAGEMENT)))
 
 WINDOW_MANAGEMENT = window_creation.c 	\
-	create_all_sprites.c
+	create_all_sprites.c				\
+	destroy_window.c
 $(eval WINDOW_MANAGEMENT=\
 	$(addprefix src/window_management/, $(WINDOW_MANAGEMENT)))
 
@@ -75,7 +80,8 @@ LEVEL_MANAGEMENT = create_map.c 		\
 	display_sprite.c					\
 	corners_init.c						\
 	corners_count.c						\
-	open_file.c
+	open_file.c							\
+	change_level.c
 $(eval LEVEL_MANAGEMENT=\
 	$(addprefix src/level_management/, $(LEVEL_MANAGEMENT)))
 
@@ -122,6 +128,7 @@ NPC_MANAGEMENT = npc_creation.c			\
 	matthias_action.c					\
 	writte_dialogue.c					\
 	manage_button_luca.c
+	draw_rounded_rect.c
 $(eval NPC_MANAGEMENT=$(addprefix src/npc_management/, $(NPC_MANAGEMENT)))
 
 FRAMEBUFFER = draw_framebuffer.c		\

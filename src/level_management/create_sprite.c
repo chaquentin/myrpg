@@ -10,7 +10,8 @@
 #include "level.h"
 #include "prototype.h"
 
-sfSprite *get_sprite_elevator(game_t *game, char c, sfVector2f pos, level_t *level)
+sfSprite *get_sprite_elevator(game_t *game, char c, sfVector2f pos,
+level_t *level)
 {
     if (c == 'E' && level->up.x == -1) {
         level->up = (sfVector2f) {pos.x * (64 * 0.9375),
@@ -44,7 +45,8 @@ sfSprite *get_sprite_wall(game_t *game, char **map, sfVector2i pos)
     return game->all_sprite[Wall][index];
 }
 
-sfSprite *get_sprite(game_t *game, char **map, sfVector2f pos_f, level_t *level)
+sfSprite *get_sprite(game_t *game, char **map,
+sfVector2f pos_f, level_t *level)
 {
     sfVector2i pos = {(int)pos_f.x, (int)pos_f.y};
 
@@ -74,18 +76,16 @@ sfTexture *create_map_texture(game_t *game, char **map, level_t *level)
     sfSprite *sprite = NULL;
     sfImage *image = NULL;
     sfTexture *texture = NULL;
-    int x = 0;
-    int y = 0;
+    sfVector2f pos = {0, 0};
 
     sfRenderWindow_clear(game->window, sfBlack);
     for (int i = 0; i < 18 * 32; i++) {
-        x = (float) (i % 32);
-        y = (float) (i / 32);
-        sprite = get_sprite(game, map, (sfVector2f) {x, y}, level);
+        pos = (sfVector2f) {i % 32, i / 32};
+        sprite = get_sprite(game, map, pos, level);
         if (sprite) {
             sfSprite_setScale(sprite, (sfVector2f) {0.9375, 0.9375});
-            sfSprite_setPosition(sprite, (sfVector2f) {x * (64 * 0.9375),
-            y * (64 * 0.9375)});
+            sfSprite_setPosition(sprite, (sfVector2f) {pos.x * (64 * 0.9375),
+            pos.y * (64 * 0.9375)});
             sfRenderWindow_drawSprite(game->window, sprite, NULL);
         }
     }

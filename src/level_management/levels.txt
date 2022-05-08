@@ -6,9 +6,9 @@ NORM:
 'E' = up elevator
 &
 WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
-W   w      w EE w              W
-W   w      w    w              W
-W   w      w    w   wwwwwwwwwwwW
+W   w        w EE w            W
+W   w        w    w            W
+W   w        w    w   wwwwwwwwwW
 W   w   w                      W
 W   w   w                      W
 W   w   w  wwwwwwwww   w       W
@@ -37,14 +37,14 @@ Hoods 700 950
 &
 WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
 W     w  EE  w ee w            W
-W     w      w    w   w        W
+W     w      w    w            W
 W            w        w        W
-W     wwwwwwwwwwwwwwwww        W
+W            w        w        W
+w     wwwwwwwwwwwwwwwww        w
 W                     w   wwwwwW
 W                     w   w    W
 W             w       w   w    W
 W    w                w   w  wwW
-W    w                w        W
 W    w                w        W
 W    w        w       w        W
 W    w                w        W
@@ -101,7 +101,7 @@ Durag 1600 150
 Durag 1700 150
 &
 WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
-W  ee  w                       W
+W    w                    ee   W
 W      w                       W
 W      w                       W
 W      w                       W

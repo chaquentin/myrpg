@@ -50,13 +50,15 @@ button_t **languages_button, sfSprite *sprite)
     sfRenderWindow_display(game->window);
 }
 
-static int update_flag_sound(game_t *game, sfSound *sound, int *sound_index,
+static int update_flag_sound(game_t *game, sfSound *sound,
 sfSprite **sprite)
 {
-    if (*sound_index != game->debug) {
+    static int sound_index = 0;
+
+    if (sound_index != game->debug) {
         sfSound_setBuffer(sound, game->sounds->all_buffer[game->debug]);
         sfSound_play(sound);
-        *sound_index = game->debug;
+        sound_index = game->debug;
         *sprite = game->all_sprite[Decor][Chinese + game->debug];
     }
     sfSprite_setPosition(*sprite, (sfVector2f) {660, 300});
@@ -71,7 +73,6 @@ int help(game_t *game, player_t *player, sfEvent event)
     sfSound *sound = create_help_sound(game);
     sfSprite *sprite = game->all_sprite[Decor][Chinese];
     sfSprite *box = game->all_sprite[Decor][HowToPlayGround];
-    int sound_index = 0;
 
     if (!background || !button || !sound)
         game->scene = Quit;
@@ -80,7 +81,7 @@ int help(game_t *game, player_t *player, sfEvent event)
     stop_music(game->sounds->all_musics[1]);
     while (game->scene == Help) {
         get_how_event(game, &event, button, languages_button);
-        update_flag_sound(game, sound, &sound_index, &sprite);
+        update_flag_sound(game, sound, &sprite);
         sfRenderWindow_drawSprite(game->window, background->sprite, NULL);
         sfRenderWindow_drawSprite(game->window, box, NULL);
         display_help(game, button, languages_button, sprite);
