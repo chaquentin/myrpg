@@ -32,6 +32,7 @@ static int verify_enemy_dead(enemy_t **enemy, player_t *player, int i)
         enemy[i]->alive = sfFalse;
         player->swag += player->weapon->swag;
         player->xp += 2 * ((1 + enemy[i]->type) * (1 + enemy[i]->type));
+        player->money += 5 + (enemy[i]->type * 10);
     }
 }
 

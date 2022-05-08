@@ -108,7 +108,7 @@ player_t *player)
         inventory->crake_addiction += 1;
         inventory->drug_object = -1;
     }
-    return manage_drug_adiction(game, inventory, player);
+    return manage_drug_malus(game, inventory, player);
 }
 
 int game(game_t *game, player_t *player, sfEvent event)

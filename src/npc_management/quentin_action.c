@@ -9,6 +9,24 @@
 #include "prototype.h"
 #include "structure.h"
 
+static int dispay_price_and_description(game_t *game)
+{
+    sfVector2f pos = {0};
+    char drug[3][100] = {"Coke 50 dollars\nIncrease your speed",
+    "Weed 10 dollars\nIncrease your damage reduction",
+    "Crake 20 dollars\nRestore your life"};
+
+    sfText_setCharacterSize(game->text, 10);
+    for (int i = 0; i < 3; i++) {
+        pos = sfRenderWindow_mapPixelToCoords(game->window,
+        (sfVector2i) {1000, 120 + i * 250}, game->view);
+        sfText_setString(game->text, drug[i]);
+        sfText_setPosition(game->text, pos);
+        sfRenderWindow_drawText(game->window, game->text, NULL);
+    }
+    return 0;
+}
+
 static int display_shop(game_t *game, sfSprite **sprite, button_t **buy_button,
 player_t *player)
 {
@@ -26,7 +44,7 @@ player_t *player)
         sfRenderWindow_drawSprite(game->window, buy_button[i]->sprite, NULL);
     }
     display_money(game, player, 0);
-    return 0;
+    return dispay_price_and_description(game);
 }
 
 int manage_view_mouse(game_t *game, sfEvent *event, button_t **all_button)

@@ -61,7 +61,12 @@ int matthias_action(game_t *game, player_t *player)
     sfVector2f pos = my_sfView_getCenter(game->view, game);
 
     stop_player(player);
-    write_dialogue(game, game->all_npc[Matthias - Antonin]->all_dialogs[0]);
+    if (player->money < 50)
+        return write_dialogue(game, "Mais tu es pauvre", player);
+    if (write_dialogue(game,
+    game->all_npc[Matthias - Antonin]->all_dialogs[0], player) == 1)
+        return 0;
+    player->money -= 50;
     for (int i = 12; i != 23; i++)
         sfSprite_scale(game->all_sprite[Weapon][i], (sfVector2f) {3, 3});
     while (window_open) {
