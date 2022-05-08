@@ -10,6 +10,8 @@
 
 int npc_event(game_t *game, player_t *player)
 {
+    if (game->current_level != 0)
+        return (0);
     for (int i = 0; i < 4; i++) {
         if (get_distance(game->all_npc[i]->pos, player->pos) < 90)
             game->all_npc[i]->is_player_seen = sfTrue;
