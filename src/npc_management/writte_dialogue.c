@@ -37,5 +37,6 @@ int write_dialogue(game_t *game, char *dialogue)
     sfRenderWindow_display(game->window);
     while (window_open)
         get_dialogue_event(game, &event, &window_open);
+    update_clock(game);
     return (0);
 }
