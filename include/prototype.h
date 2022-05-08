@@ -31,6 +31,7 @@
     void usage(void);
     int manage_click(button_t *object, sfVector2f mouse_pos, game_t *game);
     int display_stat(game_t *game, player_t *player);
+    int verify_money(player_t *player, game_t *game);
 
     int destroy_game(game_t *game);
 
@@ -218,6 +219,12 @@
     int manage_view_mouse(game_t *game, sfEvent *event, button_t **all_button);
     int antonin_action(game_t *game, player_t *player);
     int destroy_all_npc(npc_t **npc);
+    int dispay_price_and_description(game_t *game);
+    int display_shop(game_t *game, sfSprite **sprite, button_t **buy_button,
+    player_t *player);
+    int manage_view_mouse(game_t *game, sfEvent *event, button_t **all_button);
+    int get_quentin_event(game_t *game, player_t *player, sfEvent *event,
+    button_t **buy_buttons);
 
 //================================FRAMEBUFFER================================//
 
@@ -239,10 +246,10 @@
 
     void draw_line(game_t *, sfVector2f, sfVector2f, sfColor);
     void draw_circle(sfRenderWindow *, sfVector2f, float, sfColor);
+    int buy_drug(game_t *game, player_t *player, button_t **all_button);
 
 //=================================ANIMATION=================================//
 
     int elevator_change(game_t *game, int direction);
-
 
 #endif

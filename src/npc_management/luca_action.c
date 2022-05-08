@@ -8,7 +8,7 @@
 #include <stdio.h>
 #include "prototype.h"
 
-static void display_shop(game_t *game, player_t *player)
+static void display_luca_shop(game_t *game, player_t *player)
 {
     sfVector2f pos = sfSprite_getPosition(player->sprite);
 
@@ -74,7 +74,7 @@ int luca_action(game_t *game, player_t *player)
         update_clock(game);
         get_luca_event(game, player, &event, &window_open);
         sfRenderWindow_clear(game->window, sfBlack);
-        display_shop(game, player);
+        display_luca_shop(game, player);
         display_all_clothes(game, player);
         display_button_luca(game, player);
         sfRenderWindow_display(game->window);

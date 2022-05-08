@@ -36,33 +36,12 @@ int show_weapon(game_t *game, sfVector2f pos, int k, float clock)
     return (0);
 }
 
-int stop_player(player_t *player)
-{
-    for (int i = 0; i < 4; i++)
-        player->movement[i] = 0;
-    return (0);
-}
-
 sfVector2f my_sfView_getCenter(sfView *view, game_t *game)
 {
     sfVector2f pos = sfView_getCenter(game->view);
     pos.x -= 3 * 32;
     pos.y -= 3 * 32;
     return (pos);
-}
-
-static int verify_money(player_t *player, game_t *game)
-{
-    stop_player(player);
-    if (player->money < 50)
-        return write_dialogue(game, "Mais tu es pauvre", player);
-    if (write_dialogue(game,
-    game->all_npc[Matthias - Antonin]->all_dialogs[0], player) == 1)
-        return 1;
-    player->money -= 50;
-    for (int i = 12; i != 23; i++)
-        sfSprite_scale(game->all_sprite[Weapon][i], (sfVector2f) {3, 3});
-    return 0;
 }
 
 int matthias_action(game_t *game, player_t *player)
