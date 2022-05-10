@@ -63,7 +63,14 @@ int verify_win(game_t *game, player_t *player)
             nbr_alive++;
     }
     if (nbr_alive == 0)
-        game->scene = Win;
+      game->scene = Win;
+    return (0);
+}
+
+static int launch_view(game_t *game)
+{
+    if (game->view)
+        sfView_setSize(game->view, (sfVector2f) {960, 540});
     return (0);
 }
 
@@ -71,7 +78,7 @@ int game(game_t *game, player_t *player, sfEvent event)
 {
     stop_music(game->sounds->all_musics[1]);
     play_music(game->sounds->all_musics[0]);
-    sfView_setSize(game->view, (sfVector2f) {960, 540});
+    launch_view(game);
     while (game->scene == Game) {
         change_level(game, player);
         update_clock(game);
